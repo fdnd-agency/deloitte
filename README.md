@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/4516965a-3feb-4cc0-b653-109d21504278)
+![image](https://github.com/user-attachments/assets/37a4d11a-d01c-4f1b-81a9-68d0cac45d05)
 
 Over Deloitte...
 
@@ -11,7 +11,7 @@ Over Project X....
 
 ## Resources
 
-[Backlog]()
+[Backlog](https://github.com/orgs/fdnd-agency/projects/36/)
 
 [Design]() <!-- figma design and or style guide -->
 
