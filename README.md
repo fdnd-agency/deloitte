@@ -16,7 +16,7 @@ _How can we build a modern, interactive prototype for the Digital Factory, that 
 
 ## Resources
 
-[Backlog](https://github.com/orgs/fdnd-agency/projects/36/)
+[Backlog](https://github.com/orgs/fdnd-agency/projects/41)
 
 [Design]() <!-- figma design and or style guide -->
 
