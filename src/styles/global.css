@@ -48,3 +48,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+*{
+	--black:color(display-p3 -0.0523 0.1019 -0.2456);
+	--shade-1:oklch(from black 30% 10% 100deg / 1 );
+	--shade-1:color(display-p3 0.3991 0.7162 0.4747);
+}

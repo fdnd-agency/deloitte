@@ -1,0 +1,111 @@
+main{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	/* background-color: rgb(86, 100, 188); */
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.login-container{
+	width: fit-content;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	/* background-color: rgba(186, 188, 189, 0.174); */
+	border-radius: 2pc 1pc 1pc 2pc;
+
+	> :nth-child(2){
+		width: 28vw;
+		height: 40vw;
+		/* width: 50vw;
+		height: 70vw; */
+	}
+
+	> :nth-child(1){
+		width: 50vw;
+		height: 90vh;
+	}
+
+
+
+}
+
+
+.login-content{
+	position: relative;
+	overflow: hidden;
+	border-radius: clamp(10px, 50vw - 1rem, 2pc);
+
+}
+
+.login-content h1{
+	position: absolute;
+	top: 5%;
+	left: 5%;
+}
+
+.login-container img {
+
+	object-fit: cover;
+	object-position: center;
+	width: 100%;
+	height: 100%;
+}
+
+.login-container > article{
+	/* outline: .1px solid; */
+	/* justify-content: flex-end; */
+	/* background-color: rgba(186, 188, 189, 0.174); */
+	display: flex;
+	flex-direction: column;
+	padding: 10%;
+	padding-bottom: 0;
+	border-radius: 0pc 1pc 1pc 0pc;
+	container-type:size ;
+	container-name: login;
+
+}
+
+.login-container article .space{
+	flex: 1;
+}
+
+.login-container article form{
+	/* justify-self:baseline; */
+	/* float: block-end; */
+	/* outline: solid; */
+	flex: 0 0 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 80%;
+
+	label{
+		margin-bottom: 5%;
+	}
+
+	legend{
+		margin-bottom: 1%;
+	}
+
+	input{
+		width: 100%;
+	}
+
+	button{
+		width: 100%;
+		height: 7cqh;
+		margin-bottom: 10%;
+		color: white;
+		background-color: var(--black);
+		border-radius:.8pc;
+	}
+
+
+}
+
+
