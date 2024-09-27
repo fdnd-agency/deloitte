@@ -11,12 +11,12 @@
 		<div class="login-content">
 			<h1>Mobility package</h1>
 
-			<div class="login-info-highlight">
+			<!-- <div class="login-info-highlight">
 				<h1>Deloitte</h1>
 				<p>Deloitte is a global professional services firm that provides a wide range of services to clients in the private and public sectors. Our services include consulting, project management, risk management, and more. We work with clients to help them achieve their business goals and objectives.</p>
 				<p>Deloitte is a global professional services firm that provides a wide range of services to clients in the private and public sectors. Our services include consulting, project management, risk management, and more. We work with clients to help them achieve their business goals and objectives.</p>
 				<p>Deloitte is a global professional services firm that provides a wide range of services to clients in the private and public sectors. Our services include consulting, project management, risk management, and more. We work with clients to help them achieve their business goals and objectives.</p>
-			</div>
+			</div> -->
 			<img src="pexels-dan-voican-2624103-17854203.jpg" alt="background image for the login page" >
 		</div>
 		
