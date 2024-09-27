@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/37a4d11a-d01c-4f1b-81a9-68d0cac45d05)
+![371555998-c7657312-6479-40bf-8d11-17ec214780ee](https://github.com/user-attachments/assets/a4822dd4-7683-489b-ba4d-86e5c4f28f98)
 
 Within Deloitte Netherlands, a team called the Digital Factory works on optimizing internal processes and applications to help employees save time and enjoy their day better. Within this team, we work with a mix of nerds and creatives in order to rapidly prototype cool things. We work from discovery with service designers to creatives for UI / UX to deliver an app by our nerds. App here is the broad sense of the word, meaning native or web application.
 
