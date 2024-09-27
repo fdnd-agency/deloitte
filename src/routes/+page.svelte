@@ -1,15 +1,5 @@
 <script>
-	export let data
-
-	export async function load({ url }) {
-    return {
-      status: 302,
-      redirect: '/Inlog',
-    };
-  }
+    export let data;
 </script>
 
-<h1>Hello </h1>
-<p>
-	<a href="/Inlog">inlog</a>
-</p>
+<h1>{data.person.name}</h1>
