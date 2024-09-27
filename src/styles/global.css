@@ -59,16 +59,50 @@ table {
 	--D-black: #000000;
 
 
-	--D-light-bk:color(display-p3 0.9361 0.9675 0.9536);
-	--D-base-bk:color(display-p3 0.88 0.9348 0.9111);
-	--D-mid-bk:color(display-p3 0.5137 0.7526 0.7065);
-	--D-t-support:color(display-p3 0.1976 0.4554 0.495);
-	--D-dark-support:color(display-p3 0.1227 0.3047 0.3434);
-
+	--D-light-bk:color(display-p3 0.9361 0.9675 0.9536); /* #EDF7F3 */
+	--D-base-bk:color(display-p3 0.88 0.9348 0.9111); /* #DDEFE8 */
+	--D-mid-bk:color(display-p3 0.5137 0.7526 0.7065); /* #6FC2B4 */
+	--D-t-support:color(display-p3 0.1976 0.4554 0.495); /* #007680 */
+	--D-dark-support:color(display-p3 0.1227 0.3047 0.3434); /* #004F59 */
+	--D-bright-bk: #00BABA;
+	--D-drop-shadow: #43C8C0;
 
 	--black:color(display-p3 -0.0523 0.1019 -0.2456);
 	--shade-1:oklch(from black 30% 10% 100deg / 1 );
 	--shade-2:color(display-p3 0.3991 0.7162 0.4747);
+}
 
+button {
+	padding: 0.5rem 1rem;
+	border-radius: 1rem;
+	outline: none;
+	border: none;
+	text-decoration: none;
+	color: var(--D-white);
+	box-shadow: 0 0.2rem 1rem var(--D-drop-shadow);
+	width: 15rem;
+}
 
+.button-1 {
+	background-image: linear-gradient(var(--D-bright-bk), var(--D-mid-bk));
+}
+
+.button-2 {
+	background-image: linear-gradient(var(--D-primary-mid-grey), var(--D-secondary-mid-grey));
+}
+
+.button-3 {
+	background-image: linear-gradient(var(--D-t-support), var(--D-dark-support));
+}
+
+input[type=checkbox] {
+	padding: 1rem;
+	border-radius: 1rem;
+	color: var(--D-black);
+	border: 0.1rem solid var(--D-base-bk);
+	width: 10rem;
+}
+
+input[type=checkbox]:hover {
+	border: 0.1rem solid var(--D-mid-bk);
 }
