@@ -4,8 +4,6 @@
 	import '../../styles/global.css'
 </script>
 
-
-
 <main>
 	
 	<section class="login-container">
