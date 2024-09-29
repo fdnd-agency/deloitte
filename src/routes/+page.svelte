@@ -2,4 +2,5 @@
     export let data;
 </script>
 
-<h1>{data.person.name}</h1>
+<a href="/inlog">login</a>
+<a href="/overview">overzicht</a>
