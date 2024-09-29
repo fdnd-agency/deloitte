@@ -19,6 +19,7 @@
     }
 
     section {
+        display: flex;
         width: 100vw;
         max-height: 60vh;   
         transition: .8s cubic-bezier(0.34, -0.04, 0.17, 0.98);
