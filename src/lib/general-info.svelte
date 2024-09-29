@@ -3,7 +3,7 @@
 </script>
 
 <section>
-    <h2>Algemene informatie</h2>
+    <h2>General information</h2>
     <article>
         <h3>Business OV card</h3>
         <blockquote>Everyone receives a "Business OV Card" for travel. The cost is deducted from the salary before tax, making travel more economical.</blockquote>

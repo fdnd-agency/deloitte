@@ -7,7 +7,7 @@
 
 <main>
     <header>
-            <h1>Overzicht</h1>
+            <h1>Overview</h1>
         <span>
             <a href="/wizard">Wizard</a>
             <a href="/inlog">Log in</a>
