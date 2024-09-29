@@ -3,7 +3,7 @@
 </script>
 
 <section>
-    <h2>Mobility options</h2>
+    <!-- <h2>Mobility options</h2> -->
     <div>
         <a href="/"><p>Cash</p><img src="/bb7f42b0abb308065352031173fcbf8d.jpg" alt="cash"></a>
         <a href="/"><p>Mobility +</p><img src="/pexels-pille-kirsi-222198-1093184.jpg" alt="mobiaty +"></a>
@@ -23,12 +23,12 @@
         max-height: 60vh;   
         transition: .8s cubic-bezier(0.34, -0.04, 0.17, 0.98);
 
-        & h2 {
+        /* & h2 {
             background-color: black;
             color: white;
             text-align: center;
             padding: 0.5em 0;
-        }
+        } */
 
         & div {
             display: flex;
