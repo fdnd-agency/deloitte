@@ -23,10 +23,23 @@
 </section>
 
 <style>
+    @keyframes pageLoadAnimation {
+        0% {
+            transform: translateX(10%);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateX(0);
+            opacity: 100%;
+        }
+    }
+
     section {
         display: flex;
         flex-direction: column;
         align-items: center;
+        animation: 1s cubic-bezier(0.34, -0.04, 0.17, 0.98) pageLoadAnimation;
 
         & h2 {
             padding: 0.5em 0;
