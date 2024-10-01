@@ -5,6 +5,14 @@
 
 </script>
 
+
+<svelte:head>
+	<title>
+		Mobility package login
+	</title>
+		<link rel="preload" href="pexels-dan-voican-2624103-17854203.jpg" as="image">
+</svelte:head>
+
 <main>
 	
 	<section class="login-container">
