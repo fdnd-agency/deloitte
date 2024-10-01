@@ -1,18 +1,18 @@
 <script>
     export let data;
+    export let num
 </script>
 
 <section>
-    <!-- <h2>Mobility options</h2> -->
     <div>
-        <a href="/" class="cash"><p>Cash</p><img src="/bb7f42b0abb308065352031173fcbf8d.jpg" alt="cash"></a>
+        <a href="/"><p>Cash</p><img src="/bb7f42b0abb308065352031173fcbf8d.jpg" alt="cash"></a>
         <a href="/"><p>Mobility +</p><img src="/pexels-pille-kirsi-222198-1093184.jpg" alt="mobiaty +"></a>
         <a href="/"><p>Lease car</p><img src="/P5211348.jpg" alt="lease car"></a>
         <a href="/"><p>Unlimited public transport</p><img src="/630691dc3994f39fc9031d5b6d6c66be.jpg" alt="unamited pubac transport"></a>
     </div>
 </section>
 
-<dialog class="cash-dialog">
+<article>
         <h2>Cash:</h2>
         <button>close</button>
     <ul>
@@ -20,7 +20,7 @@
         <li>You are expected to manage your own transportation to and from work or client locations.</li>
         <li>You can use Deloitte-subsidized transport options if desired.</li>
     </ul>
-</dialog>
+</article>
 
 <style>
     * {
@@ -46,13 +46,6 @@
         max-height: 70vh;   
         transition: .8s cubic-bezier(0.34, -0.04, 0.17, 0.98);
         animation: 1s cubic-bezier(0.34, -0.04, 0.17, 0.98) pageLoadAnimation;
-
-        /* & h2 {
-            background-color: black;
-            color: white;
-            text-align: center;
-            padding: 0.5em 0;
-        } */
 
         & div {
             display: flex;

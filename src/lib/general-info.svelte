@@ -1,5 +1,6 @@
 <script>
     export let data;
+    export let num
 </script>
 
 <section>
