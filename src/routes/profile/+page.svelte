@@ -2,12 +2,13 @@
 	// export let data;
 	// import '../../styles/profile.css'
 	import '../../styles/global.css'
+	import { goto } from '$app/navigation';
 	// import { error } from './+error.svelte';
 	// import { page } from '$app/stores';
 
 	let score = 0;
 
-	$: score = 2;
+	$: score = 5;
 	
 
 </script>
@@ -41,7 +42,16 @@
 				</ul>
 				<input type="number" bind:value={score} placeholder="choose package">
 
-				<a href="/Inlog" data-sveltekit-preload-data="false">sign-out</a>
+				<a href="/Inlog" >sign-out</a>
+				<button on:click={() =>{ 
+					goto('/profile'); 
+					if(score = 5){
+						score = 0;
+					} else {
+						score = score;
+					};}}
+					>cancel package
+				</button>
 					<!-- data-sveltekit-preload-data=false helps with preventing unecesary page load -->
 
 			</div>
@@ -63,10 +73,12 @@
 			<row class="row row-mid">
 
 				<h2>Mobility+</h2>
-				<h2>Package description: This package is designed for individuals who require assistance with mobility. It includes a
-						range of services to help you move around the city, including transportation, parking, and public transportation.
-						It also includes a range of services to help you manage your finances, including budgeting, savings, and
-						investments.</h2>
+				<h2>
+					Package description: This package is designed for individuals who require assistance with mobility. It includes a
+					range of services to help you move around the city, including transportation, parking, and public transportation.
+					It also includes a range of services to help you manage your finances, including budgeting, savings, and
+					investments.
+				</h2>
 				
 				<div class="package-details">
 					
@@ -186,10 +198,12 @@
 			<row class="row row-mid">
 
 				<h2>Package name: Lease car</h2>
-				<h2>Package description: This package is designed for individuals who require assistance with mobility. It includes a
-						range of services to help you move around the city, including transportation, parking, and public transportation.
-						It also includes a range of services to help you manage your finances, including budgeting, savings, and
-						investments.</h2>
+				<h2>
+					Package description: This package is designed for individuals who require assistance with mobility. It includes a
+					range of services to help you move around the city, including transportation, parking, and public transportation.
+					It also includes a range of services to help you manage your finances, including budgeting, savings, and
+					investments.
+				</h2>
 				
 				<div class="package-details">
 					<p>Package price: $1000</p>
@@ -210,14 +224,48 @@
 
 
 		 	</article>
-		{:else if score === 5}
-		{error}
+		{:else if score >= 5}
+
+		 <article >
+
+			<row class="row row-top">
+
+				<span><a href="/profile" on:click={() => score = 0}>reload</a></span>
+				
+			</row>
+			<br>
+			<row class="row row-mid">
+
+				
+				
+				<div class="package-details">
+					<h2>Error</h2>
+				</div>
+			</row>
+			<br>
+			<row class="row row-down">
+				<h2>tools</h2>
+				<nav>
+					<span>settings</span>
+					<span>faq</span>
+					<span>overzicht</span>
+				</nav>
+			</row>
+
+
+		 	</article>
+
+		
 		{:else}
 		 <article >
 
 			<row class="row row-top">
 
-				<span><button>choose package</button></span>
+				<span>
+					<button on:click={() => {goto('/profile')}}
+						>choose package
+					</button>
+				</span>
 				<!-- <span> package content</span> -->
 			</row>
 			<br>
@@ -230,8 +278,7 @@
 					investments.</h2>
 				
 				<div class="package-details">
-					<h2>Mobility package </h2>
-					<p>Package duration: 1 month</p>
+					<h3>user transportation info</h3>
 				</div>
 			</row>
 			<br>
