@@ -1,13 +1,11 @@
 <script>
-    export let data;
-    
-	export async function load({ url }) {
-    return {
-      status: 302,
-      redirect: '/Inlog'
-    };
-  }
+  export let data;
+  import { goto } from '$app/navigation';
+  import { onMount } from 'svelte';
 
+    onMount(() => {
+        goto('/Inlog');
+    });
 </script>
 
 <h1>{data.person.name}</h1>
