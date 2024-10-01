@@ -19,7 +19,7 @@
 		
 		<aside class="login-content">
 			<h1>Mobility package</h1>
-			<img src="pexels-dan-voican-2624103-17854203.jpg" alt="background image for the login page" >
+			<img src="pexels-dan-voican-2624103-17854203.jpg" >
 		</aside>
 		
 		
@@ -30,12 +30,12 @@
 
 			<form action="/profile" method="post">
 				<label for="Email">
-					<legend>Email</legend>
+					<h1>Email</h1>
 					<input type="Email" name="Email" id="Email" placeholder="Email">
 				</label>
 
 				<label for="Password">
-					<legend>Password</legend>
+					<h1>Password</h1>
 					<input type="Password" name="Password" id="Password" placeholder="Password">
 				</label>
 				
@@ -187,7 +187,7 @@
 		/* background-color: red; */
 	}
 
-	& legend{
+	& h1{
 		margin-bottom: 2%;
 		display: none;
 	
