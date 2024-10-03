@@ -1,17 +1,25 @@
 <script>
-	// export let data;
+	export let data;
+	let person = data.person
+	
 	// import '../../styles/profile.css'
-	import '../../styles/global.css'
-	import { goto } from '$app/navigation';
 	// import { error } from './+error.svelte';
 	// import { page } from '$app/stores';
+	import '../../styles/global.css'
+	import { goto } from '$app/navigation';
 
 	let score = 0;
 
-	$: score = 5;
+	$: score = 4;
 	
 
 </script>
+
+<!-- external head  -->
+<svelte:head>
+	<title>mobilty package of .....</title>
+	<link rel="preload" href="{person.avatar}" as="image">
+</svelte:head>
 
 
 <main>
@@ -22,27 +30,25 @@
 			<div class="profile">
 				<!-- <h1>Mobility package</h1> -->
 				<div class="user">
-					<img src="/0555536218e3dee039bb8897a912aa4c.jpg" alt="">
-					<span>name emploee</span>
+					<!-- <img src="/0555536218e3dee039bb8897a912aa4c.jpg" alt=""> -->
+					<span>{person.name} {person.surname}</span>
+					<img src={person.avatar} alt="{person.id}">
 				</div>
 				<ul class="user-info">
-					<li>job-title</li>
+					<li>job-title {person.role}</li>
 					<li>work land & location</li>
-					<li>role</li>
-					<li>team</li>
-					<li>department</li>
+					<li>department {person.squad_id}</li>
 					<li>contract start date</li>
 					<li>contract end date</li>
-					<li>disability benefits
-
-						<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-point"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /></svg>
+					<li>
+						disability benefits
+						<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="green"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-point"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /></svg>
 					</li>
 					<li>adress</li>
 					<li> IT contact</li>
 				</ul>
 				<input type="number" bind:value={score} placeholder="choose package">
 
-				<a href="/Inlog" >sign-out</a>
 				<button on:click={() =>{ 
 					goto('/profile'); 
 					if(score = 5){
@@ -52,15 +58,18 @@
 					};}}
 					>cancel package
 				</button>
+				<br>
+				<a href="/Inlog" >sign-out</a>
 					<!-- data-sveltekit-preload-data=false helps with preventing unecesary page load -->
 
 			</div>
 			<!-- <img src="pexels-dan-voican-2624103-17854203.jpg" alt="background for the login page" > -->
 
 		</aside>
-		
+		<!-- <article class="package-container" > -->
+
+		<article class="package-container" >
 		{#if score === 1}
-			<article >
 
 			<row class="row row-top">
 
@@ -100,9 +109,9 @@
 			</row>
 
 
-		 </article>
+		 
 		{:else if score === 2}
-			<article >
+			
 
 			<row class="row row-top">
 
@@ -136,9 +145,9 @@
 			</row>
 
 
-			</article>
+			
 		{:else if score === 3}
-		 <article >
+		 
 
 			<row class="row row-top">
 
@@ -171,17 +180,16 @@
 			</row>
 
 
-		 </article>
+		 
 		{:else if score === 4}
-		 <article >
+		 
 
-			<row class="row row-top">
+			<!-- <row class="row row-top">
 
 				<span>Lease car</span>
 				<span> 
-					<!-- <img src="62112c9b15fb4bf9e38567d6e436b2dd-tesla-car-svg.webp" alt="car image"> -->
 					<img src="tesla_car_PNG46.png" alt="tesla">
-					<!-- <svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+					<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
 						Car body
 						<path d="M20,70 Q50,90 100,90 Q150,90 180,70 Q190,60 190,50 Q190,40 180,30 Q150,10 100,10 Q50,10 20,30 Q10,40 10,50 Q10,60 20,70 Z" fill="#cc0000"/>
 						Wheels
@@ -191,26 +199,39 @@
 						<path d="M40,40 Q70,30 100,30 Q130,30 160,40 Q140,20 100,20 Q60,20 40,40 Z" fill="#87CEFA"/>
 						Tesla logo
 						<text x="90" y="60" font-family="Arial" font-size="20" fill="white">T</text>
-					</svg>					 -->
+					</svg>					
 				</span>
-			</row>
-			<br>
+			</row> -->
+			
 			<row class="row row-mid">
-
-				<h2>Package name: Lease car</h2>
-				<h2>
-					Package description: This package is designed for individuals who require assistance with mobility. It includes a
-					range of services to help you move around the city, including transportation, parking, and public transportation.
-					It also includes a range of services to help you manage your finances, including budgeting, savings, and
-					investments.
-				</h2>
-				
-				<div class="package-details">
-					<p>Package price: $1000</p>
-					<p>Package duration: 1 month</p>
-					<p>Package services: 1 month</p>
-					<p>how many miles per year: 10000</p>
+				<div class="mid-main">
+						<h2>Package name: Lease car</h2>
+					<h2>
+						Package description: This package is designed for individuals who require assistance with mobility. It includes a
+						range of services to help you move around the city, including transportation, parking, and public transportation.
+						It also includes a range of services to help you manage your finances, including budgeting, savings, and
+						investments.
+					</h2>
+					
+					<div class="package-details">
+						<p>Package price: $1000</p>
+						<p>Package duration: 1 month</p>
+						<p>Package services: 1 month</p>
+						<p>how many miles per year: 10000</p>
+					</div>
 				</div>
+
+				<aside class="mid-side">
+					<span>
+						<p>Lease car</p>
+						<button>+</button>
+
+					</span>
+					<span> 
+						<img src="tesla_car_PNG46.png" alt="tesla">
+					</span>
+				</aside>
+				
 			</row>
 			<br>
 			<row class="row row-down">
@@ -223,10 +244,10 @@
 			</row>
 
 
-		 	</article>
+		 	
 		{:else if score >= 5}
 
-		 <article >
+		 
 
 			<row class="row row-top">
 
@@ -253,11 +274,11 @@
 			</row>
 
 
-		 	</article>
+		 	
 
 		
 		{:else}
-		 <article >
+		 
 
 			<row class="row row-top">
 
@@ -292,8 +313,10 @@
 			</row>
 
 
-		 </article>
-		{/if}
+			{/if}
+		</article>
+		
+		
 
 
 	</section>
@@ -318,7 +341,6 @@
 	--Ol-style:solid;
 	--outline: var(--Ol-style) var(--Ol-size) var(--Ol-color); 
 
-	list-style:disc;
 }
 
 
@@ -342,6 +364,7 @@ main{
 /* /////////////////////////// */
 
 .profile-container{
+	position: relative;
 	width:max-content;
 	height: fit-content;
 	width: 100%;
@@ -415,13 +438,14 @@ main{
 
 .profile-content .profile{
 	--D-white:rgba(255, 255, 255, 0.396);
+	background-color: var(--D-white);
 	position: absolute;
 	inset-block: 5%;
 	inset-inline: 10%;
-	background-color: var(--D-white);
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	padding: 2%;
+	/* align-items: center; */
 	transition: opacity 1s var(--pageDelay);
 
 	@starting-style{
@@ -431,14 +455,21 @@ main{
 }
 .profile-content .profile .user{
 	display: flex;
-	/* justify-content: space-around; */
+	padding-top: 2%;
+	/* flex-direction: row-reverse; */
+	justify-content: space-around;
+	& span{
+		display: flex;
+		align-items: center;
+	}
 
 	& img{
-		width: 100px;
-		aspect-ratio: 1;
+		width: 80px;
+		border-radius: 50%;
 	}
 
 }
+
 
 .profile-content > h1{
 	font-size: 1.8rem;
@@ -451,21 +482,30 @@ main{
 	/* filter: blur(10px); */
 }
 
-.profile-container img {
+.profile-content img {
 
 	object-fit: cover;
 	object-position: center;
-	width: 100%;
 	height: 100%;
+	aspect-ratio: 1;
+
 }
+
+.profile-content .user-info{
+	margin-left: 4%;
+	padding: 2%;
+	flex: 1 0 fit-content;
+	list-style: none;
+}
+
+
+
 
 /* /////////////////////////// */
 /* package selection interface */
 /* /////////////////////////// */
 
 .profile-container > article{
-	/* outline: .1px solid; */
-	/* justify-content: flex-end; */
 	background-color: rgba(130, 172, 194, 0.045);
 	display: flex;
 	flex-direction: column;
@@ -475,7 +515,7 @@ main{
 	border-radius: clamp(10px, 50vw - 4rem, 1.8pc);
 	container-type:size ;
 	container-name: login;
-	/* padding-bottom: 0; */
+
 
 }
 
@@ -484,13 +524,10 @@ main{
 /* ///////////// */
 
 .profile-container article .row{
-	--pageDelay:1.5s;
+	--pageDelay:1.05s;
+	--pageDuration:.3s;
 	transition: opacity var(--pageTrans);
-	/* outline: solid; */
-	/* outline: solid var(--D-base-bk); */
-	/* background-color: var(--D-light-bk); */
-	/* background-color: rgba(130, 172, 194, 0.045); */
-
+	
 	@starting-style{
 		opacity:0;
 	}
@@ -537,6 +574,7 @@ main{
 	max-height: 20vh;
 	border-radius: .5pc;
 	padding: 2%;
+	overflow: hidden;
 }
 
 .row-top img{
@@ -552,11 +590,7 @@ main{
 /* mid row */
 /* //////// */
 
-.profile-container{
-	position: relative;
-}
-
-.package-container article{
+.profile-container article{
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -572,7 +606,11 @@ main{
 	border-radius: .8pc;
 	outline: var(--outline);
 	padding: 2%;
+
+
 }
+
+
 
 .row-mid h2{
 	font-size: 1.2rem;
@@ -587,8 +625,93 @@ main{
 	background-color: var(--D-light-bk);
 	border-radius: .5pc;
 	padding: 2%;
+	/* list-style:disc !important; */
 
 }
+
+/* mid row when it has mid-main & mid-side */
+.profile-container > article .row-mid:has(aside){
+	display: flex;
+	flex-direction: row ;
+	width: 100% ;
+	max-height: 50vh;
+	padding: 0;
+	gap: 4%;
+	background-color:white;
+	outline: none;
+
+
+	& .mid-main{
+		flex: 1 0 40%;
+		background-color: blue;
+		border-radius: inherit;
+		background-color: var(--D-mid-bk);
+		padding: 2%;
+
+
+	}
+
+	& aside.mid-side{
+		position: relative;
+		flex: 1 0 auto;
+		border-radius: inherit;
+		/* background-color: var(--D-base-bk); */
+		background: linear-gradient(0deg, rgba(34,193,195,0) 0%, var(--D-base-bk) 42%);
+		padding: 2%;
+		container-type:size;
+		
+	}
+
+	& aside.mid-side{
+
+		& span:nth-of-type(1){
+			font-size: 1.2rem;
+		}
+
+		& span:nth-of-type(1) button{
+			position: absolute;
+			bottom: 35%;
+			top: 15%;
+			inset-inline: 10%;
+			background: transparent;
+			display: grid;
+			place-content: center;
+			border-radius: .5pc ;
+			font-size: 3rem;
+
+		}
+
+		&:has(span:nth-of-type(1) button:hover){
+			box-shadow: inset 0px -150px 100px var(--D-mid-bk);
+		}
+
+
+		& span:nth-of-type(2){
+			/* display: none; */
+			width: 100cqw;
+			height: 70cqb;
+			aspect-ratio: 1;
+			display: flex;
+			flex-direction: column;
+		}
+
+		&  img{
+			position: relative;
+			width: 100cqw;
+			height: auto;
+			object-fit: cover;
+			object-position: center;
+			top:100%;
+			/* aspect-ratio: 1; */
+		}
+
+		
+	}
+
+	
+}
+
+
 
 /* /////////// */
 /* down row */
