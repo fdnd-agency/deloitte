@@ -310,7 +310,9 @@
 				<nav>
 					<span>settings</span>
 					<span>faq</span>
-					<span>overzicht</span>
+					<span>
+						<a href="/overview">overview</a>
+					</span>
 				</nav>
 			</row>
 
