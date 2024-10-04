@@ -12,6 +12,6 @@
 
 </script>
 
-<h1>{data.person.name}</h1>
+
 
 
