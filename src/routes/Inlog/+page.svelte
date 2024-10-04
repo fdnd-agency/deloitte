@@ -1,4 +1,61 @@
-main{
+<script>
+	// export let data;
+	// import '../../styles/inlog.css'
+	import '../../styles/global.css'
+
+</script>
+
+
+<svelte:head>
+	<title>
+		Mobility package login
+	</title>
+		<link rel="preload" href="pexels-dan-voican-2624103-17854203.jpg" as="image">
+</svelte:head>
+
+<main>
+	
+	<section class="login-container">
+		
+		<aside class="login-content">
+			<h1>Mobility package</h1>
+			<img src="pexels-dan-voican-2624103-17854203.jpg" >
+		</aside>
+		
+		
+		<article >
+			<h1 aria-label="login">Log-in</h1>
+			<p>some extra text</p>
+			<div class="space"></div>
+
+			<form action="/profile" method="post">
+				<label for="Email">
+					<h1>Email</h1>
+					<input type="Email" name="Email" id="Email" placeholder="Email">
+				</label>
+
+				<label for="Password">
+					<h1>Password</h1>
+					<input type="Password" name="Password" id="Password" placeholder="Password">
+				</label>
+				
+				<button type="submit" class="nextPage">Login</button>
+				<a href="/profile" class="nextPage" data-sveltekit-preload-data="false"> next page</a>
+
+			</form>
+			<a href="https://apply.deloitte.com/careers/ResetPassword/?">forgot my Password</a>
+		</article>
+
+		
+
+	</section>
+
+
+
+</main>
+
+<style>
+	main{
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -22,19 +79,19 @@ main{
 	perspective: 2000px;
 	
 
+	&> :nth-child(1){
+		width: 50vw;
+		height: 90vh;
+		max-height: 90vh;
+	}
 
-	> :nth-child(2){
+	&> :nth-child(2){
 		width: 35vw;
 		height: 40vw;
 		/* width: 50vw;
 		height: 70vw; */
 	}
 
-	> :nth-child(1){
-		width: 50vw;
-		height: 90vh;
-		max-height: 90vh;
-	}
 
 
 }
@@ -125,18 +182,18 @@ main{
 	justify-content: space-between;
 	height: 80%;
 
-	label{
+	& label{
 		margin-bottom: 6%;
 		/* background-color: red; */
 	}
 
-	legend{
+	& h1{
 		margin-bottom: 2%;
 		display: none;
 	
 	}
 
-	input{
+	& input{
 		width: 100%;
 		border: none;
 		border-radius: 0;
@@ -145,7 +202,7 @@ main{
 		background: transparent;
 	}
 
-	input:focus-visible{
+	& input:focus-visible{
 		outline: solid  var(--D-mid-bk);
 		outline-style: dashed;
 		outline-offset: 10px;
@@ -153,7 +210,7 @@ main{
 		
 	}
 
-	.nextPage{
+	& .nextPage{
 		width: 100%;
 		height: 7cqh;
 		margin-bottom: 10%;
@@ -192,3 +249,5 @@ main{
 }
 
 
+
+</style>
