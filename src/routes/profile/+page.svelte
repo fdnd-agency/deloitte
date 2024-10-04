@@ -269,7 +269,9 @@
 				<nav>
 					<span>settings</span>
 					<span>faq</span>
-					<span>overzicht</span>
+					<span>
+						<a href="/overview">overzicht</a>
+					</span>
 				</nav>
 			</row>
 

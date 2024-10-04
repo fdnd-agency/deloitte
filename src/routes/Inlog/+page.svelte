@@ -5,21 +5,13 @@
 
 </script>
 
-
-<svelte:head>
-	<title>
-		Mobility package login
-	</title>
-		<link rel="preload" href="pexels-dan-voican-2624103-17854203.jpg" as="image">
-</svelte:head>
-
 <main>
 	
 	<section class="login-container">
 		
 		<aside class="login-content">
 			<h1>Mobility package</h1>
-			<img src="pexels-dan-voican-2624103-17854203.jpg" >
+			<img src="pexels-dan-voican-2624103-17854203.jpg" alt="background image for the login page" >
 		</aside>
 		
 		
@@ -30,12 +22,12 @@
 
 			<form action="/profile" method="post">
 				<label for="Email">
-					<h1>Email</h1>
+					<legend>Email</legend>
 					<input type="Email" name="Email" id="Email" placeholder="Email">
 				</label>
 
 				<label for="Password">
-					<h1>Password</h1>
+					<legend>Password</legend>
 					<input type="Password" name="Password" id="Password" placeholder="Password">
 				</label>
 				
@@ -187,7 +179,7 @@
 		/* background-color: red; */
 	}
 
-	& h1{
+	& legend{
 		margin-bottom: 2%;
 		display: none;
 	
