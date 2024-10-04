@@ -11,8 +11,8 @@
     <header>
             <h1>Mobility options</h1>
         <span>
-            <a href="/wizard">Wizard</a>
-            <a href="/inlog">Log in</a>
+            <a href="/profile">profile</a>
+            <!-- <a href="/Inlog">Log in</a> -->
         </span>
     </header>
 

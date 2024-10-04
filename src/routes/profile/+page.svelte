@@ -104,7 +104,10 @@
 				<nav>
 					<span>settings</span>
 					<span>faq</span>
-					<span>overzicht</span>
+					<span>
+						<a href="/overview" data-sveltekit-preload-data="false">overview</a>
+					</span>
+
 				</nav>
 			</row>
 
@@ -140,7 +143,10 @@
 				<nav>
 					<span>settings</span>
 					<span>faq</span>
-					<span>overzicht</span>
+					<span>
+						<a href="/overview" data-sveltekit-preload-data="false">overview</a>
+					</span>
+
 				</nav>
 			</row>
 
@@ -175,7 +181,9 @@
 				<nav>
 					<span>settings</span>
 					<span>faq</span>
-					<span>overzicht</span>
+					<span>
+						<a href="/overview" data-sveltekit-preload-data="false">overview</a>
+					</span>
 				</nav>
 			</row>
 
@@ -239,7 +247,9 @@
 				<nav>
 					<span>settings</span>
 					<span>faq</span>
-					<span>overzicht</span>
+					<span>
+						<a href="/overview" data-sveltekit-preload-data="false">overview</a>
+					</span>
 				</nav>
 			</row>
 
@@ -270,8 +280,9 @@
 					<span>settings</span>
 					<span>faq</span>
 					<span>
-						<a href="/overview">overzicht</a>
+						<a href="/overview" data-sveltekit-preload-data="false">overview</a>
 					</span>
+
 				</nav>
 			</row>
 
@@ -308,10 +319,10 @@
 			<row class="row row-down">
 				<h2>tools</h2>
 				<nav>
-					<span>settings</span>
+					<!-- <span>settings</span> -->
 					<span>faq</span>
 					<span>
-						<a href="/overview">overview</a>
+						<a href="/overview" data-sveltekit-preload-data="false">overview</a>
 					</span>
 				</nav>
 			</row>

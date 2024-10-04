@@ -137,3 +137,7 @@ main{
 	font-size: 2.5rem;
 	margin-bottom: 3%;
 }
+
+a:visited{
+	outline: solid red;
+}
