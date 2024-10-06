@@ -7,10 +7,13 @@
 	// import { page } from '$app/stores';
 	import '../../styles/global.css'
 	import { goto } from '$app/navigation';
+	import ButtonComponent from '$lib/Button-component.svelte';
 
 	let score = 0;
 
 	$: score = 4;
+
+	let text
 	
 
 </script>
@@ -24,8 +27,9 @@
 
 <main>
 	
-	<a href="/Login"></a>
-	<a href="/overview"></a>
+	<a href="/Login">login </a>
+	<span>--</span>
+	<a href="/overview">overview</a>
 
 </main>
 
@@ -45,6 +49,7 @@
 	--Ol-style:solid;
 	--outline: var(--Ol-style) var(--Ol-size) var(--Ol-color); 
 
+	color: black;
 }
 
 
@@ -52,8 +57,8 @@ main{
 
 	position: relative;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	/* flex-direction: column; */
+	/* justify-content: center; */
 	/* align-items:center; */
 
 	width: 100%;
