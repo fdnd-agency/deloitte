@@ -13,7 +13,7 @@
 
 	$: score = 4;
 
-	let text
+	export let text
 	
 
 </script>
@@ -30,6 +30,12 @@
 	<a href="/Login">login </a>
 	<span>--</span>
 	<a href="/overview">overview</a>
+
+	<ButtonComponent 
+	text="button name"
+	data
+	color = ""
+	/>
 
 </main>
 
