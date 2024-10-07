@@ -7,29 +7,42 @@
 	// import { page } from '$app/stores';
 	import '../../styles/global.css'
 	import { goto } from '$app/navigation';
-	import ButtonComponent from '$lib/Button-component.svelte';
+	import ComponentBox from '$lib/ComponentBox.svelte';
 
 	let score = 0;
 
 	$: score = 4;
 
-	let text
+	let text;
+	let context1;
+	let context2
 	
 
 </script>
 
 <!-- external head  -->
 <svelte:head>
-	<title>mobilty package of .....</title>
+	<title>profile of {person}</title>
 	<link rel="preload" href="{person.avatar}" as="image">
+	
 </svelte:head>
 
+<main data-sveltekit-preload-data="false" >
 
-<main>
+	<ComponentBox
+		heading="page title"
+		context1="page context 9876 "
+		context2="page context 12345 "
+		display="flex"
+	>
+		<a href="/Inlog">login </a>
+		<span>--</span>
+		<a href="/overview">overview</a>
+
 	
-	<a href="/Login">login </a>
-	<span>--</span>
-	<a href="/overview">overview</a>
+		<!-- content -->
+	</ComponentBox>
+
 
 </main>
 
@@ -49,8 +62,9 @@
 	--Ol-style:solid;
 	--outline: var(--Ol-style) var(--Ol-size) var(--Ol-color); 
 
-	color: black;
 }
+
+
 
 
 main{
@@ -65,6 +79,9 @@ main{
 	height: 100vh;
 	overflow: hidden;
 	perspective: 3000px;
+
+	
+	background: linear-gradient(90deg, var(--D-base-bk) 26%, var(--D-mid-bk) 100%)
 	
 }	
 

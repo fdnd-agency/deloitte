@@ -49,6 +49,11 @@ table {
 	border-spacing: 0;
 }
 
+h1, a {
+	text-decoration: initial !important;
+	
+}
+
 *{
 
 	/* Deloitte colors */
@@ -70,5 +75,9 @@ table {
 	--shade-1:oklch(from black 30% 10% 100deg / 1 );
 	--shade-2:color(display-p3 0.3991 0.7162 0.4747);
 
+	/* light-dark */
+	--LD-text:light-dark(var(--D-black),var(--D-white));
+	--LD-background:light-dark(var(--D-white),var(--D-dark-support));
 
+	
 }
