@@ -12,5 +12,5 @@
 
 
 
-<a href="/Inlog">login</a>
+<a href="/inlog">login</a>
 <a href="/overview">overzicht</a>

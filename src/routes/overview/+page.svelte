@@ -11,10 +11,6 @@
 <main>
     <header>
             <h1>Mobility options</h1>
-        <span>
-            <a href="/wizard">Wizard</a>
-            <a href="/inlog">Log in</a>
-        </span>
     </header>
 
     <MobilityOptions
