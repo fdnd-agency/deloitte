@@ -19,7 +19,7 @@
     }
 
     label:hover{
-        background-color: var(--D-mid-bk);
+        background-color: var(--D-t-support);
         font-weight: 600;
     }
 
@@ -29,19 +29,19 @@
     display: flex;
     align-content: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1rem;
     padding: 0.1rem;
-    border: 0.25rem solid green;
+    border: 0.1rem solid var(--D-mid-bk);
     border-radius: 0.5rem;
     }
 
     input[type="radio"]::before {
     content: "";
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1rem;
+    height: 1rem;
     clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
     transform: scale(0);
-    background-color: green;
+    background-color: var(--D-mid-bk);
     }
 
     input[type="radio"]:checked::before {
