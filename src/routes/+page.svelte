@@ -1,16 +1,16 @@
 <script>
-    export let data;
+  export let data;
+  import { goto } from '$app/navigation';
+  import { onMount } from 'svelte';
 
-	
-	export async function load({ url }) {
-        return {
-        status: 302,
-        redirect: '/inlog',
-        };
-  }
-
-
+    onMount(() => {
+        goto('/Inlog');
+    });
 </script>
+
+<h1>{data.person.name}</h1>
+
+
 
 <a href="/Inlog">login</a>
 <a href="/overview">overzicht</a>
