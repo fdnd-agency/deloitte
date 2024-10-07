@@ -1,21 +1,24 @@
 <script>
+	import '../../styles/global.css'
+	import { goto } from '$app/navigation';
+	import ComponentBox from '$lib/ComponentBox.svelte';
+
 	export let data;
 	let person = data.person
 	
 	// import '../../styles/profile.css'
 	// import { error } from './+error.svelte';
 	// import { page } from '$app/stores';
-	import '../../styles/global.css'
-	import { goto } from '$app/navigation';
-	import ComponentBox from '$lib/ComponentBox.svelte';
 
 	let score = 0;
-
 	$: score = 4;
 
 	let text;
 	let context1;
-	let context2
+	let context2;
+	let background;
+
+	
 	
 
 </script>
@@ -29,18 +32,35 @@
 
 <main data-sveltekit-preload-data="false" >
 
+	<ComponentBox 
+		
+		heading="page title"
+		context1="page context 9876 "
+		context2="page context 12345 "
+		display="flex"
+		class="primary"
+	
+
+	>
+	<a href="/inlog">login </a>
+		<span>--</span>
+		<a href="/overview">overview</a>
+
+		123456789
+
 	<ComponentBox
 		heading="page title"
 		context1="page context 9876 "
 		context2="page context 12345 "
 		display="flex"
-	>
-		<a href="/Inlog">login </a>
-		<span>--</span>
-		<a href="/overview">overview</a>
+		class="danger"
 
-	
+	>
+	12345678
+	</ComponentBox>
+		
 		<!-- content -->
+
 	</ComponentBox>
 
 

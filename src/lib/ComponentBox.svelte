@@ -4,9 +4,15 @@
 	export let context1;
 	export let context2;
 	export let display;
+	// export let background;
+	// class functions
+	let boxProps = {
+    class:[$$restProps.class]
+    }
 </script>
 
-<div class="component-box" style="display:{display}">
+<div style="display:{display};" {...boxProps}>
+	
 	<h1>{heading}</h1>
 	<p class="box-context">{context1}</p>
 	<p class="box-context">{context2}</p>
@@ -15,7 +21,7 @@
 </div>
 
 <style>
-	.component-box{
+	div{
 		background-color: var(--LD-background);
 		margin: .3rem;
 		padding: 1.5rem;
@@ -43,5 +49,16 @@
 		color: var(--LD-text);
 
 	}
+
+	.primary{
+        color:green;
+    }
+    .danger {
+
+        color:red;
+		
+
+		
+    }
 
 </style>
