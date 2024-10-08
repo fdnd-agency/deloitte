@@ -11,6 +11,11 @@
 {/each}
 </div>
 
+
+{#each data.items as item}
+<h1>{item.package_name}</h1>
+{/each}
+
 <style>
   div {
     display: flex;
