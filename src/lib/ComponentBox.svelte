@@ -4,6 +4,7 @@
 	export let context1;
 	export let context2;
 	export let display;
+	export let titleAlign;
 	// export let background;
 	// class functions
 	let boxProps = {
@@ -13,7 +14,7 @@
 
 <div style="display:{display};" {...boxProps}>
 	
-	<h1>{heading}</h1>
+	<h1 style="text-align: {titleAlign};">{heading}</h1>
 	<p class="box-context">{context1}</p>
 	<p class="box-context">{context2}</p>
 
@@ -21,21 +22,25 @@
 </div>
 
 <style>
+	*{
+		width: 100%;
+		
+	}
+
 	div{
-		background-color: var(--LD-background);
+		/* background-color: var(--LD-background); */
 		margin: .3rem;
 		padding: 1.5rem;
 		padding-inline: 3rem;
 		flex-direction: column;
-		flex: 1 1 100%;
-		width: 100%;
-		height: 100%;
+		/* flex-grow: 1; */
+		height: fit-content;
 		overflow: hidden;
 		border-radius: 50px;
-		outline: solid var(--D-base-bk) ;
+		/* outline: solid var(--D-base-bk) ; */
 	}
 
-	.component-box:hover{
+	div:hover{
 		/* box-shadow: 0px 0px 100px var(--D-black); */
 	}
 
@@ -50,15 +55,33 @@
 
 	}
 
-	.primary{
-        color:green;
-    }
-    .danger {
+	.top-c{
+        margin-bottom: 2%;
+		display: flex;
+		align-items: center;
+		background-color: var(--LD-background);
 
-        color:red;
-		
-
-		
     }
+
+
+	.inlog{
+		--LD-background: light-dark(rgba(255, 255, 255, 0.489),black);
+		flex-shrink: 1;
+		background-color: var(--LD-background);
+
+	}
+
+	.box1{
+		outline: solid purple;
+		flex: 0 0 30%;
+		background-color: var(--LD-background);
+	}
+
+	.box2{
+		outline: solid blue;
+		flex-grow:1 0 40%;
+		background-color: var(--LD-background);
+
+	}
 
 </style>
