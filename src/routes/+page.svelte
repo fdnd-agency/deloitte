@@ -1,15 +1,10 @@
 <script>
   export let data;
-  import { goto } from '$app/navigation';
-  import { onMount } from 'svelte';
-
-    onMount(() => {
-        goto('/Inlog');
-    });
 </script>
 
-<h1>{data.person.name}</h1>
-
+{#each data.items as item}
+<h1>{item.package_name}</h1>
+{/each}
 
 
 <a href="/Inlog">login</a>
