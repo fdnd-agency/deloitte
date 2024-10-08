@@ -13,35 +13,44 @@
         background-color: var(--D-base-bk);
         border-radius: 1rem;
         border: 0.1rem solid var(--D-mid-bk);
-        display: block;
-        padding: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem;
         cursor: pointer;
     }
 
     label:hover{
         background-color: var(--D-t-support);
+        border: 0.1rem solid var(--D-t-support);
         font-weight: 600;
+        color: var(--D-white);
+        transition: 2s transform ease-in-out;
     }
 
     input[type="radio"] {
-    appearance: none;
-    -webkit-appearance: none;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    font-size: 1rem;
-    padding: 0.1rem;
-    border: 0.1rem solid var(--D-mid-bk);
-    border-radius: 0.5rem;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--D-white);
+        margin: 0 0.5rem 0 0;
+        font: inherit;
+        color: var(--D-mid-bk);
+        width: 1.15rem;
+        height: 1.15rem;
+        border: 0.15rem solid var(--D-mid-bk);
+        border-radius: 50%;
+        display: grid;
+        place-content: center;
     }
 
     input[type="radio"]::before {
-    content: "";
-    width: 1rem;
-    height: 1rem;
-    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
-    transform: scale(0);
-    background-color: var(--D-mid-bk);
+        content: "";
+        width: 0.65rem;
+        height: 0.65rem;
+        border-radius: 50%;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1rem 1rem var(--D-dark-support);
     }
 
     input[type="radio"]:checked::before {
