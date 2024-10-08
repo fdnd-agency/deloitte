@@ -9,7 +9,7 @@
 			{#each data.items as item}
 				<li>
 					<h2>{item.package_name}</h2>
-					<img src="../freakbob-calling.webp" alt="" />
+					<img src="../freakbob-calling.webp" alt="freakbob"/>
 					<p>{item.description}</p>
 				</li>
 			{/each}
