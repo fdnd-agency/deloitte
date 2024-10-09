@@ -1,5 +1,5 @@
 <script>
-  import Checkbox from '$lib/checkbox.svelte';
+  import {Checkbox} from '$lib';
   import {totalScore} from '$lib/stores'
   
   export let data; // Export de data
