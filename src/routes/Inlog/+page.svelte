@@ -10,6 +10,7 @@
 		context1=""
 		context2=""
 		display="flex"
+		titleAlign=""
 		class="inlog"
 		
 
