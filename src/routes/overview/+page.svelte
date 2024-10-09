@@ -1,4 +1,5 @@
 <script>
+    import {ComponentBox, CardComponent, GeneralInfo} from "$lib/index.js";
 	export let data;
 	// import '../../styles/overview.css'
     import {MobilityOptions,GeneralInfo, PackageComponent,ComponentBox} from '$lib';
@@ -17,10 +18,6 @@
                 titleAlign="center"
                 class="top-c"
             ></ComponentBox>
-
-
-    <!-- <MobilityOptions
-    {num}/> -->
 
     <ComponentBox
     heading=""
@@ -47,3 +44,17 @@
 
     </ComponentBox>
 </main>
+
+<style>
+    h1 {
+        font-size: 2em;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    main {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+    }
+</style>
