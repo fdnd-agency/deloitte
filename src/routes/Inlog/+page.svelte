@@ -1,6 +1,7 @@
 <script>
 	import '../../styles/global.css'
-	import ComponentBox from '$lib/ComponentBox.svelte';
+	import {ComponentBox, Button} from '$lib';
+	import { goto } from '$app/navigation';
 
 </script>
 
@@ -39,8 +40,28 @@
 					<input type="Password" name="Password" id="Password" placeholder="Password">
 				</label>
 				
-				<button type="submit" class="nextPage">Login</button>
-				<a href="/profile" class="nextPage" data-sveltekit-preload-data="false"> next page</a>
+				<!-- <button type="submit" class="nextPage">Login</button> -->
+				<!-- <a href="/profile" class="nextPage" data-sveltekit-preload-data="false"> next page</a> -->
+				
+				<!-- login button -->
+				 
+				<!-- <Button
+				text="login"
+				color=""
+				colorLine="none"
+				task=""
+				class="nextPage"
+				/> -->
+
+
+				<Button
+				text="next page"
+				color=""
+				colorLine="none"
+				task="/profile"
+				class="nextPage"
+				
+				/>
 
 			</form>
 			<a href="https://apply.deloitte.com/careers/ResetPassword/?">forgot my Password</a>
