@@ -79,5 +79,6 @@ h1, a {
 	--LD-text:light-dark(var(--D-black),var(--D-white));
 	--LD-background:light-dark(var(--D-white),var(--D-dark-support));
 
-	
+	/* box shadowing op componenten */
+	--bottom-shadow: 0px 9px 12px -2px var(--D-mid-bk);	
 }
