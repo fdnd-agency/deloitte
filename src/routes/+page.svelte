@@ -1,15 +1,29 @@
 <script>
   export let data;
   import Checkbox from '$lib/checkbox.svelte';
+
+  import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
+
+  onMount(() => {
+        goto('/Inlog');
+    });
 </script>
 
-<h1>{data.person.name}</h1>
+<!-- <h1>{data.person.name}</h1> -->
 
 <div>
 {#each {length: 4} as _, i}
-  <Checkbox/>
+  <Checkbox
+  answer
+  bindGroup/>
 {/each}
 </div>
+
+
+{#each data.items as item}
+<h1>{item.package_name}</h1>
+{/each}
 
 <style>
   div {

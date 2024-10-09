@@ -1,7 +1,9 @@
 <script>
 	import '../../styles/global.css'
-	import { goto } from '$app/navigation';
-	import ComponentBox from '$lib/ComponentBox.svelte';
+	// import { goto } from '$app/navigation';
+	import {ComponentBox, Package, Button} from '$lib';
+	import {totalScore} from '$lib/stores'
+
 
 	export let data;
 	let person = data.person
@@ -34,7 +36,7 @@
 
 	<ComponentBox 
 		
-		heading="12"
+		heading="profile"
 		context1=""
 		context2=""
 		display=""
@@ -49,24 +51,81 @@
 
 	<div class="profile-detail">
 		<ComponentBox
-		heading="87"
-		context1=""
-		context2=""
-		display="flex"
-		class="box1"
-		>
-			<h1> {person.name} </h1>
-		</ComponentBox>
-
-
-		<ComponentBox
 		heading=""
 		context1=""
 		context2=""
 		display="flex"
+		titleAlign=""
+		class="box1"
+		>
+		
+		<article>
+			<h1>naam</h1>
+			<div></div>
+			<Button
+			text="logout"
+			color="red"
+			colorLine=""
+			task="/Inlog"
+			class="logout"
+			/>
+
+
+		</article>
+
+
+		</ComponentBox>
+
+
+		<ComponentBox
+		heading="Persoonlijke gegevens"
+		context1="bekijk je persoonlijke gegevens"
+		context2=""
+		display="flex"
+		titleAlign=""
 		class="box2"
 		>
-		<h1>{person.surname}</h1>
+
+		{#if $totalScore == 300}
+		<p>{$totalScore} is cash</p>
+		{:else if $totalScore == 400 }
+		<p>{$totalScore} is bike</p>
+		{:else}
+		<p> score is {$totalScore}</p>
+		{/if}
+
+		<label for="Full-name">
+			<input type="text" id="Full-name" placeholder="naam">
+		</label>
+		
+		<label for="email">
+			<input type="email" name="" id="email" placeholder="email">
+		</label>
+		
+		<label for="job">
+			<input type="text" name="" id="job" placeholder="Job title">
+		</label>
+		
+		<label for="MP">
+			<input type="text" id="MP" placeholder="mobilteit pakket">
+		</label>
+
+		<Button
+		text="Start wizard"
+		color="black"
+		colorLine="none"
+		task="/wizard"
+		class=""
+		/>
+		<br>
+		<Button
+		text="overview"
+		color="black"
+		colorLine="none"
+		task="/overview"
+		class=""
+		/>
+		
 		</ComponentBox>
 
 	</div>
@@ -118,14 +177,14 @@ section{
 }
 
 .profile-detail > *{
-	outline: solid red;
+	/* outline: solid red; */
 
 }
 
 
 
 .profile-detail :nth-child(2){
-	outline: solid rgb(0, 217, 255);
+	/* outline: solid rgb(0, 217, 255); */
 
 }
 
