@@ -11,7 +11,7 @@
 		
 		<aside class="login-content">
 			<h1>Mobility package</h1>
-			<img src="pexels-dan-voican-2624103-17854203.jpg" alt="background image for the login page" >
+			<img src="pexels-dan-voican-2624103-17854203.jpg" alt="background for the login page" >
 		</aside>
 		
 		
