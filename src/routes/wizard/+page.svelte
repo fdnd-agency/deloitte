@@ -1,11 +1,12 @@
 <script>
   import Checkbox from '$lib/checkbox.svelte';
+  import {totalScore} from '$lib/stores'
   
   export let data; // Export de data
 
   let currentQuestionIndex = 0; // Huidige vraagnummer
   let selectedAnswer = null; // Geselecteerde antwoord
-  let totalScore = 0; // Totale score
+  // let $totalScore = 0; // Totale score
   let userAnswers = []; // Gebruiker antwoorden array
   let selectedPackage = null; // Geselecteerde pakket
 
@@ -13,8 +14,8 @@
   function determinePackage() {
     // fetch data.packages en en ga langs elke package
     selectedPackage = data.packages.find(pkg =>
-      // vergelijk de totalscore van de gebruiker met de min_score en max_score van elke package
-      totalScore >= pkg.min_score && totalScore <= pkg.max_score
+      // vergelijk de$totalScore van de gebruiker met de min_score en max_score van elke package
+     $totalScore >= pkg.min_score && $totalScore <= pkg.max_score
     );
   }
 
@@ -26,7 +27,7 @@
     // check of de gekozen antwoord niet leeg is
     if (selectedAnswer !== null) {
       // Voeg de geselecteerde score toe aan de totale score
-      totalScore += parseInt(selectedAnswer);
+     $totalScore += parseInt(selectedAnswer);
 
       // Sla het huidige antwoord op in de juiste structuur
       userAnswers.push({
@@ -59,7 +60,7 @@
     <p>Vraag {currentQuestionIndex + 1}/{data.questions.length}</p>
 
     <!-- Toont de huidige score -->
-    <p>Score: {totalScore}</p>
+    <p>Score: {$totalScore}</p>
 
     <!-- Toont de huidige vraag -->
     <h2>{data.questions[currentQuestionIndex].question}</h2>
@@ -83,7 +84,7 @@
   <div>
     <h2>Jouw aanbevolen pakket: {selectedPackage.package_name}</h2>
     <p>{selectedPackage.description}</p>
-    <p>Score: {totalScore}</p>
+    <p>Score: {$totalScore}</p>
     <p>Antwoorden:</p>
     <pre>{JSON.stringify(userAnswers, null, 2)}</pre> <!-- Toont de antwoorden in JSON formaat -->
   </div>

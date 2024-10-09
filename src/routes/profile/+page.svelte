@@ -2,6 +2,7 @@
 	import '../../styles/global.css'
 	import { goto } from '$app/navigation';
 	import ComponentBox from '$lib/ComponentBox.svelte';
+	import {totalScore} from '$lib/stores'
 
 	export let data;
 	let person = data.person
