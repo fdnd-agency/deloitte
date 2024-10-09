@@ -1,11 +1,11 @@
 <script>
-	// export let data;
+	export let data;
 	import '../../styles/overview.css'
-    import MobilityOptions from '$lib/mobility-options.svelte';
-    import GeneralInfo from '$lib/general-info.svelte';
-    import Footer from '$lib/footer.svelte';
+  import MobilityOptions from '$lib/mobility-options.svelte';
+  import GeneralInfo from '$lib/general-info.svelte';
+  import PackageComponent from '$lib/package-component.svelte';
 
-    export let num = 0;
+  export let num = 0;
 </script>
 
 <main>
@@ -13,11 +13,9 @@
             <h1>Mobility options</h1>
     </header>
 
-    <MobilityOptions
-    {num}/>
+    <MobilityOptions />
 
-    <GeneralInfo 
-    {num}/>
+    <GeneralInfo />
 
-    <Footer />
+  <PackageComponent {data} />
 </main>
