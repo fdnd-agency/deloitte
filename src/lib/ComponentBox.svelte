@@ -61,6 +61,10 @@
 		align-items: center;
 		background-color: var(--LD-background);
 
+		& h1{
+		color: var(--D-t-support);
+		font-size: 3rem;
+		}
     }
 
 
@@ -71,17 +75,38 @@
 
 	}
 
+	
+
 	.box1{
-		outline: solid purple;
+		/* outline: solid purple; */
 		flex: 0 0 30%;
 		background-color: var(--LD-background);
+		height: 30vh;
 	}
 
 	.box2{
-		outline: solid blue;
+		/* outline: solid blue; */
 		flex-grow:1 0 40%;
 		background-color: var(--LD-background);
+		height: fit-content;
 
+		& h1{
+			color: var(--LD-text);
+			font-size: 2rem;
+			margin-bottom: 1rem;
+		}
+
+		& p{
+			color: var(--LD-text);
+			margin-bottom: .5rem;
+		}
+
+		& input{
+			margin-bottom: 1%;
+			width: 30%;
+			padding: 1%;
+			border-radius: 1.5pc;
+		}
 	}
 
 </style>
