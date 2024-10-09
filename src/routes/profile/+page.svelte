@@ -30,41 +30,49 @@
 	
 </svelte:head>
 
-<main data-sveltekit-preload-data="false" >
+<section data-sveltekit-preload-data="false" >
 
 	<ComponentBox 
 		
-		heading="page title"
-		context1="page context 9876 "
-		context2="page context 12345 "
-		display="flex"
-		class="primary"
+		heading="12"
+		context1=""
+		context2=""
+		display=""
+		titleAlign="center"
+		class="top-c"
 	
 
 	>
-	<a href="/inlog">login </a>
-		<span>--</span>
-		<a href="/overview">overview</a>
+	 <!-- content -->
 
-		123456789
+	</ComponentBox>
 
-	<ComponentBox
-		heading="page title"
-		context1="page context 9876 "
-		context2="page context 12345 "
+	<div class="profile-detail">
+		<ComponentBox
+		heading="87"
+		context1=""
+		context2=""
 		display="flex"
-		class="danger"
-
-	>
-	12345678
-	</ComponentBox>
-		
-		<!-- content -->
-
-	</ComponentBox>
+		class="box1"
+		>
+			<h1> {person.name} </h1>
+		</ComponentBox>
 
 
-</main>
+		<ComponentBox
+		heading=""
+		context1=""
+		context2=""
+		display="flex"
+		class="box2"
+		>
+		<h1>{person.surname}</h1>
+		</ComponentBox>
+
+	</div>
+
+
+</section>
 
 
 <style>
@@ -82,31 +90,43 @@
 	--Ol-style:solid;
 	--outline: var(--Ol-style) var(--Ol-size) var(--Ol-color); 
 
+	gap: 3%;
 }
 
 
 
 
-main{
+section{
 
 	position: relative;
-	display: flex;
-	/* flex-direction: column; */
-	/* justify-content: center; */
-	/* align-items:center; */
-
-	width: 100%;
-	height: 100vh;
+	align-items:center;
 	overflow: hidden;
 	perspective: 3000px;
-
-	
-	background: linear-gradient(90deg, var(--D-base-bk) 26%, var(--D-mid-bk) 100%)
 	
 }	
+
 
 /* /////////////////////////// */
 /* general content container */
 /* /////////////////////////// */
+
+.profile-detail{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 50vh;
+}
+
+.profile-detail > *{
+	outline: solid red;
+
+}
+
+
+
+.profile-detail :nth-child(2){
+	outline: solid rgb(0, 217, 255);
+
+}
 
 </style>
