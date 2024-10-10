@@ -59,16 +59,21 @@
 		class="box1"
 		>
 		
-		<article>
+		<article class="imgBox">
 			<h1>naam</h1>
-			<div></div>
-			<Button
-			text="logout"
-			color="red"
-			colorLine=""
-			task="/Inlog"
-			class="logout"
-			/>
+			<figure>
+				<!-- profile image -->
+			</figure>
+
+			<div class="buttonBox">
+				<Button
+				text="logout"
+				color="red"
+				colorLine=""
+				task="/Inlog"
+				class="logout"
+				/>
+			</div>
 
 
 		</article>
@@ -94,37 +99,46 @@
 		<p> score is {$totalScore}</p>
 		{/if}
 
-		<label for="Full-name">
-			<input type="text" id="Full-name" placeholder="naam">
-		</label>
-		
-		<label for="email">
-			<input type="email" name="" id="email" placeholder="email">
-		</label>
-		
-		<label for="job">
-			<input type="text" name="" id="job" placeholder="Job title">
-		</label>
-		
-		<label for="MP">
-			<input type="text" id="MP" placeholder="mobilteit pakket">
-		</label>
+		<form action="">
 
-		<Button
-		text="Start wizard"
-		color="black"
-		colorLine="none"
-		task="/wizard"
-		class=""
-		/>
-		<br>
-		<Button
-		text="overview"
-		color="black"
-		colorLine="none"
-		task="/overview"
-		class=""
-		/>
+
+			<label for="Full-name">
+				<input type="text" id="Full-name" placeholder="naam">
+			</label>
+			
+			<label for="email">
+				<input type="email" name="" id="email" placeholder="email">
+			</label>
+			
+			<label for="job">
+				<input type="text" name="" id="job" placeholder="Job title">
+			</label>
+			
+			<label for="MP">
+				<input type="text" id="MP" placeholder="mobilteit pakket">
+			</label>
+		</form>
+
+
+		<div class="buttonBox">
+
+			<Button
+			text="Start wizard"
+			color="black"
+			colorLine="none"
+			task="/wizard"
+			class=""
+			/>
+			
+			<Button
+			text="overview"
+			color="black"
+			colorLine="none"
+			task="/overview"
+			class=""
+			/>
+		</div>
+
 		
 		</ComponentBox>
 
@@ -159,7 +173,7 @@ section{
 
 	position: relative;
 	align-items:center;
-	overflow: hidden;
+	overflow: visible;
 	perspective: 3000px;
 	
 }	
@@ -173,19 +187,87 @@ section{
 	display: flex;
 	flex-direction: row;
 	width: 100%;
-	height: 50vh;
-}
-
-.profile-detail > *{
-	/* outline: solid red; */
+	height: fit-content;
 
 }
 
-
-
-.profile-detail :nth-child(2){
-	/* outline: solid rgb(0, 217, 255); */
-
+@media (width < 870px){
+	.profile-detail{
+		flex-direction: column;
+	}
 }
+
+
+/* /////////////////////////// */
+
+.profile-detail{
+
+ & > div:nth-of-type(1){
+	padding: 3.5%;
+	height: fit-content;
+
+	
+ }
+}
+.imgBox{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	border-radius: 18px;
+}
+
+.imgBox h1{
+	font-size: 2rem;
+	margin-bottom: 3%;
+	flex-basis: 10%;
+}
+
+.imgBox figure{
+	display: flex;
+	flex-direction: column;
+	background-color: var(--D-mid-bk);
+	width: 60%;
+	height: 100px;
+	border-radius: 5%;
+	aspect-ratio: 1;
+	flex: 1;
+}
+
+.imgBox .buttonBox {
+	place-content: center;
+	/* height: fit-content; */
+	flex-basis: 10%;
+
+	& button,a{
+		width: 7rem;
+		height: 2rem;
+		place-content: center;
+	}
+}
+
+label{
+	
+}
+
+.buttonBox{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+	justify-content: space-between;
+    /* gap: 15%; */
+    width: 100%;
+    height: 3rem;
+    margin-top: 20px;
+
+	
+    & button,a {
+		width: fit-content;
+    	padding-inline: 5%;
+		text-align: center;
+    }
+  }
 
 </style>
