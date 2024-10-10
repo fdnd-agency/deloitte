@@ -15,10 +15,10 @@
         </a>
         <!-- <a href="/profile">profile</a> -->
         <Button
-        text="Profile"
+        text="info"
 		color="black"
 		colorLine="none"
-		task="/profile"
+		task="/overview"
 		class=""
         />
     </nav>
