@@ -1,28 +1,60 @@
 <script>
-	// export let data;
-	import '../../styles/overview.css'
-    import MobilityOptions from '$lib/mobility-options.svelte';
-    import GeneralInfo from '$lib/general-info.svelte';
+    import {ComponentBox,PackageComponent, GeneralInfo} from "$lib/index.js";
+	export let data;
+	// import '../../styles/overview.css'
+    // import {MobilityOptions,GeneralInfo, ,ComponentBox} from '$lib';
+   
 
-    export let num = 0;
+  export let num = 0;
 </script>
 
 <main>
-    <header>
-            <h1>Mobility options</h1>
-        <span>
-            <a href="/wizard">Wizard</a>
-            <a href="/inlog">Log in</a>
-        </span>
-    </header>
+   
+            <ComponentBox
+                heading="Mobility options"
+                context1=""
+                context2=""
+                display="flex"
+                titleAlign="center"
+                class="top-c"
+            ></ComponentBox>
 
-    <MobilityOptions
-    {num}/>
+    <ComponentBox
+    heading=""
+    context1=""
+    context2=""
+    display="flex"
+    titleAlign=""
+    class="box2"
+    >
+        <PackageComponent {data} />
+    
+    </ComponentBox>
 
+    <ComponentBox
+    heading=""
+		context1=""
+		context2=""
+		display="flex"
+		titleAlign=""
+		class="box1"
+    >
+        <GeneralInfo 
+        {num}/>
 
-
-
-
-    <GeneralInfo 
-    {num}/>
+    </ComponentBox>
 </main>
+
+<style>
+    h1 {
+        font-size: 2em;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    main {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+    }
+</style>
