@@ -7,6 +7,11 @@
 	export let titleAlign;
 	// export let background;
 	// class functions
+	export function init() {
+		
+	}
+
+	
 	let boxProps = {
     class:[$$restProps.class]
     }
@@ -79,7 +84,6 @@
 		--LD-background: light-dark(rgba(255, 255, 255, 0.489),black);
 		flex-shrink: 1;
 		background-color: var(--LD-background);
-
 	}
 
 	

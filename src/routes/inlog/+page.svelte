@@ -19,11 +19,7 @@
 	<section class="login-container">
 		
 		<aside class="login-content noise">
-			<!-- <article class="mid  "> -->
-				<!-- <div class="noise"></div> -->
-   				<!-- <div class="overlay"></div> -->
-				
-			<!-- </article> -->
+			
 		</aside>
 		
 		
@@ -199,6 +195,7 @@
 		outline: none;
 		border-bottom: solid 1px;
 		background: transparent;
+		font-size: 1.5rem;
 	}
 
 	& input:focus-visible{

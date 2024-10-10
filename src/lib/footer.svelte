@@ -3,7 +3,7 @@
 </script>
 
 <footer>
-    <p>
+    <p style="z-index: 3;">
         &#169; 2024 Deloitte <a href="/">See Terms of Use </a>for more information.
     </p>
 </footer>

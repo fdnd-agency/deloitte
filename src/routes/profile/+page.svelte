@@ -12,8 +12,6 @@
 	// import { error } from './+error.svelte';
 	// import { page } from '$app/stores';
 
-	let score = 0;
-	$: score = 4;
 
 	let text;
 	let context1;
