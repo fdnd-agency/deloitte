@@ -8,7 +8,7 @@
 			{#each data.items as item}
 				<li>
 					<h2>{item.package_name}</h2>
-					<img src="../freakbob-calling.webp" alt="freakbob"/>
+					<img src="" alt=""/>
 					<p>{item.description}</p>
 				</li>
 			{/each}
@@ -18,15 +18,17 @@
 
 <style>
 	ul {
-		width: 100vw;
+		width: 100%;
 		display: flex;
         flex-wrap: wrap;
 		justify-content: center;
-		gap: 1em;
+		gap: 3%;
+		padding-block: 1%;
 	}
 
 	li {
-		width: 20em;
+		width: 22%;
+		height: 50vh;
 		list-style-type: none;
 		display: flex;
 		flex-direction: column;
@@ -41,14 +43,15 @@
 		}
 
 		& img {
-			width: 15em;
-			height: 15em;
+			background-color: var(--D-mid-bk);
+			width: 85%;
+			aspect-ratio: 1;
 			object-fit: cover;
 			border-radius: 5%;
 		}
 
 		& p {
-			width: 15em;
+			width: 85%;
 			padding: 1em 0;
 		}
 	}   
