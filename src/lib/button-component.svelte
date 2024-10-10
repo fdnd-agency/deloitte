@@ -60,6 +60,7 @@
 		outline: solid ;
 		background-image: none;
 		background-color: var(--D-dark-support);
+		color: var(--D-white);
 	}
 
 	.nextPage{
@@ -86,7 +87,8 @@
 		background-image: none;
 		background-color: var(--D-white);
 		border-radius: 5px;
-
+		height:fit-content;
+		padding: 0;
 		
 	}
 

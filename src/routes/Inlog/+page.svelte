@@ -272,7 +272,7 @@
   height:100%;
   
   background: conic-gradient(from 0deg at 80% -39%, var(--D-base-bk) 35%, var(--D-mid-bk) 100%),url(https://grainy-gradients.vercel.app/noise.svg);
-  filter: blur(15px);
+  filter: blur(15px) ;
 }
 
 </style>

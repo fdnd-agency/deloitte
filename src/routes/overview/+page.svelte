@@ -1,8 +1,8 @@
 <script>
-    import {ComponentBox, CardComponent, GeneralInfo} from "$lib/index.js";
+    import {ComponentBox,PackageComponent, GeneralInfo} from "$lib/index.js";
 	export let data;
 	// import '../../styles/overview.css'
-    import {MobilityOptions,GeneralInfo, PackageComponent,ComponentBox} from '$lib';
+    // import {MobilityOptions,GeneralInfo, ,ComponentBox} from '$lib';
    
 
   export let num = 0;
