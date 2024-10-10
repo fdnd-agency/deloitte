@@ -29,6 +29,7 @@
 
 	div{
 		/* background-color: var(--LD-background); */
+		position: relative;
 		margin: .3rem;
 		padding: 1.5rem;
 		padding-inline: 3rem;
@@ -38,7 +39,12 @@
 		overflow: hidden;
 		border-radius: 50px;
 		/* outline: solid var(--D-base-bk) ; */
+		z-index: 1;
+
+		box-shadow: 0 9px 10px var(--D-mid-bk) ;
 	}
+
+
 
 	div:hover{
 		/* box-shadow: 0px 0px 100px var(--D-black); */
@@ -60,6 +66,7 @@
 		display: flex;
 		align-items: center;
 		background-color: var(--LD-background);
+		width: 100%;
 
 		& h1{
 		color: var(--D-t-support);
@@ -81,18 +88,19 @@
 		/* outline: solid purple; */
 		flex: 0 0 30%;
 		background-color: var(--LD-background);
-		height: 30vh;
+		min-height: fit-content;
 	}
 
 	.box2{
 		/* outline: solid blue; */
 		flex-grow:1 0 40%;
 		background-color: var(--LD-background);
-		height: fit-content;
+		min-height: fit-content;
 
 		& h1{
 			color: var(--LD-text);
 			font-size: 2rem;
+			font-weight: 500;
 			margin-bottom: 1rem;
 		}
 
@@ -101,11 +109,41 @@
 			margin-bottom: .5rem;
 		}
 
-		& input{
-			margin-bottom: 1%;
-			width: 30%;
-			padding: 1%;
-			border-radius: 1.5pc;
+		& form{
+			display: flex;
+			flex-direction: column;
+			/* gap:17%; */
+		}
+
+		& form label{
+			color: var(--LD-text);
+			width: 55%;
+			height: 2rem;
+			margin-bottom: 3%;
+		}
+		
+		& form input{
+			height: 100%;
+			width: fit-content;
+			padding: 5%;
+			font-size: clamp(10px, 50vw - 1rem, 130%);
+			border-radius: .5rem;
+		}
+	}
+
+	.wizard{
+		margin: 0;
+
+	}
+
+	.checkboxBox{
+		--D-primary-mid-grey: color(display-p3 0.93 0.93 0.93 / 0.28);
+		background-color: var(--D-primary-mid-grey);
+		padding-inline: 3rem;
+		outline: solid var(--D-base-bk);
+
+		& h1{
+			margin-left: 1rem;
 		}
 	}
 
