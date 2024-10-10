@@ -1,7 +1,6 @@
 <script>
-  import {Checkbox} from '$lib';
-	import ButtonComponent from '$lib/button-component.svelte';
-	import ComponentBox from '$lib/ComponentBox.svelte';
+  import {Checkbox,Button,ComponentBox} from '$lib';
+	
   import {totalScore} from '$lib/stores'
   
   export let data; // Export de data
@@ -110,7 +109,7 @@
     <!-- Knop om naar de volgende vraag te gaan -->
      <div class="buttonBox">
 
-       <ButtonComponent
+       <Button
            text="Vorige vraag"
            color="black"
            colorLine="none"
@@ -118,7 +117,7 @@
            class=""
            type=""/>
    
-       <ButtonComponent
+       <Button
            text="Volgende vraag"
            color="black"
            colorLine="none"
@@ -140,10 +139,18 @@
 
 >
 
-  <div>
+  <div class="antwoord">
     <p>Antwoorden:</p>
     <pre>{JSON.stringify(userAnswers, null, 2)}</pre> <!-- Toont de antwoorden in JSON formaat -->
+    <Button
+    text="profile"
+    color="black"
+    colorLine="none"
+    task="/profile"
+    class=""
+    />
   </div>
+   
 </ComponentBox>
 
 
@@ -215,7 +222,17 @@
   }
 
 
-  div {
-  
+  .antwoord {
+    width: 100%;
+    height: 50%;
+    /* outline: solid red; */
+    display: flex;
+
+    &:nth-child(n){
+      flex-shrink: 1;
+      height: fit-content;
+    }
+
+
   }
 </style>
