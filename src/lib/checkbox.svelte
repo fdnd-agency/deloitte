@@ -12,7 +12,7 @@
     label {
         background-color: var(--D-base-bk);
         border-radius: 1rem;
-        border: 0.1rem solid var(--D-mid-bk);
+        border: 0.17rem solid var(--D-mid-bk);
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -23,7 +23,7 @@
     label:hover{
         background-color: var(--D-t-support);
         border: 0.1rem solid var(--D-t-support);
-        font-weight: 600;
+        /* font-weight: 600; */
         color: var(--D-white);
         transition: 2s transform ease-in-out;
     }
@@ -56,4 +56,20 @@
     input[type="radio"]:checked::before {
     transform: scale(1);
     }
+
+
+
+
+    label:has(input[type="radio"]:checked)  {
+        background-color: var(--D-dark-support);
+        color: var(--D-white);
+    }
+
+    label:has(input[type="radio"]:focus-visible)  {
+        background-color: var(--D-dark-support);
+        outline: solid;
+        color: var(--D-white);
+    }
+
+
 </style>
