@@ -1,19 +1,27 @@
 <script>
     import {Button} from '$lib';
 
-    function refreshPage(event) {
-        event.preventDefault();
+    function refreshPage(e) {
+        e.preventDefault();
         window.location.reload();
-        console.log(window.location);
+        // console.log(window.location);
     }
+
+    function logging() {
+        console.log('nav clicked',window.location.reload());
+    }
+
+
+   
+
 </script>
-<header>
+<header style="z-index: 3;" on:click={logging}>
     <nav>
         
         <a href="/" on:click|preventDefault={refreshPage}>
             <img src="./images/Deloitte.svg" alt="Deloitte logo" width="100" height="50">
         </a>
-        <!-- <a href="/profile">profile</a> -->
+        
         <Button
         text="info"
 		color="black"
