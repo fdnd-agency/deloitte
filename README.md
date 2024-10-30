@@ -1,4 +1,4 @@
-# Mobilitiets pakket
+# Mobiliteits pakket
 <img width="1800" alt="" src="https://github.com/user-attachments/assets/568faf1e-cefe-4291-a8e2-aa53f8d62a94">
 
 ## Inhoudsopgave
