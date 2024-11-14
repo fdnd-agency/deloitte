@@ -7,15 +7,11 @@
         // console.log(window.location);
     }
 
-    function logging() {
-        console.log('nav clicked',window.location.reload());
-    }
-
 
    
 
 </script>
-<header style="z-index: 3;" on:click={logging}>
+<header style="z-index: 3;">
     <nav>
         
         <a href="/" on:click|preventDefault={refreshPage}>
