@@ -1,17 +1,25 @@
 <script>
-	// export let data;
-	// import '../../styles/inlog.css'
 	import '../../styles/global.css'
+	import {ComponentBox, Button} from '$lib';
+	import { goto } from '$app/navigation';
 
 </script>
 
-<main>
+<ComponentBox
+		heading=""
+		context1=""
+		context2=""
+		display="flex"
+		titleAlign=""
+		class="inlog"
+		
+
+>
 	
 	<section class="login-container">
 		
-		<aside class="login-content">
-			<h1>Mobility package</h1>
-			<img src="pexels-dan-voican-2624103-17854203.jpg" alt="background image for the login page" >
+		<aside class="login-content noise">
+			
 		</aside>
 		
 		
@@ -22,17 +30,26 @@
 
 			<form action="/profile" method="post">
 				<label for="Email">
-					<legend>Email</legend>
 					<input type="Email" name="Email" id="Email" placeholder="Email">
 				</label>
 
 				<label for="Password">
-					<legend>Password</legend>
 					<input type="Password" name="Password" id="Password" placeholder="Password">
 				</label>
 				
-				<button type="submit" class="nextPage">Login</button>
-				<a href="/profile" class="nextPage" data-sveltekit-preload-data="false"> next page</a>
+				
+				<!-- login button -->
+				 
+
+
+				<Button
+				text="login"
+				color=""
+				colorLine="none"
+				task="/profile"
+				class="nextPage"
+				
+				/>
 
 			</form>
 			<a href="https://apply.deloitte.com/careers/ResetPassword/?">forgot my Password</a>
@@ -44,44 +61,45 @@
 
 
 
-</main>
+</ComponentBox>
 
 <style>
-	main{
+	section{
 	position: relative;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	/* justify-content: center; */
 	align-items: center;
 	width: 100%;
 	height: 100vh;
 	overflow: hidden;
 	perspective: 3000px;
+	
 }
 
 .login-container{
-	width: fit-content;
+	width: 100%;
 	height: fit-content;
 	display: flex;
 	align-items: center;
-	/* background-color: rgba(186, 188, 189, 0.174); */
-	/* background-color: rgba(130, 172, 194, 0.045); */
-	/* background-color:var(--D-primary-mid-grey); */
 	border-radius: 2pc 1pc 1pc 2pc;
 	perspective: 2000px;
 	
+	
 
 	&> :nth-child(1){
-		width: 50vw;
-		height: 90vh;
-		max-height: 90vh;
+		max-width: 37vw;
+		height:74cqb;
 	}
 
 	&> :nth-child(2){
 		width: 35vw;
+		/* width: 100%; */
 		height: 40vw;
-		/* width: 50vw;
-		height: 70vw; */
+		/* height: 70vw; */
+		/* background-color:  red; */
+
+		
+		
 	}
 
 
@@ -90,43 +108,29 @@
 
 /* animation  */
 
-/* main:has(.login-container:hover) .login-content{
+.login-container:hover aside{
 	transform: rotateY(20deg) translateX(-3%) scale(.95);
 	perspective: 2000px;
-	h1{
-		 transform: rotateY(-10deg) translateX(-3%) scale(1.07);
-		 transform-origin:left ;
+	filter:  brightness(1000%);
+	filter: blur(50px) contrast(110%);
 
-	}
-} */
+}
 
 
 .login-content{
 	position: relative;
 	overflow: hidden;
 	border-radius: clamp(10px, 50vw - 1rem, 2pc);
-	transition: .8s ;
-	transition: .8s cubic-bezier(0.34, -0.04, 0.17, 0.98) ;
+	transition: 5s cubic-bezier(0.34, -0.04, 0.17, 0.98) ;
 	transform-origin: left;
+
+	width: 100%;
 }
 
-.login-content > h1{
-	font-size: 1.8rem;
-	position: absolute;
-	top: 4%;
-	left: 4.5%;
-	transition: .8s cubic-bezier(0.34, -0.04, 0.17, 0.98) ;
-	mix-blend-mode:difference;
-	color: #ffffff91;
-	/* filter: blur(10px); */
-}
-
-.login-container img {
-
-	object-fit: cover;
-	object-position: center;
+.login-content .mid {
 	width: 100%;
 	height: 100%;
+	
 }
 
 .login-container .login-info-highlight{
@@ -135,16 +139,11 @@
 	top: 40%;
 	right: 20%;
 	color: #ffffffc6;
-	/* height: fit-content; */
-	/* backdrop-filter: blur(3px); */
 	display: none;
 
 }
 
 .login-container > article{
-	/* outline: .1px solid; */
-	/* justify-content: flex-end; */
-	/* background-color: rgba(186, 188, 189, 0.174); */
 	display: flex;
 	flex-direction: column;
 	padding: 8%;
@@ -152,12 +151,17 @@
 	border-radius: 0pc 1pc 1pc 0pc;
 	container-type:size ;
 	container-name: login;
+	text-wrap:stable;
+	word-wrap: break-word;
+  
+	
 
 }
 
 .login-container article h1{
 	font-size: 2.5rem;
 	margin-bottom: 3%;
+	
 }
 
 .login-container article .space{
@@ -165,9 +169,6 @@
 }
 
 .login-container article form{
-	/* justify-self:baseline; */
-	/* float: block-end; */
-	/* outline: solid; */
 	flex: 0 0 30%;
 	display: flex;
 	flex-direction: column;
@@ -176,13 +177,6 @@
 
 	& label{
 		margin-bottom: 6%;
-		/* background-color: red; */
-	}
-
-	& legend{
-		margin-bottom: 2%;
-		display: none;
-	
 	}
 
 	& input{
@@ -192,6 +186,7 @@
 		outline: none;
 		border-bottom: solid 1px;
 		background: transparent;
+		font-size: 1.5rem;
 	}
 
 	& input:focus-visible{
@@ -240,6 +235,32 @@
 	
 }
 
+.isolate {
+  isolation: isolate;
+  position: relative;
+}
 
+.mid{
+
+  width: 100%;
+  height: 100%;
+
+  background-image:url("pexels-dan-voican-2624103-17854203.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  
+  filter:contrast(0.7);
+  mix-blend-mode: luminosity;
+  isolation:isolate;
+     
+  }
+
+  .noise {
+  width:100%;
+  height:100%;
+  
+  background: conic-gradient(from 0deg at 80% -39%, var(--D-base-bk) 35%, var(--D-mid-bk) 100%),url(https://grainy-gradients.vercel.app/noise.svg);
+  filter: blur(15px) ;
+}
 
 </style>

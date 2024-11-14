@@ -1,5 +1,6 @@
 <script>
 	export let error;
+	import { redirect } from '@sveltejs/kit';
 
 	$: message = error.message;
 
@@ -10,5 +11,4 @@
 
 <h1>
 	{message}
-	eeeeeeeeeeeeeee
 </h1>
