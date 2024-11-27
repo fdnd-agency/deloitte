@@ -1,36 +1,156 @@
 <script>
-  export let data;
-  import Checkbox from '$lib/checkbox.svelte';
-
-  import { onMount } from 'svelte';
-  import { goto } from '$app/navigation';
-
-  onMount(() => {
-        goto('/Inlog');
-    });
+	import { goto } from '$app/navigation';
+    import { WinC,Button } from '$lib';
+	let userlogedin = false;
 </script>
 
-<!-- <h1>{data.person.name}</h1> -->
+{#if userlogedin}
+	<WinC
+	role="child"
+	title="Deloitte"
+	context='Strart nu de vragenlijst om een passend pakket te vinden'
+	color='lightblue'
+	class="main-panel"
+	>
+		<WinC
+		role='buttonBox'
+		color='orange'>
+			<Button
+			type="/profile"
+			text="profile"
+			color="white"
+			/>
+			<Button
+			type="/wizard"
+			text="wizard"
+			color="white"
+			/>
+			<Button
+			type="/overview"
+			text="overview"
+			color="white"
+			/>
+		</WinC>
+	</WinC>
+{:else}
+	<WinC
+	role="child"
+	title="Deloitte"
+	context='Strart nu de vragenlijst om een passend pakket te vinden'
+	class="main-panel"
+	>
+		<Button
+		type="/wizard"
+		text="Start nu"
+		color="white"
+		/>
+	</WinC>
+{/if}
 
-<div>
-{#each {length: 4} as _, i}
-  <Checkbox
-  answer
-  bindGroup/>
-{/each}
-</div>
+<WinC
+role="child"
+title="Wat beiden wij aan"
+context='we helpen je met de mobiliteit van de toekomst'
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
 
+<WinC
+role="child"
+title="Eeen vergoeding van Deloitte"
+context='Reiskostenvergoedingen'
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
 
-{#each data.items as item}
-<h1>{item.package_name}</h1>
-{/each}
+<WinC
+role="child"
+title="Pakketten"
+context='Deloitte biedt een maandelijkse mobiliteitsvergoeding van € 200. Hiermee kun je een abonnement nemen op een deelfiets of een ov-abonnement. Daarnaast kun je ook een elektrische fiets aanschaffen met een eenmalige bijdrage van € 1000.'
+color="red"
+class="package-panel"
+>
+<!-- cards list with pakketten -->
+
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+
+<WinC
+role="child"
+title="kom je in aanmerking voor leasing?"
+context='leaseregeling'
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+
+<WinC
+role="child"
+title="Mobiliteitregeling"
+context=''
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+<WinC
+role="child"
+title="Mobiliteitregeling"
+context=''
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+<WinC
+role="child"
+title="Mobiliteitregeling"
+context=''
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
 
 <style>
-  div {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+	:global(.main-panel){
+		width: 100%;
+		height: 30cqh;
+		border: 1px solid black;
+		border-radius: var(--cc-radius,inherit);
+
+
+		&>h2{
+			font-size: 24px;
+		}
+	}
+
+	:global(.info-panel){
+		width: 100%;
+		height: fit-content;
+		border-radius: 0px !important;
+		padding-block: 6cqh !important;
+		&> h2{
+			color: var(--D-dark-support,var(--LD-text)) ;
+		}
+
+		&> h2 + p:nth-of-type(1):has(~ p) {
+			font-size: 1.8rem;
+		}
+
+		&> p ~ p {
+			font-size: 1rem;
+		}
+	}
+
+	p{	
+		font-size: 1rem;
+		color: var(--LD-text);
+		/* color:yellow; */
+	}
 </style>
