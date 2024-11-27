@@ -22,7 +22,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+	/* font: inherit; */
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -81,4 +81,7 @@ h1, a {
 
 	/* box shadowing op componenten */
 	--bottom-shadow: 0px 9px 12px -2px var(--D-mid-bk);	
+
+	/* body padding */
+	--B-padding-inline: clamp(1rem, 0.0217rem + 4.3478vw, 5%);
 }

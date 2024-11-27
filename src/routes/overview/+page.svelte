@@ -1,11 +1,11 @@
 <script>
     import {ComponentBox,PackageComponent, GeneralInfo} from "$lib/index.js";
-	export let data;
 	// import '../../styles/overview.css'
     // import {MobilityOptions,GeneralInfo, ,ComponentBox} from '$lib';
    
 
-  export let num = 0;
+  /** @type {{data: any, num?: number}} */
+  let { data, num = 0 } = $props();
 </script>
 
 <main>
