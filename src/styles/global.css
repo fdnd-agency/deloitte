@@ -1,8 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+	--background: #FFFFFF;
+	--background-dark: #007680;
+	--background-light: rgba(0, 118, 128, 0.5);
+	--border: #C2E3DF;
+	--text-primary: #212121;
+	--text-secondary: #FFFFFF;
+	--text-tertiary: #007680;
+	--text-fourth: #1fa588;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #212121;
+		--text-primary: #d1d1d1;
+	}
+}
+
 *{
+	padding: 0;
+	margin: 0;
 	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
+}
+
+html {
 	scroll-behavior: smooth;
+}
+
+body {
+	line-height: 1.5;
+	font-family: "Open Sans", serif;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -29,9 +57,6 @@ time, mark, audio, video {
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
-}
-body {
-	line-height: 1;
 }
 ol, ul {
 	list-style: none;
