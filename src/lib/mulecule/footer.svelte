@@ -1,5 +1,6 @@
 <script>
-    import '../styles/global.css'
+        let { children, class:CLASS, ...props } = $props();
+
 </script>
 
 <footer>
@@ -9,6 +10,19 @@
 </footer>
 
 <style>
+
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--D-t-support);
+        color: white;
+        padding: 1.25em;
+        font-size: 0.75em;
+
+        
+    }
+
     p {
         background-color: var(--D-t-support);
         color: white;

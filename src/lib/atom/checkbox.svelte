@@ -1,6 +1,6 @@
 <script>
-    export let answer; // Het antwoord object dat je doorgeeft
-    export let bindGroup; // Voor het binden van de groep aan het antwoord
+    /** @type {{answer: any, bindGroup: any}} */
+    let { answer, bindGroup = $bindable() } = $props();
 </script>
 
 <label>
