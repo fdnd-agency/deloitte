@@ -1,48 +1,28 @@
 <script>
     import {Header,Footer} from '$lib';
+    import '../styles/global.css'
+    import { WinC,Button } from '$lib';
+
+    /** @type {{children?: import('svelte').Snippet}} */
+    let { children } = $props();
+
     // import Footer from '$lib/footer.svelte';
 </script>
 
-<div class="body">
 
-    <div class="header">
-        <Header/>
-    </div>
+   
+<Header class="header"/>
     
-    <main>
-        <slot/>
-    </main>
+<WinC role='window' class="main" color='transparent'>
+        {@render children?.()}
+</WinC>
 
-    <div class="footer">
-        <Footer/>
-    </div>
+<Footer class="footer"/>
     
 
-</div>
+
 
 
 <style>
-    .body {
-        display: flex;
-        flex-direction: column;
-        background: linear-gradient(90deg, var(--D-base-bk) 26%, var(--D-mid-bk) 100%);
-        min-height: 100vh; 
-    }
 
-    .header {
-        flex-shrink: 0; 
-        /* outline: solid red; */
-    }
-
-    main {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        /* outline: solid blue; */
-        padding-inline: 10%;
-    }
-
-    .footer {
-        flex-shrink: 0; 
-    }
 </style>
