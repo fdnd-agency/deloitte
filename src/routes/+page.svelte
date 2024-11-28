@@ -1,8 +1,48 @@
 <script>
-  // export let data;
+  export let data;
+  import Section from '$lib/component-section.svelte';
   import Question from '$lib/component-question.svelte';
+  import Answer from '$lib/component-answer.svelte';
+  import Button from '$lib/component-button.svelte';
+  import { onMount } from 'svelte';
+  import { setupFieldsets } from '$lib/fieldsetFilter.js';
+
+  function AnswersForQuestion(questionId) {
+    return data.answers.filter(answer => answer.question_id === questionId);
+  }
+
+  onMount(() => {
+    setupFieldsets();
+  });
 </script>
 
-<Question/>
+<Section
+subtitle="Vragenlijst"
+title="Mobiliteits Wizard"
+body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een goed passende mobiliteitspakket te krijgen.">
+  <form>
+    {#each data.questions as question}
+    <Question question={question.question}>
+      {#each AnswersForQuestion(question.id) as answer, index}
+        <Answer
+          number={index + 1}
+          id={answer.id}
+          answer={answer.answer}
+          score={answer.score}
+          name={question.id} />
+      {/each}
+    </Question>
+  {/each}
+  <Button type="submit" text="submit"/>
+  </form>
+</Section>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+</style>
 
 
