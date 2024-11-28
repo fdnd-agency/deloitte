@@ -99,11 +99,12 @@
 		/* min-width: 100%; */
 		width: fit-content;
 		height: fit-content;
-		padding: 0px;
-		padding-inline: 1.5cqi;
+		padding: .4cqi;
+		padding-inline: 1.8cqi;
 		
 		font-family: inherit;
 		font-size: clamp(1rem, 0.0917rem + 4.3478vw, 2cqi);
+		font-weight: 700;
 		text-decoration: none;
 		text-wrap:nowrap ;
 		cursor: pointer;
@@ -113,17 +114,19 @@
 		container-type:normal;
 		container-name: button;
 
-		background: none;
+		background: white;
 		/* box-shadow: inset 0 -1px 5px color-mix(in oklch var(--color),var(--D-white2));		 */
 		border-radius: max(1pc, 3pc);
 		border: 2px solid;
 		
-		border-color: color-mix(in oklch, var(--color) 15%, #fff3);
+		border-color: color-mix(in oklch, var(--color) 15%, var(--border)100%);
 		/* background-color: color-mix(in oklch, var(--color), #0007); */
 		/* background-image: linear-gradient(1deg,var(--D-mid-bk) 5%, rgb(46, 200, 202) 46%); */
 		color: color-mix(in lch longer hue,  var(--color) 28%, var(--LD-background) 100%);
 		/* color: color-mix(in oklch, var(--color),#ffffff); */
 }
+
+
 
 
 
