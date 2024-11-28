@@ -50,7 +50,7 @@
 	{/if}
 
 	{#if children}
-	<section>
+	<section style="--color:{color}">
 		{@render children()}
 	</section>
 	{/if}
@@ -64,7 +64,7 @@
 	</main>
 {:else if role == 'child'}
 	<!-- any container inside the main container -->
-	<div class="contain child-container {CLASS}" style="background-color:{color};outline:solid {line}px;" {...props}>
+	<div class="contain child-container {CLASS}" style="background-color:{color};outline:solid {line}px;--color:{color}" {...props}>
 		{@render A()}
 	</div>
 {:else if role == 'buttonBox'}
@@ -185,6 +185,13 @@
 		border-radius: var(--cc-radius,inherit);
 		border-top:solid 1px var(--cc-text,var(--D-t-support));
 		margin-block:2%;
+	}
+
+	.buttonB{
+		background-color: var(--D-mid-bk);
+		background-color: inherit;
+		background: color-mix(in oklch, var(--color) 70%, rgba(0, 0, 0, 0.873)5%);
+
 	}
 
 	@media(min-width: 700px){
