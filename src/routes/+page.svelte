@@ -14,7 +14,8 @@
 	>
 		<WinC
 		role='buttonBox'
-		color='orange'>
+		color=''
+		class='buttonB'>
 			<Button
 			type="/profile"
 			text="profile"
@@ -71,12 +72,34 @@ class="info-panel"
 role="child"
 title="Pakketten"
 context='Deloitte biedt een maandelijkse mobiliteitsvergoeding van € 200. Hiermee kun je een abonnement nemen op een deelfiets of een ov-abonnement. Daarnaast kun je ook een elektrische fiets aanschaffen met een eenmalige bijdrage van € 1000.'
-color="red"
+color="lightgreen"
 class="package-panel"
 >
 <!-- cards list with pakketten -->
 
 	<p>info about what why the options exist and how to use them</p>
+
+	<WinC
+	role='buttonBox'
+	color=''
+	class='buttonB'>
+		<Button
+		type="/profile"
+		text="profile"
+		color="white"
+		/>
+		<Button
+		type="/wizard"
+		text="wizard"
+		color="white"
+		/>
+		<Button
+		type="/overview"
+		text="overview"
+		color="white"
+		/>
+	</WinC>
+
 </WinC>
 
 <WinC
@@ -98,6 +121,7 @@ class="info-panel"
 >
 	<p>info about what why the options exist and how to use them</p>
 </WinC>
+
 <WinC
 role="child"
 title="Mobiliteitregeling"
@@ -107,26 +131,47 @@ class="info-panel"
 >
 	<p>info about what why the options exist and how to use them</p>
 </WinC>
-<WinC
-role="child"
-title="Mobiliteitregeling"
-context=''
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
+
+
 
 <style>
 	:global(.main-panel){
 		width: 100%;
-		height: 30cqh;
-		border: 1px solid black;
+		height: fit-content;
+		border: none !important;
 		border-radius: var(--cc-radius,inherit);
-
+		overflow: hidden;
 
 		&>h2{
-			font-size: 24px;
+			font-size: clamp(2rem, 0.917rem + 4.1478vw, 6cqi);
+		}
+
+		&::before{
+			content: '';
+			position: absolute;
+			top: -10cqh;
+			bottom: -10cqh;
+			left: -20cqw;
+			width: clamp(50cqw, 100vw - 10vw, 70cqw);
+			max-width: 100vw;
+			/* aspect-ratio: 1; */
+			background-color: var(--D-t-support);
+			opacity: 0.2;
+			z-index: 0;
+			border-radius: 50%;
+
+
+		}
+
+		/* @container  (width > 400px){
+			&::before{
+				width: 100cqw;
+			}
+		} */
+
+		&> .buttonB{
+			background: none ;
+			
 		}
 	}
 
@@ -141,6 +186,8 @@ class="info-panel"
 
 		&> h2 + p:nth-of-type(1):has(~ p) {
 			font-size: 1.8rem;
+			font-weight: clamp(500, 6.1478vw, 700);
+			font-weight: 500;
 		}
 
 		&> p ~ p {
