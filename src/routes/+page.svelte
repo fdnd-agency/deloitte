@@ -1,10 +1,10 @@
 <script>
 	import { goto } from '$app/navigation';
     import { WinC,Button,Overview } from '$lib';
-	let userlogedin = false;
+	let userlogedIn = true;
 </script>
 
-{#if userlogedin}
+{#if userlogedIn}
 	<WinC
 	role="child"
 	title="Deloitte"
@@ -162,7 +162,7 @@ class="info-panel"
 		border-radius: 0px !important;
 		padding-block: 6cqh !important;
 		&> h2{
-			color: var(--D-dark-support,var(--LD-text)) ;
+			color: var(--D-dark-support,var(--LD-text));
 		}
 
 		&> h2 + p:nth-of-type(1):has(~ p) {
@@ -195,12 +195,5 @@ class="info-panel"
 		border: solid 1px !important;
 	}
 
-	[role="child"]{
-		display: flex;
-		justify-content: space-between;
-	}
-
-	a:has(svg){
-
-	}
+	
 </style>
