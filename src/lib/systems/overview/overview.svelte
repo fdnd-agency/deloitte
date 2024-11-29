@@ -1,5 +1,6 @@
 <script>
     import {ComponentBox,PackageComponent, GeneralInfo} from "$lib/index.js";
+    import {WinC,Button} from "$lib";
 	// import '../../styles/overview.css'
     // import {MobilityOptions,GeneralInfo, ,ComponentBox} from '$lib';
    
@@ -10,39 +11,25 @@
 
 <main>
    
-            <ComponentBox
-                heading="Mobility options"
-                context1=""
-                context2=""
-                display="flex"
-                titleAlign="center"
-                class="top-c"
-            ></ComponentBox>
 
-    <ComponentBox
-    heading=""
-    context1=""
-    context2=""
-    display="flex"
-    titleAlign=""
+    <WinC
+    role="child"
+    context=""
     class="box2"
     >
         <PackageComponent {data} />
-    
-    </ComponentBox>
+        <p>cards</p>
+    </WinC>
 
-    <ComponentBox
-    heading=""
-		context1=""
-		context2=""
-		display="flex"
-		titleAlign=""
+    <WinC
+        role="child"
+		context=""
 		class="box1"
     >
         <GeneralInfo 
         {num}/>
 
-    </ComponentBox>
+    </WinC>
 </main>
 
 <style>
@@ -56,5 +43,7 @@
         display: flex;
         flex-direction: column;
         gap: 2em;
+
+       
     }
 </style>
