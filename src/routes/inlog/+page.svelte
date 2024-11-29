@@ -1,7 +1,7 @@
 <script>
-	import '../../styles/global.css'
 	import {ComponentBox, Button} from '$lib';
 	import { goto } from '$app/navigation';
+	import { WinC } from 'component-building-block';
 
 </script>
 
@@ -54,6 +54,7 @@
 			</form>
 			<a href="https://apply.deloitte.com/careers/ResetPassword/?">forgot my Password</a>
 		</article>
+
 
 		
 

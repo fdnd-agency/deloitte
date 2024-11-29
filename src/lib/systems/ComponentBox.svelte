@@ -1,10 +1,15 @@
 <script>
 	// export let data;
-	export let heading;
-	export let context1;
-	export let context2;
-	export let display;
-	export let titleAlign;
+	/** @type {{heading: any, context1: any, context2: any, display: any, titleAlign: any, children?: import('svelte').Snippet, [key: string]: any}} */
+	let {
+		heading,
+		context1,
+		context2,
+		display,
+		titleAlign,
+		children,
+		...rest
+	} = $props();
 	// export let background;
 	// class functions
 	export function init() {
@@ -13,7 +18,7 @@
 
 	
 	let boxProps = {
-    class:[$$restProps.class]
+    class:[rest.class]
     }
 </script>
 
@@ -23,7 +28,7 @@
 	<p class="box-context">{context1}</p>
 	<p class="box-context">{context2}</p>
 
-	<slot/>
+	{@render children?.()}
 </div>
 
 <style>

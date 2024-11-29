@@ -1,6 +1,7 @@
 <script>
     // export let data;
-    export let num
+    /** @type {{num: any}} */
+    let { num } = $props();
 </script>
 
 <section>

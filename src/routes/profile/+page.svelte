@@ -1,11 +1,11 @@
 <script>
-	import '../../styles/global.css'
-	// import { goto } from '$app/navigation';
 	import {ComponentBox, Package, Button} from '$lib';
 	import {totalScore} from '$lib/stores'
+    // import { WinC,Button } from '$lib';
 
 
-	export let data;
+	/** @type {{data: any}} */
+	let { data } = $props();
 	let person = data.person
 	
 	// import '../../styles/profile.css'
@@ -73,6 +73,7 @@
 				/>
 			</div>
 
+			
 
 		</article>
 
@@ -116,6 +117,20 @@
 				<input type="text" id="MP" placeholder="mobilteit pakket">
 			</label>
 		</form>
+
+		<WinC 
+		role="child"
+		title="WinC"
+		>
+			<WinC 
+			role='header'
+			title="WinC"
+
+			>
+				<h1>WinC</h1>
+				
+			</WinC>
+		</WinC>
 
 
 		<div class="buttonBox">

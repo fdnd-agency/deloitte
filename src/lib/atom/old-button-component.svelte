@@ -1,12 +1,16 @@
 <script>
-	export let text;
 	// export let data;	
-	export let color;
-	export let colorLine = color;
-	export let task;
+	/** @type {{text: any, color: any, colorLine?: any, task: any, [key: string]: any}} */
+	let {
+		text,
+		color,
+		colorLine = color,
+		task,
+		...rest
+	} = $props();
 
 	let buttonProps = {
-    class:[$$restProps.class]
+    class:[rest.class]
     }
 </script>
 
@@ -17,7 +21,7 @@
 </a>
 {:else}
 
-<button on:click={()=>{task}} style="border: solid {colorLine}; color:{color}; --button-color:{color};" {...buttonProps}>
+<button onclick={()=>{task}} style="border: solid {colorLine}; color:{color}; --button-color:{color};" {...buttonProps}>
 	{text}
 </button>
 {/if}

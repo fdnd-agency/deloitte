@@ -1,48 +1,206 @@
 <script>
-  export let data;
-  import Section from '$lib/component-section.svelte';
-  import Question from '$lib/component-question.svelte';
-  import Answer from '$lib/component-answer.svelte';
-  import Button from '$lib/component-button.svelte';
-  import { onMount } from 'svelte';
-  import { setupFieldsets } from '$lib/fieldsetFilter.js';
-
-  function AnswersForQuestion(questionId) {
-    return data.answers.filter(answer => answer.question_id === questionId);
-  }
-
-  onMount(() => {
-    setupFieldsets();
-  });
+	import { goto } from '$app/navigation';
+    import { WinC,Button,Overview } from '$lib';
+	let userlogedin = false;
 </script>
 
-<Section
-subtitle="Vragenlijst"
-title="Mobiliteits Wizard"
-body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een goed passende mobiliteitspakket te krijgen.">
-  <form>
-    {#each data.questions as question}
-    <Question question={question.question}>
-      {#each AnswersForQuestion(question.id) as answer, index}
-        <Answer
-          number={index + 1}
-          id={answer.id}
-          answer={answer.answer}
-          score={answer.score}
-          name={question.id} />
-      {/each}
-    </Question>
-  {/each}
-  <Button type="submit" text="submit"/>
-  </form>
-</Section>
+{#if userlogedin}
+	<WinC
+	role="child"
+	title="Deloitte"
+	context='Strart nu de vragenlijst om een passend pakket te vinden'
+	color='lightblue'
+	class="main-panel"
+	>
+		<WinC
+		role='buttonBox'
+		color=''
+		class='buttonB'>
+			<Button
+			type="/profile"
+			text="profile"
+			color="white"
+			/>
+			<Button
+			type="/wizard"
+			text="wizard"
+			color="white"
+			/>
+			<Button
+			type="/overview"
+			text="overview"
+			color="white"
+			/>
+		</WinC>
+	</WinC>
+{:else}
+	<WinC
+	role="child"
+	title="Deloitte"
+	context='Strart nu de vragenlijst om een passend pakket te vinden'
+	class="main-panel"
+	>
+		<Button
+		type="/wizard"
+		text="Start nu"
+		color="white"
+		/>
+	</WinC>
+{/if}
+
+<WinC
+role="child"
+title="Wat beiden wij aan"
+context='we helpen je met de mobiliteit van de toekomst'
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+
+<WinC
+role="child"
+title="Eeen vergoeding van Deloitte"
+context='Reiskostenvergoedingen'
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+
+<WinC
+role="child"
+title="Pakketten"
+context='Deloitte biedt een maandelijkse mobiliteitsvergoeding van € 200. Hiermee kun je een abonnement nemen op een deelfiets of een ov-abonnement. Daarnaast kun je ook een elektrische fiets aanschaffen met een eenmalige bijdrage van € 1000.'
+color=""
+class="package-panel"
+>
+<!-- cards list with pakketten -->
+
+	<p>info about what why the options exist and how to use them</p>
+	<Overview data/>
+
+
+</WinC>
+
+<WinC
+role="child"
+title="kom je in aanmerking voor leasing?"
+context='leaseregeling'
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+
+<WinC
+role="child"
+title="Mobiliteitregeling"
+context=''
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+
+<WinC
+role="child"
+title="Mobiliteitregeling"
+context=''
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+
+
 
 <style>
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+	:global(.main-panel){
+		width: 100%;
+		height: fit-content;
+		border: none !important;
+		border-radius: var(--cc-radius,inherit);
+		overflow: hidden;
+
+		&>h2{
+			font-size: clamp(2rem, 0.917rem + 4.1478vw, 6cqi);
+		}
+
+		&::before{
+			content: '';
+			position: absolute;
+			top: -10cqh;
+			bottom: -10cqh;
+			left: -20cqw;
+			width: clamp(50cqw, 100vw - 10vw, 70cqw);
+			max-width: 100vw;
+			/* aspect-ratio: 1; */
+			background-color: var(--D-t-support);
+			opacity: 0.2;
+			z-index: 0;
+			border-radius: 50%;
+
+
+		}
+
+		/* @container  (width > 400px){
+			&::before{
+				width: 100cqw;
+			}
+		} */
+
+		&> .buttonB{
+			background: none ;
+			
+		}
+	}
+
+	:global(.info-panel){
+		width: 100%;
+		height: fit-content;
+		border-radius: 0px !important;
+		padding-block: 6cqh !important;
+		&> h2{
+			color: var(--D-dark-support,var(--LD-text)) ;
+		}
+
+		&> h2 + p:nth-of-type(1):has(~ p) {
+			font-size: 1.8rem;
+			font-weight: clamp(500, 6.1478vw, 700);
+			font-weight: 500;
+		}
+
+		&> p ~ p {
+			font-size: 1rem;
+		}
+	}
+
+	:global(.package-panel){
+		width: 100%;
+		height: fit-content;
+		border: none !important;
+		&> h2{
+			color: var(--D-dark-support,var(--LD-text)) ;
+		}
+		
+	}
+
+	p{	
+		font-size: 1rem;
+		color: var(--LD-text);
+	}
+
+	:global(.box1,.box2){
+		border: solid 1px !important;
+	}
+
+	[role="child"]{
+		display: flex;
+		justify-content: space-between;
+	}
+
+	a:has(svg){
+
+	}
 </style>
-
-
