@@ -1,12 +1,13 @@
 <script>
-    export let question;
+    /** @type {{question: any, children?: import('svelte').Snippet}} */
+    let { question, children } = $props();
 </script>
 
 <fieldset>
     <legend>{question}</legend>
     <p>Kies 1 van de onderste opties</p>
     <ul>
-        <slot/>
+        {@render children?.()}
     </ul>
 </fieldset>
 

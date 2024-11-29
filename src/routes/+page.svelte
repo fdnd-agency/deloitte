@@ -1,6 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
     import { WinC,Button,Overview } from '$lib';
+	import Card from '$lib/component-card.svelte';
 	let userlogedin = false;
 </script>
 
@@ -37,7 +38,7 @@
 	<WinC
 	role="child"
 	title="Deloitte"
-	context='Strart nu de vragenlijst om een passend pakket te vinden'
+	context='Start nu de vragenlijst om een passend pakket te vinden'
 	class="main-panel"
 	>
 		<Button
@@ -60,7 +61,7 @@ class="info-panel"
 
 <WinC
 role="child"
-title="Eeen vergoeding van Deloitte"
+title="Een vergoeding van Deloitte"
 context='Reiskostenvergoedingen'
 color="transparent"
 class="info-panel"
@@ -76,6 +77,10 @@ color=""
 class="package-panel"
 >
 <!-- cards list with pakketten -->
+<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
+<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
+<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
+<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
 
 	<p>info about what why the options exist and how to use them</p>
 	<Overview data/>

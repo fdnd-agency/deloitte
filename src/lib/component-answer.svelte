@@ -1,10 +1,13 @@
 <script>
     // let { number, id, answer } = $props();
-    export let number;
-    export let id;
-    export let answer;
-    export let score;
-    export let name;
+    /** @type {{number: any, id: any, answer: any, score: any, name: any}} */
+    let {
+        number,
+        id,
+        answer,
+        score,
+        name
+    } = $props();
 </script>
 
 <li>

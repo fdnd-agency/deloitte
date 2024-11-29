@@ -1,11 +1,12 @@
 <script>
-  export let data;
   import Section from '$lib/component-section.svelte';
   import Question from '$lib/component-question.svelte';
   import Answer from '$lib/component-answer.svelte';
   import Button from '$lib/component-button.svelte';
   import { onMount } from 'svelte';
   import { setupFieldsets } from '$lib/fieldsetFilter.js';
+  /** @type {{data: any}} */
+  let { data } = $props();
 
   function AnswersForQuestion(questionId) {
     return data.answers.filter(answer => answer.question_id === questionId);

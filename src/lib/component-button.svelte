@@ -1,6 +1,6 @@
 <script>
-    export let type;
-    export let text;
+    /** @type {{type: any, text: any}} */
+    let { type, text } = $props();
 </script>
 
 <button type={type}>{text}</button>
