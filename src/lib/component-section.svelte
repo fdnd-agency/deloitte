@@ -1,14 +1,18 @@
 <script>
-    export let subtitle;
-    export let title;
-    export let body;
+    /** @type {{subtitle: any, title: any, body: any, children?: import('svelte').Snippet}} */
+    let {
+        subtitle,
+        title,
+        body,
+        children
+    } = $props();
 </script>
 
 <section>
     <p>{subtitle}</p>
     <h2>{title}</h2>
     <p>{body}</p>
-    <slot/>
+    {@render children?.()}
 </section>
 
 <style>
