@@ -1,6 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
-    import { WinC,Button } from '$lib';
+    import { WinC,Button,Overview } from '$lib';
 	let userlogedin = false;
 </script>
 
@@ -72,33 +72,14 @@ class="info-panel"
 role="child"
 title="Pakketten"
 context='Deloitte biedt een maandelijkse mobiliteitsvergoeding van € 200. Hiermee kun je een abonnement nemen op een deelfiets of een ov-abonnement. Daarnaast kun je ook een elektrische fiets aanschaffen met een eenmalige bijdrage van € 1000.'
-color="lightgreen"
+color=""
 class="package-panel"
 >
 <!-- cards list with pakketten -->
 
 	<p>info about what why the options exist and how to use them</p>
+	<Overview data/>
 
-	<WinC
-	role='buttonBox'
-	color=''
-	class='buttonB'>
-		<Button
-		type="/profile"
-		text="profile"
-		color="white"
-		/>
-		<Button
-		type="/wizard"
-		text="wizard"
-		color="white"
-		/>
-		<Button
-		type="/overview"
-		text="overview"
-		color="white"
-		/>
-	</WinC>
 
 </WinC>
 
@@ -195,9 +176,31 @@ class="info-panel"
 		}
 	}
 
+	:global(.package-panel){
+		width: 100%;
+		height: fit-content;
+		border: none !important;
+		&> h2{
+			color: var(--D-dark-support,var(--LD-text)) ;
+		}
+		
+	}
+
 	p{	
 		font-size: 1rem;
 		color: var(--LD-text);
-		/* color:yellow; */
+	}
+
+	:global(.box1,.box2){
+		border: solid 1px !important;
+	}
+
+	[role="child"]{
+		display: flex;
+		justify-content: space-between;
+	}
+
+	a:has(svg){
+
 	}
 </style>
