@@ -32,6 +32,7 @@ body {
 	line-height: 1.5;
 	font-family: "Open Sans", serif;
 	font-size-adjust: 0.6;
+	background-color: var(--background);
 }
 
 html, body, div, span, applet, object, iframe,

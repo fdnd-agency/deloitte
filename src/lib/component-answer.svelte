@@ -58,6 +58,10 @@
         transition: 0.2s ease-in;
     }
 
+    label:hover {
+        background-color: var(--background-light);
+    }
+
     input {
         z-index: -1;
         position: absolute;
@@ -72,13 +76,11 @@
     }
 
     input:checked ~ p {
-        color: var(--text-tertiary);
         background-color: var(--background);
     }
 
     input:focus + label {
         outline: 0.2rem solid var(--border);
-        outline-offset: 0.1rem;
     }
 
     @media only screen and (min-width: 48rem) {

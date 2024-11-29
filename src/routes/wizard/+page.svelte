@@ -42,7 +42,7 @@ body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een 
   form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 4rem;
   }
 </style>
 
