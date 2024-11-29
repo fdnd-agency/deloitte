@@ -18,7 +18,7 @@
         background-color: var(--D-t-support);
         color: white;
         padding: 1.25em;
-        font-size: 0.75em;
+        font-size: clamp(0.75em, 0.917rem + 5.1478vw, 1rem);
 
         
     }

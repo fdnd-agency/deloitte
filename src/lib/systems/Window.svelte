@@ -194,6 +194,7 @@
 
 	}
 
+	
 	@media(min-width: 700px){
 		main{
 			grid-template-columns:[full-start] minmax(1px, .1fr) [context-start] repeat(8,1fr) [context-end] minmax(1px, .1fr) [full-end];
