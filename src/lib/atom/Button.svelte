@@ -100,7 +100,7 @@
 		width: fit-content;
 		height: fit-content;
 		padding: .4cqi;
-		padding-inline: 1.8cqi;
+		padding-inline: .8rem;
 		
 		font-family: inherit;
 		font-size: clamp(1rem, 0.0917rem + 4.3478vw, 2cqi);

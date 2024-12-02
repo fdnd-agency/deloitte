@@ -1,7 +1,7 @@
 <script>
-  import Section from '$lib/component-section.svelte';
-  import Question from '$lib/component-question.svelte';
-  import Answer from '$lib/component-answer.svelte';
+  import Section from '$lib/atom/component-section.svelte';
+  import Question from '$lib/atom/component-question.svelte';
+  import Answer from '$lib/atom/component-answer.svelte';
   import Button from '$lib/component-button.svelte';
   import { onMount } from 'svelte';
   import { setupFieldsets } from '$lib/fieldsetFilter.js';
