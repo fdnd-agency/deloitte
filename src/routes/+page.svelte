@@ -1,9 +1,10 @@
 <script>
 	import { goto } from '$app/navigation';
     import { WinC,Button,Overview } from '$lib';
-	import Card from '$lib/component-card.svelte';
-	let userlogedin = false;
+	import Card from '$lib/mulecule/component-card.svelte';
+	let userlogedIn = true;
 </script>
+
 
 {#if userlogedIn}
 	<WinC
@@ -156,7 +157,7 @@ class="info-panel"
 		} */
 
 		&> .buttonB{
-			background: none ;
+			/* background: none ; */
 			
 		}
 	}

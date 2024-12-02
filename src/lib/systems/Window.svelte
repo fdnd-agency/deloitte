@@ -152,11 +152,11 @@
 	/* button box logic and sizing */
 	 .buttonBox{
 		--cc-radius:1pc;
-		--w:85;
+		--w:50;
 		--p: calc(calc(100 - var(--w))/2);
 		display: flex;
 		min-width: fit-content;
-		align-self: center; 
+		align-self: start; 
 		flex-wrap: wrap;
 		
 		/* needs to be refactored . was fixed by taking away % from inset inline */
@@ -165,6 +165,7 @@
 		/* inset-inline: calc(var(--p) * 1cqi); */
 		bottom: 0;
 		width: calc(var(--w) * 1% );
+		width: calc(var(--w) * .7% );
 		height: auto;
 		border-radius: var(--cc-radius,inherit);
 
@@ -175,6 +176,9 @@
 	
 	/* child containers */
 	.child-container{
+		/* --cc-text:var(--LD-text); */
+		/* --cc-bg:var(--LD-background); */
+
 		display: flex;
 		flex-direction: column;
 

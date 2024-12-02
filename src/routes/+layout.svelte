@@ -8,8 +8,6 @@
 
     // import Footer from '$lib/footer.svelte';
 </script>
-
-
    
 <Header class="header"/>
     
