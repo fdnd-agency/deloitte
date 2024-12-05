@@ -1,6 +1,5 @@
 <script>
-    import {ComponentBox,PackageComponent, GeneralInfo} from "$lib/index.js";
-    import {WinC,Button} from "$lib";
+    import {ComponentBox,PackageComponent, GeneralInfo, Card, WinC, Button} from "$lib";
 	// import '../../styles/overview.css'
     // import {MobilityOptions,GeneralInfo, ,ComponentBox} from '$lib';
    
@@ -18,7 +17,13 @@
     class="box2"
     >
         <PackageComponent {data} />
-        <p>cards</p>
+        <div class='cardbox'>
+            <!-- <Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/> -->
+            <!-- <Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/> -->
+            <!-- <Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/> -->
+            <!-- <Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/> -->
+        </div>
+       
     </WinC>
 
     <WinC

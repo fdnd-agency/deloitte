@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
     import { WinC,Button,Overview } from '$lib';
-	import Card from '$lib/mulecule/component-card.svelte';
+	import Card from '$lib/mulecule/cards/component-card.svelte';
 	let userlogedIn = true;
 </script>
 
@@ -78,10 +78,6 @@ color=""
 class="package-panel"
 >
 <!-- cards list with pakketten -->
-<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
 
 	<p>info about what why the options exist and how to use them</p>
 	<Overview data/>
@@ -201,5 +197,13 @@ class="info-panel"
 		border: solid 1px !important;
 	}
 
+	:global(.package-panel .cardbox ){
+		/* display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		height: fit-content;
+		outline: solid 1px teal !important; */
+		/* display: none; */
+	}
 	
 </style>

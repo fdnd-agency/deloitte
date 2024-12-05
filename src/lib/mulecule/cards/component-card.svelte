@@ -1,5 +1,9 @@
 <script>
-    let {title, body, job, imgSrc, imgAlt, cardType} = $props();
+    let {title, body, job, imgSrc, imgAlt, cardType, data} = $props();
+
+    let items = data
+
+    // $inspect(items);
 </script>
 
 <article class={cardType} style="--imgSrc: url('{imgSrc}')">
@@ -10,7 +14,13 @@
     <div>
         <span>{job}</span>
         <h2>{title}</h2>
-        <p>{body}</p>
+        <p>{body} </p>
+        {#each items as item }
+            <div>
+                <p>{item.id}</p>
+            </div>
+        {/each}
+
     </div>
 </article>
 
@@ -29,6 +39,7 @@
         box-shadow: 
             inset 0 0.05rem 0.05rem 0 rgba(255, 255, 255, 0.2),
             0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+          
     }
 
     h2 {
