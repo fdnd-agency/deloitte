@@ -127,7 +127,7 @@ class="info-panel"
 		height: fit-content;
 		border: none !important;
 		border-radius: var(--cc-radius,inherit);
-		overflow: hidden;
+		/* overflow: clip; */
 
 		&>h2{
 			font-size: clamp(2rem, 0.917rem + 4.1478vw, 6cqi);
