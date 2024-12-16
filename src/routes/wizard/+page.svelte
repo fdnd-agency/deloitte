@@ -23,7 +23,7 @@ title="Mobiliteits Wizard"
 body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een goed passende mobiliteitspakket te krijgen.">
   <form>
     {#each data.questions as question}
-    <Question question={question.question}>
+    <Question question={question.question} questionNumber={question.id}>
       {#each AnswersForQuestion(question.id) as answer, index}
         <Answer
           number={index + 1}
