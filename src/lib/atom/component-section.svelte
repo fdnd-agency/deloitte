@@ -17,7 +17,7 @@
 
 <style>
     section {
-        color: var(--text-primary);
+        color: var(--text-secondary);
         font-weight: 300;
     }
 

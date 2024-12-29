@@ -45,5 +45,3 @@ body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een 
     gap: 4rem;
   }
 </style>
-
-
