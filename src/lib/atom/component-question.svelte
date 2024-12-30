@@ -16,6 +16,7 @@
         border: none;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         gap: 0.5rem;
         transition: 0.2s ease-in;
         view-transition-class: question;
