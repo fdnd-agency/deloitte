@@ -18,8 +18,8 @@
         background-color: var(--D-t-support);
         color: white;
         padding: 1.25em;
-        font-size: clamp(0.75em, 0.917rem + 5.1478vw, 1rem);
-
+        font-size: clamp(0.75rem, 0.917rem + 5.1478vw, 1rem);
+        text-align: center;
         
     }
 
@@ -28,6 +28,7 @@
         color: white;
         padding: 1.25em;
         font-size: 0.75em;
+        width: fit-content;
     }
 
     a {

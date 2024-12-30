@@ -8,7 +8,7 @@
   let { data, num = 0 } = $props();
 </script>
 
-<main>
+<section>
    
 
     <WinC
@@ -35,7 +35,7 @@
         {num}/>
 
     </WinC>
-</main>
+</section>
 
 <style>
     h1 {
@@ -44,7 +44,7 @@
         text-align: center;
     }
     
-    main {
+     section{
         display: flex;
         flex-direction: column;
         gap: 2em;
