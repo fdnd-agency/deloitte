@@ -196,3 +196,11 @@ a {
 	/* body padding */
 	--B-padding-inline: clamp(1rem, 0.0217rem + 4.3478vw, 5%);
 }
+
+@media (prefers-reduced-motion) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
+}
