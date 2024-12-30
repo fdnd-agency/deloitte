@@ -1,8 +1,14 @@
 <script>
 	import { goto } from '$app/navigation';
     import { WinC,Button,Overview } from '$lib';
-	import Card from '$lib/mulecule/component-card.svelte';
+	import Card from '$lib/mulecule/cards/component-card.svelte';
 	let userlogedIn = true;
+
+	
+
+
+
+
 </script>
 
 
@@ -74,14 +80,10 @@ class="info-panel"
 role="child"
 title="Pakketten"
 context='Deloitte biedt een maandelijkse mobiliteitsvergoeding van € 200. Hiermee kun je een abonnement nemen op een deelfiets of een ov-abonnement. Daarnaast kun je ook een elektrische fiets aanschaffen met een eenmalige bijdrage van € 1000.'
-color=""
+color="var(--D-base-bk)"
 class="package-panel"
 >
 <!-- cards list with pakketten -->
-<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
 
 	<p>info about what why the options exist and how to use them</p>
 	<Overview data/>
@@ -127,7 +129,7 @@ class="info-panel"
 		height: fit-content;
 		border: none !important;
 		border-radius: var(--cc-radius,inherit);
-		overflow: hidden;
+		/* overflow: clip; */
 
 		&>h2{
 			font-size: clamp(2rem, 0.917rem + 4.1478vw, 6cqi);
@@ -142,7 +144,7 @@ class="info-panel"
 			width: clamp(50cqw, 100vw - 10vw, 70cqw);
 			max-width: 100vw;
 			/* aspect-ratio: 1; */
-			background-color: var(--D-t-support);
+			/* background-color: var(--D-t-support); */
 			opacity: 0.2;
 			z-index: 0;
 			border-radius: 50%;
@@ -201,5 +203,38 @@ class="info-panel"
 		border: solid 1px !important;
 	}
 
+	:global(.package-panel .cardbox ){
+		/* display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		height: fit-content;
+		outline: solid 1px teal !important; */
+		/* display: none; */
+	}
+
+	:global(main:has(button:is(:active,:hover))){
+		/* background-color: red; */
+
+			transition: none;
+			--s: 75px; /* control the size*/
+			--c1: #ffffff;
+			--c2: #ad2a44b0;
+			--c3: #446f1ba5;
+  
+			--_c:#0000,var(--c1) 1deg 79deg,#0000 81deg;
+			--g0:conic-gradient(from 140deg at 50% 87.5% ,var(--_c));
+			--g1:conic-gradient(from 140deg at 50% 81.25%,var(--_c));
+			--g2:conic-gradient(from 140deg at 50% 75%   ,var(--_c));
+			--g3:conic-gradient(at 10% 20%,#0000 75%,var(--c1) 0);
+			background:
+			var(--g0) 0 calc(var(--s)/-4),var(--g0) var(--s) calc(3*var(--s)/4),
+			var(--g1) ,var(--g1) var(--s) var(--s),
+			var(--g2) 0 calc(var(--s)/ 4),var(--g2) var(--s) calc(5*var(--s)/4),
+			var(--g3) calc( var(--s)/-10) var(--s),
+			var(--g3) calc(9*var(--s)/10) calc(2*var(--s)),
+    		repeating-conic-gradient(from 45deg,var(--c2) 0 25%,var(--c3) 0 50%);
+  			background-size: calc(2*var(--s)) calc(2*var(--s));
+		
+	}
 	
 </style>

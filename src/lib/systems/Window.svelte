@@ -59,12 +59,12 @@
 <!-- logic for all the types of containers  -->
 {#if role == 'window'}
 	<!-- window container -->
-	<main class="contain {CLASS}" style="background-color:{color}; outline:solid {line}px;" {...props} >
+	<main class="contain {CLASS}" style="--wc-bg:{color}; outline:solid {line}px;" {...props} >
 		{@render B()}
 	</main>
 {:else if role == 'child'}
 	<!-- any container inside the main container -->
-	<div class="contain child-container {CLASS}" style="background-color:{color};outline:solid {line}px;--color:{color}" {...props}>
+	<div class="contain child-container {CLASS}" style="--cc-bg:var(--color,--cc-bg);outline:solid {line}px;--color:{color}" {...props}>
 		{@render A()}
 	</div>
 {:else if role == 'buttonBox'}
@@ -176,15 +176,15 @@
 	
 	/* child containers */
 	.child-container{
-		/* --cc-text:var(--LD-text); */
-		/* --cc-bg:var(--LD-background); */
+		--cc-text:var(--LD-text);
+		--cc-bg:var(--D-base-bk ,var(--LD-background));
 
 		display: flex;
 		flex-direction: column;
 
 		container-name:child-contianer;
 
-		background-color:var(--cc-bg,white) ;
+		background-color:var(--cc-bg,rgb(167, 86, 86)) ;
 		color: var(--cc-text,black);
 		border-radius: var(--cc-radius,inherit);
 		border-top:solid 1px var(--cc-text,var(--D-t-support));
@@ -202,7 +202,6 @@
 	@media(min-width: 700px){
 		main{
 			grid-template-columns:[full-start] minmax(1px, .1fr) [context-start] repeat(8,1fr) [context-end] minmax(1px, .1fr) [full-end];
-			background-color: brown;
 		}
 
 		main >:nth-child(n){
@@ -217,9 +216,9 @@
 
 	}
 
-	@container child-contianer (width){
+	/* @container child-contianer (width){
 		
-	}
+	} */
 
 
 </style>
