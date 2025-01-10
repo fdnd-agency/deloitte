@@ -1,42 +1,70 @@
 <script>
+  // ==================================================
+  // Imports
+  // ==================================================
   import Section from '$lib/atom/component-section.svelte';
   import Question from '$lib/atom/component-question.svelte';
   import Answer from '$lib/atom/component-answer.svelte';
   import Button from '$lib/component-button.svelte';
   import { onMount } from 'svelte';
   import { setupFieldsets } from '$lib/fieldsetFilter.js';
+
+  // ==================================================
+  // Props
+  // ==================================================
   /** @type {{data: any}} */
   let { data } = $props();
 
+  // ==================================================
   // Filter functie voor vragen
+  // ==================================================
   function AnswersForQuestion(questionId) {
     // Filter antwoorden op basis van hun question id
     return data.answers.filter(answer => answer.question_id === questionId);
   }
 
+  // ==================================================
   // Submit functie voor formulier
+  // ==================================================
   async function handleSubmit(event) {
+    // ---------------------------------
     // Default formulier handling weghalen 
+    // ---------------------------------
     event.preventDefault();
 
+    // ---------------------------------
     // Alle geselecteerde antwoorden ophalen
+    // ---------------------------------
+    // Formulier gegevens ophalen
     const formData = new FormData(event.target);
+    console.log(formData);
+    // Entries: Een nieuwe array maken met alle props van elke answer
+    // Map: foreach method, gaat door elke answer heen en neemt de props op
     const selectedAnswers = Array.from(formData.entries()).map(([questionId, score]) => ({
       questionId: parseInt(questionId),
+      question: "question",
+      answer: "answer",
       score: parseInt(score)
     }));
 
+    // ---------------------------------
     // Totale score berekenen
-    const totalScore = selectedAnswers.reduce((sum, answer) => sum + answer.score, 0);
+    // ---------------------------------
+    // Reduce: start waarde 0 en de score voor elke answer optellen tot het total score
+    const totalScore = selectedAnswers.reduce((total, current) => total + current.score, 0);
 
+    // ---------------------------------
     // Verzamel de data en stuur een POST-request
+    // ---------------------------------
     const response = await fetch('/wizard', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ answers: selectedAnswers, totalScore })
     });
 
+    // ---------------------------------
     // Alert tonen na submit
+    // ---------------------------------
     if (response.ok) {
       alert('Package successfully assigned!');
     } else {
@@ -44,6 +72,9 @@
     }
   }
 
+  // ==================================================
+  // onMount
+  // ==================================================
   onMount(() => {
     setupFieldsets();
   });
