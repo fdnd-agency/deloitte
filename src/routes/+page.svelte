@@ -1,8 +1,11 @@
 <script>
 	import { goto } from '$app/navigation';
     import { WinC,Button,Overview } from '$lib';
-	import Card from '$lib/mulecule/component-card.svelte';
+	
 	let userlogedIn = true;
+	let newProfile = true;
+
+	
 </script>
 
 
@@ -18,17 +21,27 @@
 		role='buttonBox'
 		color=''
 		class='buttonB'>
-			<Button
-			type="/profile"
-			text="profile"
-			color="white"
-			/>
-			<Button
-			type="/wizard"
-			text="wizard"
-			color="white"
-			/>
-			<!--  -->
+
+			{#if newProfile}
+				<Button
+				type="/wizard"
+				text="Start nu"
+				color="blue"
+				/>
+			{:else}
+
+				<Button
+				type="/profile"
+				text="profile"
+				color="white"
+				/>
+
+				<Button
+				type="/wizard"
+				text="verander je pakket"
+				color="white"
+				/>
+			{/if}		
 		</WinC>
 	</WinC>
 {:else}
@@ -39,9 +52,9 @@
 	class="main-panel"
 	>
 		<Button
-		type="/wizard"
-		text="Start nu"
-		color="white"
+		type="#login"
+		text="Start hier"
+		color="black"
 		/>
 	</WinC>
 {/if}
