@@ -28,11 +28,7 @@
 			text="wizard"
 			color="white"
 			/>
-			<Button
-			type="/overview"
-			text="overview"
-			color="white"
-			/>
+			<!--  -->
 		</WinC>
 	</WinC>
 {:else}
@@ -77,12 +73,7 @@ context='Deloitte biedt een maandelijkse mobiliteitsvergoeding van € 200. Hier
 color=""
 class="package-panel"
 >
-<!-- cards list with pakketten -->
-<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-<Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-
+	<!-- cards list with pakketten -->
 	<p>info about what why the options exist and how to use them</p>
 	<Overview data/>
 
@@ -93,16 +84,6 @@ class="package-panel"
 role="child"
 title="kom je in aanmerking voor leasing?"
 context='leaseregeling'
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
-
-<WinC
-role="child"
-title="Mobiliteitregeling"
-context=''
 color="transparent"
 class="info-panel"
 >
@@ -187,7 +168,8 @@ class="info-panel"
 		height: fit-content;
 		border: none !important;
 		&> h2{
-			color: var(--D-dark-support,var(--LD-text)) ;
+			color: var(--D-dark-support,var(--LD-text));
+			font-size: 2rem;
 		}
 		
 	}
@@ -201,5 +183,4 @@ class="info-panel"
 		border: solid 1px !important;
 	}
 
-	
 </style>

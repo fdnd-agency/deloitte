@@ -177,7 +177,7 @@
 	/* child containers */
 	.child-container{
 		/* --cc-text:var(--LD-text); */
-		/* --cc-bg:var(--LD-background); */
+		--cc-bg:var(--LD-background);
 
 		display: flex;
 		flex-direction: column;
@@ -202,7 +202,6 @@
 	@media(min-width: 700px){
 		main{
 			grid-template-columns:[full-start] minmax(1px, .1fr) [context-start] repeat(8,1fr) [context-end] minmax(1px, .1fr) [full-end];
-			background-color: brown;
 		}
 
 		main >:nth-child(n){
