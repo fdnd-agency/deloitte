@@ -17,14 +17,15 @@
 <style>
     article {
         container-type: inline-size;
-        padding: 0.5rem;
+        /* padding: 0.5rem; */
         background-image: linear-gradient(345deg, var(--background-75), var(--background-100));
-        border-radius: 1rem;
+        border-radius: var(--wc-radius) var(--wc-radius)  var(--wc-radius) var(--wc-radius) ;
         flex : 1;
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        width: calc(100%/4);
+        max-width: calc(100%/4);
+        margin-inline: clamp(0.5rem, 1vw, 3%);
         min-height: 25rem;
         box-shadow: 
             inset 0 0.05rem 0.05rem 0 rgba(255, 255, 255, 0.2),
@@ -98,11 +99,14 @@
     }
 
     .visual-card div:nth-of-type(2) {
-        background-image: linear-gradient(0deg, rgb(0, 79, 89), transparent);
-        /* backdrop-filter: blur(0.5rem); */
+        backdrop-filter: blur(0.5rem);
+        background-color:rgba(0, 79, 89, 0.534) ;
         border-radius: 0.5rem;
         padding: 0.5rem;
         width: 100%;
+        height: 50%;
+        border-radius: var(--wc-radius) var(--wc-radius)   ;
+        padding-top: 5%;
     }
 
     .visual-card div:nth-of-type(2) p {
@@ -110,19 +114,19 @@
     }
 
     @container (width <= 12rem) {
-    article {
-        min-height: 15rem;
-    }
+        article {
+            min-height: 15rem;
+        }
 
-    div:nth-of-type(1) {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+        div:nth-of-type(1) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-    div:nth-of-type(1) p {
-        display: none;
-    }
+        div:nth-of-type(1) p {
+            display: none;
+        }
     }
 </style>
