@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
     import { WinC,Button,Overview } from '$lib';
 	import Card from '$lib/mulecule/component-card.svelte';
-	let userlogedIn = false;
+	let userlogedIn = true;
 </script>
 
 
@@ -28,11 +28,7 @@
 			text="wizard"
 			color="white"
 			/>
-			<Button
-			type="/overview"
-			text="overview"
-			color="white"
-			/>
+			<!--  -->
 		</WinC>
 	</WinC>
 {:else}

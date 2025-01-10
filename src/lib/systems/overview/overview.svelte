@@ -55,6 +55,17 @@
         /* gap: 3%; */
         background-image: linear-gradient(0deg, transparent -5%, var(--wc-bg) 8%, transparent 70%);
 
+        @container (width <= 420px){
+            flex-direction: column;
+            gap: 2em;
+            width: 100%;
+            background: none;
+
+            & :global(.visual-card){
+                max-width: 100%;
+            }
+        }
+
     }
 
     .overview article:nth-of-type(2){

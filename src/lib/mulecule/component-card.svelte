@@ -24,7 +24,8 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        max-width: calc(100%/4);
+        max-width: 20%;
+        min-width: 5%;
         margin-inline: clamp(0.5rem, 1vw, 3%);
         min-height: 25rem;
         box-shadow: 
@@ -104,6 +105,7 @@
         border-radius: 0.5rem;
         padding: 0.5rem;
         width: 100%;
+        width: clamp(100%, 5vw, 20rem);
         height: 50%;
         border-radius: var(--wc-radius) var(--wc-radius)   ;
         padding-top: 5%;
