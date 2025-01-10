@@ -15,7 +15,7 @@ export function setupFieldsets() {
           // Gebruik View Transition API voor een vloeiende overgang naar de volgende vraag
           document.startViewTransition(() => {
             nextFieldset.disabled = false; // Activeer het volgende fieldset
-            //nextFieldset.scrollIntoView({ behavior: "smooth" }); // Scroll soepel naar de volgende vraag
+            nextFieldset.scrollIntoView({ behavior: "smooth" }); // Scroll soepel naar de volgende vraag
           });
         }
       });
