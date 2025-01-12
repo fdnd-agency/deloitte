@@ -10,6 +10,12 @@
 		children?: () => import('svelte').Snippet<[]>;
 	}
 
+	type Props = {
+        // ... other properties
+        onclick?: () => void; // Add this line
+    };
+
+
 	let { sort = '',text, color, line,  children, class: CLASS, ...props }: Props = $props();
 	let sortContext = ''; // remove $state
 
@@ -116,7 +122,7 @@
 		/* color: color-mix(in oklch, var(--color),#ffffff); */
 	}
 
-	:is(button, a):is(:hover,:focus-within) {		
+	:is(button, a):is(:hover) {		
 	
 			/* background-color: color-mix(in oklch, var(--color), #0007); */
 			box-shadow: 0 5px 5px rgba(13, 13, 13, 0.108);
@@ -129,8 +135,8 @@
 
 
 	:is(button, a):active {
-		translate: 0 2px;
-		box-shadow: 0 0px 5px rgba(13, 13, 13, 0.108);
+		translate: 0 0px;
+		box-shadow:inset 0 5px 8px rgba(13, 13, 13, 0.108);
 
 	}
 

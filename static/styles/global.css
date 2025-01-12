@@ -1,28 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-:root {
-	--background: #FFFFFF;
-	--background-dark: #007680;
-	--background-light: rgba(0, 118, 128, 0.5);
-	--border: #C2E3DF;
-	--text-primary: color(display-p3 0.1295 0.1295 0.1295);
-	--text-secondary: #FFFFFF;
-	--text-tertiary: #007680;
-	--text-fourth: #1fa588;	
-	
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #212121;
-		--text-primary: #d1d1d1;
-
-		--LD-text:light-dark(var(--D-black),var(--D-white));
-		--LD-background:light-dark(var(--D-white),var(--D-dark-support));
-	
-	}
-}
-
 *,
 *::before,
 *::after {
@@ -122,6 +99,16 @@ h1, a {
 	--LD-text:light-dark(var(--D-black),var(--D-white));
 	--LD-background:light-dark(var(--D-white),var(--D-dark-support));
 
+
+	--background: #FFFFFF;
+	--background-dark: #007680;
+	--background-light: rgba(0, 118, 128, 0.5);
+	--border: #C2E3DF;
+	--text-primary: color(display-p3 0.1295 0.1295 0.1295);
+	--text-secondary: #FFFFFF;
+	--text-tertiary: #007680;
+	--text-fourth: #1fa588;	
+
 	/* box shadowing op componenten */
 	--bottom-shadow: 0px 9px 12px -2px var(--D-mid-bk);	
 
@@ -138,4 +125,22 @@ h1, a {
 	--cc-bg:var(--D-base-bk);
 	--cc-radius:var(--wc-radius);
 
+}
+
+
+/* 
+	Theme switcher
+	- light
+	- dark
+ */
+	
+ @media (prefers-color-scheme: dark) {
+	:root {
+		--background: #212121;
+		--text-primary: #d1d1d1;
+
+		--LD-text:light-dark(var(--D-black),var(--D-white));
+		--LD-background:light-dark(var(--D-white),var(--D-dark-support));
+	
+	}
 }
