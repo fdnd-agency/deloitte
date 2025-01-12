@@ -1,5 +1,5 @@
 <script>
-    import {Header,Footer,WinC,Button } from '$lib';
+    import {Header,Footer,WinC} from '$lib';
     import { onNavigate } from '$app/navigation';
 
     /** @type {{children?: import('svelte').Snippet}} */

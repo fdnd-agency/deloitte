@@ -1,10 +1,14 @@
-<script>
-   import { preventDefault } from 'svelte/legacy';
-
+<script lang="ts">
+    import { preventDefault } from 'svelte/legacy';
+    // import { WinC,Button } from './component-building-block';
     import {Button} from '$lib';
-	// import { WinC,Button } from './component-building-block';
 
-    let { children, class:CLASS, ...props } = $props();
+    interface Props {
+		class?: string;
+		children?: import('svelte').Snippet<[]>; 
+	}
+
+    let { children, class:CLASS, ...props } : Props = $props();
     // Add onclick to the Props type definition
 
 

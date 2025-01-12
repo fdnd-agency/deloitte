@@ -1,6 +1,10 @@
-<script>
-        let { children, class:CLASS, ...props } = $props();
+<script lang="ts">
+ interface Props {
+		class?: string;
+		children?: import('svelte').Snippet<[]>; 
+	}
 
+    let { children, class:CLASS, ...props } : Props = $props();
 </script>
 
 <footer>
