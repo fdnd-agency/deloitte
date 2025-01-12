@@ -1,10 +1,10 @@
 <script>
-    let {title, body, job, imgSrc, imgAlt, cardType} = $props();
+    let { title, body, job, imgSrc, imgAlt, cardType} = $props();
 </script>
 
 <article class={cardType} style="--imgSrc: url('{imgSrc}')">
     <div>
-        <img src={imgSrc} alt={imgAlt} width="100" height="100">
+        <img src={imgSrc} alt={imgAlt} width="" height="">
     </div>
 
     <div>
@@ -24,10 +24,8 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        max-width: 20%;
-        min-width: 5%;
-        margin-inline: clamp(0.5rem, 1vw, 3%);
-        min-height: 25rem;
+       margin-inline: clamp(0.5rem, 1vw, 3%);
+        height: fit-content;
         box-shadow: 
             inset 0 0.05rem 0.05rem 0 rgba(255, 255, 255, 0.2),
             0 0.5rem 1rem rgba(0, 0, 0, 0.2);
@@ -51,62 +49,69 @@
 
     p {
         font-size: 1rem;
-        overflow-y: hidden;
+        padding: 0.25rem 1rem;
+        /* overflow-y: hidden; */
     }
 
-    div:nth-of-type(1) {
+    article div:nth-of-type(1) {
+        /* position: absolute; */
+        inset: 0;
         background-color: var(--background-secondary);
         border-radius: 0.5rem;
         width: 100%;
-        height: 10rem;
+        height: 30cqh;
         overflow: hidden;
+        
+        /* border: solid red; */
     }
 
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center;
+    }
+
+    article:hover img {
+        scale: 1.1;
+        transition: 0.17s ease-in-out ;
+
     }
 
     .visual-card {
-        background-image: var(--imgSrc);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        flex-direction: unset;
-        flex-wrap: wrap;
-        place-content: end start;
+        object-fit: cover;
+        object-position: center;
         padding: 0;
         transition: transform 0.2s ease-out;
+
     }
 
     .visual-card:hover {
-        animation-name: backgroundZoom;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
+        /* animation-name: backgroundZoom; */
+        /* animation-duration: 1s; */
+        /* animation-fill-mode: alternate; */
+        /* background-size: 250%; */
+        /* filter: blur(0.5rem); */
+
+
     }
 
-    @keyframes backgroundZoom {
+    /* @keyframes backgroundZoom {
         0% {
             background-size: cover;
         }
         100% {
             background-size: 250%;
         }
-    }
-
-    .visual-card div:nth-of-type(1) {
-        display: none;
-    }
+    } */
 
     .visual-card div:nth-of-type(2) {
         backdrop-filter: blur(0.5rem);
         background-color:rgba(0, 79, 89, 0.534) ;
         border-radius: 0.5rem;
         padding: 0.5rem;
-        width: 100%;
         width: clamp(100%, 5vw, 20rem);
-        height: 50%;
+        height: 18cqh;
         border-radius: var(--wc-radius) var(--wc-radius)   ;
         padding-top: 5%;
     }

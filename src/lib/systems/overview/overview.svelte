@@ -1,5 +1,5 @@
 <script>
-    import {ComponentBox,PackageComponent, GeneralInfo} from "$lib/index.js";
+    import {PackageComponent, GeneralInfo} from "$lib/index.js";
     import {WinC,Button} from "$lib";
     import Card from '$lib/mulecule/component-card.svelte';
 
@@ -15,10 +15,10 @@
  
     <article>
         <PackageComponent {data} />
-        <Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-        <Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-        <Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
-        <Card title="titel" body="beschrijving" job="Manager" imgSrc="" imgAlt="card-img" cardType="visual-card"/>
+        <Card title="titel" body="beschrijving" job="Manager" imgSrc="./tesla_car_PNG46.png" imgAlt="card-img" cardType="visual-card"/>
+        <Card title="titel" body="beschrijving" job="Manager" imgSrc="./VanMoof_S3_dark (1).png" imgAlt="card-img" cardType="visual-card"/>
+        <Card title="titel" body="beschrijving" job="Manager" imgSrc="./pexels-dan-voican-2624103-17854203.jpg" imgAlt="card-img" cardType="visual-card"/>
+        <Card title="titel" body="beschrijving" job="Manager" imgSrc="./pexels-pille-kirsi-222198-1093184.jpg" imgAlt="card-img" cardType="visual-card"/>
 
     </article>
     
@@ -52,10 +52,9 @@
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        /* gap: 3%; */
-        background-image: linear-gradient(0deg, transparent -5%, var(--wc-bg) 8%, transparent 70%);
+        background-image: linear-gradient(0deg, transparent -5%, color-mix(in srgb, var(--wc-bg) 50%, white ) 8%, transparent 70%);
 
-        @container (width <= 420px){
+        @container (width <= 600px){
             flex-direction: column;
             gap: 2em;
             width: 100%;

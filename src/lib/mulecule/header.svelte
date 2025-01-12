@@ -66,7 +66,7 @@
     a h1 {
         /* width: 100%; */
         width: fit-content;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         font-weight: 700;
         padding-inline: 1cqw;
         margin: 0;

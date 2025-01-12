@@ -107,7 +107,7 @@ class="info-panel general-info"
 
     summary{
         padding: 1%;
-        background-color: rgba(255, 255, 255, 0.39);
+        background-color: rgba(255, 255, 255, 0.658);
         color: var(--LD-text);
         border-radius: 0.5em;
         cursor: pointer;
@@ -119,11 +119,15 @@ class="info-panel general-info"
         block-size: 0;
         transition: block-size 1s,content-visibility 1s;
         overflow: hidden;
+        background-color: rgba(255, 255, 255, 0.658);
+        border-radius: 0.5em;
+        padding-inline: 3%;
     }
 
     details[open]::details-content{
         block-size: auto;
-       
+        margin-top: 1%;
+
     }
 
     section:has(details:hover) details[open]::details-content{
