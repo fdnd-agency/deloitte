@@ -5,11 +5,19 @@
 	// import { WinC,Button } from './component-building-block';
 
     let { children, class:CLASS, ...props } = $props();
+    // Add onclick to the Props type definition
+
+
 
     function refreshPage(e) {
         e.preventDefault();
         window.location.reload();
         // console.log(window.location);
+    }
+
+    function darkMode(e) {
+        e.preventDefault();
+        document.preferences.colorScheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
     }
 
 
@@ -25,13 +33,13 @@
              <h1><span>Deloitte</span>. <em>Mobility app</em></h1>
         </a>
         
-        <!-- <Button
-        text="info"
+        <Button
+        text="mode"
 		color="black"
-		colorLine="none"
-		task="/overview"
-		class=""
-        /> -->
+		sort="#dark"
+		class="dark-mode"
+        onclick={darkMode}
+        />
 
        
     </nav>
@@ -48,9 +56,12 @@
     }
 
     nav {
+        display: flex;
+        justify-content: space-between;
         position: relative;
         align-items: center;
         flex-wrap: nowrap;
+        gap: 3%;
     }
 
     a {
@@ -84,5 +95,10 @@
 
     a:hover em{
         translate:0px -10px;
+    }
+
+    :global(.dark-mode){
+        /* background-color: red!important; */
+        padding-block: .1% !important;
     }
 </style>
