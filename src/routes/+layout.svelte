@@ -1,11 +1,21 @@
 <script>
-    import {Header,Footer} from '$lib';
-    import { WinC,Button } from '$lib';
+    import {Header,Footer,WinC,Button } from '$lib';
+    import { onNavigate } from '$app/navigation';
 
     /** @type {{children?: import('svelte').Snippet}} */
     let { children } = $props();
 
-    // import Footer from '$lib/footer.svelte';
+    onNavigate((navigation) => {
+        if(!document.startViewTransition){return};
+
+        return new Promise((resolve) =>{
+            document.startViewTransition(async ()=>{
+                resolve();
+                await navigation.complete;
+            })
+        })
+    })
+
 </script>
    
 <Header class="header"/>
