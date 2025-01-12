@@ -3,10 +3,13 @@
     import { WinC,Button,Overview } from '$lib';
 	
 	let userlogedIn = true;
-	let newProfile = true;
+	let newProfile = false;
+
+</script>
+
 
 	
-</script>
+
 
 
 {#if userlogedIn}
@@ -24,20 +27,20 @@
 
 			{#if newProfile}
 				<Button
-				type="/wizard"
-				text="Start nu"
-				color="blue"
+				sort="/wizard"
+				text="Start Nu"
+				color=""
 				/>
 			{:else}
 
 				<Button
-				type="/profile"
+				sort="/profile"
 				text="profile"
 				color="white"
 				/>
 
 				<Button
-				type="/wizard"
+				sort="/wizard"
 				text="verander je pakket"
 				color="white"
 				/>
@@ -52,7 +55,7 @@
 	class="main-panel"
 	>
 		<Button
-		type="#login"
+		sort="#login"
 		text="Start hier"
 		color="black"
 		/>
@@ -116,14 +119,14 @@ class="info-panel"
 
 
 <style>
-	:global(.main-panel){
+	:global(main .main-panel){
 		width: 100%;
-		height: fit-content;
+		height: clamp(fit-content , 100vw - 15rem, 30cqh);
 		border: none !important;
 		border-radius: var(--cc-radius,inherit);
 		overflow: hidden;
 
-		&>h2{
+		& > h2{
 			font-size: clamp(2rem, 0.917rem + 4.1478vw, 6cqi);
 		}
 
@@ -133,7 +136,7 @@ class="info-panel"
 			top: -10cqh;
 			bottom: -10cqh;
 			left: -20cqw;
-			width: clamp(50cqw, 100vw - 10vw, 70cqw);
+			width: clamp(50cqw, 100vw + 10vw, 70cqw);
 			max-width: 100vw;
 			/* aspect-ratio: 1; */
 			background-color: var(--D-t-support);
@@ -144,17 +147,40 @@ class="info-panel"
 
 		}
 
-		/* @container  (width > 400px){
+		@container  (width <= 550px){
 			&::before{
-				width: 100cqw;
+				width: clamp(200cqw, 100vw - 15rem, 300cqw);
 			}
-		} */
+		}
 
 		&> .buttonB{
-			/* background: none ; */
-			
+			/* width and radius of the button box */
+			--cc-radius:1pc;
+			--w:50;
+			--p: calc(calc(100 - var(--w))/2);
+
+			background: none ;
+			gap: 5%;
+			padding-inline: 0;
+			border-radius: inherit;
+
 		}
+
+		:global(.buttonB) {
+
+			& button{
+				padding: 3%;
+				padding-inline: 5%;
+				margin-block: 0.5cqh;
+				font-size: clamp(1rem,5cqw, 2.5rem);
+				text-transform: capitalize;
+			}
+		}
+
 	}
+
+	
+
 
 	:global(.info-panel){
 		width: 100%;
@@ -163,12 +189,15 @@ class="info-panel"
 		padding-block: 6cqh !important;
 		&> h2{
 			color: var(--D-dark-support,var(--LD-text));
+			font-size: 1.3rem;
+			text-transform: capitalize;
 		}
 
-		&> h2 + p:nth-of-type(1):has(~ p) {
+		&> h2 + p:nth-of-sort(1):has(~ p) {
 			font-size: 1.8rem;
 			font-weight: clamp(500, 6.1478vw, 700);
 			font-weight: 500;
+			color: blue;
 		}
 
 		&> p ~ p {
@@ -195,5 +224,6 @@ class="info-panel"
 	:global(.box1,.box2){
 		border: solid 1px !important;
 	}
-
+	
+	
 </style>

@@ -5,7 +5,7 @@
   import Section from '$lib/atom/component-section.svelte';
   import Question from '$lib/atom/component-question.svelte';
   import Answer from '$lib/atom/component-answer.svelte';
-  import Button from '$lib/component-button.svelte';
+  import {Button,WinC} from '$lib';
   import { onMount } from 'svelte';
   import { setupFieldsets } from '$lib/fieldsetFilter.js';
 
@@ -97,8 +97,20 @@ body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een 
       {/each}
     </Question>
   {/each}
-  <Button type="submit" text="submit"/>
-  </form>
+  {#if data.questions.length < 0}
+    <p>not done</p>
+    <WinC role="buttonBox" class="wizardSubmit">
+      <Button sort="/" text="home" color='white' />
+      <Button sort="" text="submit" color='red' />
+    </WinC>
+    {:else}
+    <WinC role="buttonBox" class="wizardSubmit">
+      <Button sort="/" text="home" color='white' />
+      <Button sort="submit" text="submit" color='' />
+    </WinC>
+  {/if}
+
+ </form>
 </Section>
 
 <style>
@@ -106,6 +118,33 @@ body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een 
     display: flex;
     flex-direction: column;
     gap: 4rem;
+  }
+
+  :global(.buttonBox.wizardSubmit) {
+    --cc-radius:1pc;
+    --w:70;
+    --p: calc(calc(100 - var(--w))/2);
+
+
+    inset-inline: calc(var(--p) * 1%);
+
+    display: flex;
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 1%;
+
+    & button {
+      width: 40%;
+      font-size: 2rem;
+      background-color:var(--D-t-support);
+      color: white ;
+
+      
+    }
+
+    & button:nth-of-type(1){
+      background-color:var(--D-base-bk);
+    }
   }
 </style>
 
