@@ -14,62 +14,86 @@
   // ==================================================
   /** @type {{data: any}} */
   let { data } = $props();
+  let finalResults = $state([]);
+  let dialog;
 
   // ==================================================
-  // Filter functie voor vragen
+  // Filter answers for each question
   // ==================================================
   function AnswersForQuestion(questionId) {
-    // Filter antwoorden op basis van hun question id
     return data.answers.filter(answer => answer.question_id === questionId);
   }
 
   // ==================================================
-  // Submit functie voor formulier
+  // Fetch selected answers
   // ==================================================
-  async function handleSubmit(event) {
-    // ---------------------------------
-    // Default formulier handling weghalen 
-    // ---------------------------------
-    event.preventDefault();
-
-    // ---------------------------------
-    // Alle geselecteerde antwoorden ophalen
-    // ---------------------------------
-    // Formulier gegevens ophalen
+  function SelectedFormAnswers(event) {
     const formData = new FormData(event.target);
-    console.log(formData);
-    // Entries: Een nieuwe array maken met alle props van elke answer
-    // Map: foreach method, gaat door elke answer heen en neemt de props op
-    const selectedAnswers = Array.from(formData.entries()).map(([questionId, score]) => ({
-      questionId: parseInt(questionId),
-      question: "question",
-      answer: "answer",
-      score: parseInt(score)
-    }));
+    const selectedAnswers = Array.from(formData.entries());
+    const selectedResults = [];
 
-    // ---------------------------------
-    // Totale score berekenen
-    // ---------------------------------
-    // Reduce: start waarde 0 en de score voor elke answer optellen tot het total score
-    const totalScore = selectedAnswers.reduce((total, current) => total + current.score, 0);
+    for (let i = 0; i < selectedAnswers.length; i += 2) {
+      const [questionName, questionId] = selectedAnswers[i];
+      const [answerName, answerScore] = selectedAnswers[i + 1];
 
-    // ---------------------------------
-    // Verzamel de data en stuur een POST-request
-    // ---------------------------------
-    const response = await fetch('/wizard', {
+      selectedResults.push({
+        id: parseInt(questionId),
+        question: questionName,
+        answer: answerName,
+        score: parseInt(answerScore)
+      });
+    }
+
+    return selectedResults;
+  }
+
+  // ==================================================
+  // Calculate total score of selected answers
+  // ==================================================
+  function CalculateScore(answersToCalculate) {
+    const totalScore = answersToCalculate.reduce((total, current) => total + current.score, 0);
+    return totalScore;
+  }
+
+  // ==================================================
+  // POST request
+  // ==================================================
+  async function FormPOST(selectedAnswerArray, answerTotalScore) {
+    try {
+      const response = await fetch('/wizard', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ answers: selectedAnswers, totalScore })
+      body: JSON.stringify({ answers: selectedAnswerArray, answerTotalScore })
     });
-
-    // ---------------------------------
-    // Alert tonen na submit
-    // ---------------------------------
-    if (response.ok) {
-      alert('Package successfully assigned!');
-    } else {
-      alert('Something went wrong!');
+    
+    return response;
+    } catch (error) {
+      console.log(error);
     }
+  }
+
+  function POSTHandler (event) {
+    const selectedAnswers = SelectedFormAnswers(event);
+    const totalScore = CalculateScore(selectedAnswers);
+
+    finalResults = selectedAnswers;
+
+    return FormPOST(selectedAnswers, totalScore);
+  }
+
+  // ==================================================
+  // Form submit handler
+  // ==================================================
+  async function handleSubmit(event) {
+    const request = await POSTHandler(event);
+
+    if (request) {
+      // toon success alert
+    } else {
+      // toon error alert
+    }
+    dialog.showModal();
+    event.preventDefault();
   }
 
   // ==================================================
@@ -84,16 +108,32 @@
 subtitle="Vragenlijst"
 title="Mobiliteits Wizard"
 body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een goed passende mobiliteitspakket te krijgen.">
+  <p class="alert success">Data successfully submited!</p>
+  <p class="alert error">Something went wrong!</p>
+  <dialog bind:this={dialog}>
+    <ul>
+      {#each finalResults as result}
+      <li>
+        <h3>{result.question}</h3>
+        <p><span>Answer:</span> {result.answer}</p>
+      </li>
+      {/each}
+    </ul>
+    <form method="dialog">
+      <button>Close</button>
+    </form>
+  </dialog>
+
   <form onsubmit={handleSubmit}>
     {#each data.questions as question}
-    <Question question={question.question} questionNumber={question.id}>
+    <Question question={question.question} id={question.id}>
       {#each AnswersForQuestion(question.id) as answer, index}
         <Answer
           number={index + 1}
           id={answer.id}
           answer={answer.answer}
           score={answer.score}
-          name={question.id} />
+          name={answer.answer} />
       {/each}
     </Question>
   {/each}
@@ -110,7 +150,7 @@ body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een 
     </WinC>
   {/if}
 
- </form>
+  </form>
 </Section>
 
 <style>
@@ -118,6 +158,62 @@ body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een 
     display: flex;
     flex-direction: column;
     gap: 4rem;
+  }
+
+  .alert {
+    position: absolute;
+    top: 2rem;
+    right: 0;
+    width: 15rem;
+    padding: 1rem;
+    font-weight: 600;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .error {
+    background-color: rgb(226, 159, 159);
+    color: rgb(94, 37, 37);
+  }
+
+  .success {
+    background-color: rgb(152, 236, 152);
+    color: rgb(30, 81, 30);
+  }
+
+  dialog {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--background);
+    border-radius: 1rem;
+    padding: 1rem;
+    border: none;
+  }
+
+  dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: 1rem;
+  }
+
+  dialog ul {
+    list-style-type: "";
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  dialog ul li {
+    color: var(--text-tertiary);
+  }
+
+  dialog ul li h3, dialog ul li p span {
+    color: var(--text-primary);
   }
 
   :global(.buttonBox.wizardSubmit) {

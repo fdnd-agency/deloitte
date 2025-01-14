@@ -7,7 +7,7 @@ export async function POST({ request }) {
     // ---------------------------------
     // Data ophalen van de POST-request
     // ---------------------------------
-    const { answers, totalScore } = await request.json();
+    const { answers, answerTotalScore } = await request.json();
 
     // ---------------------------------
     // API basis url
@@ -25,7 +25,7 @@ export async function POST({ request }) {
     // Juiste package selecteren
     // ---------------------------------
     // Find: eerste element ophalen uit de JSON packages die voldoet aan de eis
-    const selectedPackage = packages.data.find((pkg) => totalScore >= pkg.min_score && totalScore <= pkg.max_score);
+    const selectedPackage = packages.data.find((pkg) => answerTotalScore >= pkg.min_score && answerTotalScore <= pkg.max_score);
 
     // ---------------------------------
     // Error tonen als er geen package is gevonden
