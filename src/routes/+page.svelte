@@ -1,18 +1,51 @@
 <script>
 	import { goto } from '$app/navigation';
     import { WinC,Button,Overview } from '$lib';
+	import { onMount } from 'svelte';
 	
-	let userlogedIn = true;
+	let userlogedIn = false;
 	let newProfile = false;
+	let login = $state(false);
+
+	$effect(()=>{
+
+		goToLogin();
+	})
+
+	function goToLogin() {
+		// login = true;
+		console.log('>>>> go to login');
+	}
 
 </script>
 
+{#snippet a()}
+<div>
+	<span>
+		<img src="" alt="">
+	</span>
+</div>
 
-	
+<div>
 
+</div>
 
+{/snippet}
+
+{#snippet loginModule()}
+
+<p>form with login info</p>
+	<form action="post">
+		<fieldset>
+			<label for="">
+				<input type="text" name="username" id="username" placeholder="username">
+			</label>
+		</fieldset>
+	</form>
+{/snippet}
 
 {#if userlogedIn}
+
 	<WinC
 	role="child"
 	title="Deloitte"
@@ -20,6 +53,8 @@
 	color='lightblue'
 	class="main-panel"
 	>
+
+	{@render a()}
 		<WinC
 		role='buttonBox'
 		color=''
@@ -33,6 +68,7 @@
 				/>
 			{:else}
 
+			
 				<Button
 				sort="/profile"
 				text="profile"
@@ -47,19 +83,34 @@
 			{/if}		
 		</WinC>
 	</WinC>
+
 {:else}
+
 	<WinC
 	role="child"
 	title="Deloitte"
 	context='Start nu de vragenlijst om een passend pakket te vinden'
 	class="main-panel"
+	color='var(--D-dark-support)'
 	>
+	
+	{#if login}
+
+		{@render loginModule()}
+		
+	{:else}
+
 		<Button
-		sort="#login"
+		sort="login"
 		text="Start hier"
 		color="black"
+		clickCallback={goToLogin}
 		/>
+
+	{/if}
+		
 	</WinC>
+
 {/if}
 
 <WinC
@@ -118,6 +169,8 @@ class="info-panel"
 
 
 
+
+
 <style>
 	:global(main .main-panel){
 		width: 100%;
@@ -156,7 +209,7 @@ class="info-panel"
 		&> .buttonB{
 			/* width and radius of the button box */
 			--cc-radius:1pc;
-			--w:50;
+			--w:40;
 			--p: calc(calc(100 - var(--w))/2);
 
 			background: none ;
@@ -224,6 +277,7 @@ class="info-panel"
 	:global(.box1,.box2){
 		border: solid 1px !important;
 	}
+	
 	
 	
 </style>
