@@ -1,63 +1,56 @@
-# Mobiliteits pakket
-<img width="1800" alt="" src="https://github.com/user-attachments/assets/568faf1e-cefe-4291-a8e2-aa53f8d62a94">
+# Deloitte Mobility Package
+<img width="1000" alt="home_page" src="https://github.com/user-attachments/assets/373d0e0c-a4a8-4c46-8db8-f2eb1d58d745">
+<img width="1800" alt="wizard_page" src="https://github.com/user-attachments/assets/7a52700e-ff01-484d-a4c1-d32ccf6a8e52">
 
-## Inhoudsopgave
-  * [ Beschrijving](#beschrijving)
-  * [ Gebruik](#gebruik)
-  * [ Kenmerken](#kenmerken)
-  * [ Installatie](#installatie)
+## Table of contents
+  * [ Description](#escription)
+  * [ User Story](#user_story)
+  * [ Features](#features)
+  * [ Techniques](#techniques)
+  * [ Tools](#tools)
+  * [ Projectboard](#projectboard)
+  * [ Installation](#installation)
 
-## Beschrijving
-Ontwikkel een web-app die een soepele ervaring biedt voor het kiezen van een mobiliteitspakket.
+## Description
+Develop a web-application that offers a smooth user-experience to choose a fitting mobility package.
 <!-- Voeg een mooie poster visual toe 📸 -->
-<a href="" alt="">Bekijk hier de website</a>
+<a href="" alt="">Link to the web-application</a>
 
-## Gebruik
-<!-- Bij Gebruik staat de user story, hoe het werkt en wat je er mee kan. -->
-Medewerkers van Deloitte die in aanmerking komen voor mobiliteitspakketten.
-### User story
-Als medewerker bij Delloite wil ik mijn mobiliteitspakket simpel en snel kunnen uitkiezen en me hierover inlezen
+## User Story
+As an employee of Deloitte I would like to get a mobility packages based on my answers and I would also like
+to read about the available options.
 
+## Features
+The mobility web-application includes the following features.
 
-## Kenmerken
+### Home
+A page with general information about the mobility package that provide more details.
 
+### Wizard
+A page with a question list that collects your answers and gives you a fitting mobility package.
 
-### Features
-
-#### Wizard
-een vragen lijst om erachter te komen welke transport mogelijkheid het beste bij mij past.
-
-#### Overzicht pagina
-een pagina waarop je een overzicht hebt van de packages/mobility options en de algemene informatie.
-
-#### Profile
-een pagina waar gebruikers hun gegevens en gekozen pakket kunnen bekijken en de wizard kan starten.
-
-
-### Technieken
+## Techniques
 - HTML
 - CSS
 - JS
-- Svelte
+- SvelteKit
 
-### Tools
-- Visual studio code (code editor)
-- Vercel (hosting) komt eraan
-- Figma (Design tool)
-- Directus (CMS)
+## Tools
+- Visual Studio Code *(Code Editor)*
+- Vercel *(Hosting)*
+- Figma *(Design Tool)*
+- Directus *(CMS)*
 
-## Backlog
-Hier kan je het projectboard vinden van het eerste iteraties vinden <a href="https://github.com/orgs/fdnd-agency/projects/41">projectboard</a>
+## Projectboard
+View our projectboard for the workflow.
+<a href="https://github.com/orgs/fdnd-agency/projects/41">Projectboard</a>
 
-## Installatie
+## Installation
 <!-- Bij Instalatie staat hoe een andere developer aan jouw repo kan werken -->
-1. Clone deze repository
-2. Open de repository met een code editor naar keuze
-3. Open het terminal in de code editor
-4. Typ **npm install** in om alle benodigdheden voor het project te installeren
-5. Gebruik de link <a href="http://localhost:5173/">http://localhost:</a> om het project lokaal te bekijken
-6. Mocht je het project online bekijken dan kan dat via <a href="" alt="">deze link.</a>
-
-
+1. Clone this repository
+2. Open the repository with any code editor
+3. Open the terminal in your code editor
+4. Type **npm install** to install all required files
+5. Use the link <a href="http://localhost:5173/">http://localhost:</a> to view the project on your local machine
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
