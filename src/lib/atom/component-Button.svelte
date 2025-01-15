@@ -7,21 +7,17 @@
 		color?: string;
 		line?: number;
 		class?: string;
+		clickCallback?: () => void;
 		children?: () => import('svelte').Snippet<[]>;
 	}
 
-	type Props = {
-        // ... other properties
-        onclick?: () => void; // Add this line
-    };
-
-
-	let { sort = '',text, color, line,  children, class: CLASS, ...props }: Props = $props();
+	let { sort = '',text, color, line, clickCallback=()=>{goto(`${sort}`)},  children, class: CLASS, ...props }: Props = $props();
 	let sortContext = ''; // remove $state
 
+	console.log('foo')
+	console.log(clickCallback)
+
     $effect(()=>{
-       
-        
         if (sort.startsWith('#')) {
             sortContext = 'link';
         } else if (sort.startsWith('/')) {
@@ -37,7 +33,7 @@
 
 {#if sort.startsWith('/')}
 	<button
-		onclick={() => goto(`${sort}`)}
+		onclick={clickCallback}
 		aria-label='{text} {sortContext}'
 		style="
 			color:var(--color);

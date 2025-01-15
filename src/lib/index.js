@@ -1,12 +1,11 @@
 //atoms
-export { default as Button } from './atom/Button.svelte'
+export { default as Button } from './atom/component-Button.svelte'
 export { default as MobilityOptions } from './atom/mobility-options.svelte';
 export { default as GeneralInfo} from './atom/general-info.svelte'
 
 // Mulecule
 export { default as Footer } from './mulecule/footer.svelte';
 export { default as Header } from './mulecule/header.svelte';
-export {default as PackageComponent} from './mulecule/package-component.svelte'
 
 // system
 export { default as WinC } from './systems/Window.svelte'
