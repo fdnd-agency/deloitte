@@ -12,7 +12,8 @@
 	/** @type {{data: any}} */
 	let { data } = $props();
 	let loggedIn = $state(false);
-
+	let loggedInUser = data.users.find(user => user.id === data.userID) || null;
+	
 	// ==================================================
   	// Login handler
   	// ==================================================
@@ -37,7 +38,7 @@
 			loggedIn = false;
 		}
 
-		event.preventDefault;
+		event.preventDefault();
 	}
 </script>
 
@@ -59,7 +60,9 @@ body="Enter your credentials">
 	</form>
 </Section>
 {:else}
-<p>{data.userID}</p>
+<p>Cookie: {data.userID}</p>
+<p>{loggedInUser?.name}</p>
+<p>{loggedInUser?.email}</p>
 {/if}
 
 <style>
