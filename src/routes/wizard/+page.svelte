@@ -108,9 +108,9 @@
 subtitle="Vragenlijst"
 title="Mobiliteits Wizard"
 body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een goed passende mobiliteitspakket te krijgen.">
-  <p class="alert success">Data successfully submited!</p>
-  <p class="alert error">Something went wrong!</p>
-  <dialog bind:this={dialog}>
+  <!-- <p class="alert success">Data successfully submited!</p> -->
+  <!-- <p class="alert error">Something went wrong!</p> -->
+  <!-- <dialog bind:this={dialog}>
     <ul>
       {#each finalResults as result}
       <li>
@@ -122,7 +122,7 @@ body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een 
     <form method="dialog">
       <button>Close</button>
     </form>
-  </dialog>
+  </dialog> -->
 
   <form onsubmit={handleSubmit}>
     {#each data.questions as question}

@@ -1,175 +1,69 @@
 <script>
-	import { goto } from '$app/navigation';
+	// ==================================================
+  	// Import
+  	// ==================================================
     import { WinC,Button,Overview } from '$lib';
 	import { onMount } from 'svelte';
+	import Section from '$lib/atom/component-section.svelte';
 	
-	let userlogedIn = false;
-	let newProfile = false;
-	let login = $state(false);
+	// ==================================================
+  	// Props
+  	// ==================================================
+	/** @type {{data: any}} */
+	let { data } = $props();
+	let loggedIn = $state(false);
+	let loggedInUser = data.users.find(user => user.id === data.userID) || null;
+	
+	// ==================================================
+  	// Login handler
+  	// ==================================================
+	async function handleLogin(event) {
+		const formData = new FormData(event.target);
+		const email = formData.get("email");
+		const password = formData.get("password");
 
-	$effect(()=>{
+		const response = await fetch('/', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ email, password })
+		});
 
-		goToLogin();
-	})
+		const result = await response.json();
 
-	function goToLogin() {
-		// login = true;
-		console.log('>>>> go to login');
+		if (response.ok) {
+			console.log(result.message);
+			loggedIn = true;
+		}else {
+			console.log(result.message);
+			loggedIn = false;
+		}
+
+		event.preventDefault();
 	}
-
 </script>
 
-{#snippet a()}
-<div>
-	<span>
-		<img src="" alt="">
-	</span>
-</div>
-
-<div>
-
-</div>
-
-{/snippet}
-
-{#snippet loginModule()}
-
-<p>form with login info</p>
-	<form action="post">
-		<fieldset>
-			<label for="">
-				<input type="text" name="username" id="username" placeholder="username">
-			</label>
-		</fieldset>
+{#if !loggedIn}
+<Section
+subtitle="Enter your personal information"
+title="Login"
+body="Enter your credentials">
+	<form onsubmit={handleLogin}>
+	<label>
+		E-mail
+		<input type="email" name="email" placeholder="enter your email">
+	</label>
+	<label>
+		Password
+		<input type="password" name="password" placeholder="enter your password">
+	</label>
+	<button type="submit">Login</button>
 	</form>
-{/snippet}
-
-{#if userlogedIn}
-
-	<WinC
-	role="child"
-	title="Deloitte"
-	context='Strart nu de vragenlijst om een passend pakket te vinden'
-	color='lightblue'
-	class="main-panel"
-	>
-
-	{@render a()}
-		<WinC
-		role='buttonBox'
-		color=''
-		class='buttonB'>
-
-			{#if newProfile}
-				<Button
-				sort="/wizard"
-				text="Start Nu"
-				color=""
-				/>
-			{:else}
-
-			
-				<Button
-				sort="/profile"
-				text="profile"
-				color="white"
-				/>
-
-				<Button
-				sort="/wizard"
-				text="verander je pakket"
-				color="white"
-				/>
-			{/if}		
-		</WinC>
-	</WinC>
-
+</Section>
 {:else}
-
-	<WinC
-	role="child"
-	title="Deloitte"
-	context='Start nu de vragenlijst om een passend pakket te vinden'
-	class="main-panel"
-	color='var(--D-dark-support)'
-	>
-	
-	{#if login}
-
-		{@render loginModule()}
-		
-	{:else}
-
-		<Button
-		sort="login"
-		text="Start hier"
-		color="black"
-		clickCallback={goToLogin}
-		/>
-
-	{/if}
-		
-	</WinC>
-
+<p>Cookie: {data.userID}</p>
+<p>{loggedInUser?.name}</p>
+<p>{loggedInUser?.email}</p>
 {/if}
-
-<WinC
-role="child"
-title="Wat beiden wij aan"
-context='we helpen je met de mobiliteit van de toekomst'
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
-
-<WinC
-role="child"
-title="Een vergoeding van Deloitte"
-context='Reiskostenvergoedingen'
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
-
-<WinC
-role="child"
-title="Pakketten"
-context='Deloitte biedt een maandelijkse mobiliteitsvergoeding van € 200. Hiermee kun je een abonnement nemen op een deelfiets of een ov-abonnement. Daarnaast kun je ook een elektrische fiets aanschaffen met een eenmalige bijdrage van € 1000.'
-color=""
-class="package-panel"
->
-	<!-- cards list with pakketten -->
-	<p>info about what why the options exist and how to use them</p>
-	<Overview data/>
-
-
-</WinC>
-
-<WinC
-role="child"
-title="kom je in aanmerking voor leasing?"
-context='leaseregeling'
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
-
-<WinC
-role="child"
-title="Mobiliteitregeling"
-context=''
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
-
-
-
-
 
 <style>
 	:global(main .main-panel){

@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import {PackageComponent, GeneralInfo} from "$lib/index.js";
     import {WinC,Button} from "$lib";
     import Card from '$lib/mulecule/component-card.svelte';
@@ -77,4 +77,4 @@
 
 
     }
-</style>
+</style> -->
