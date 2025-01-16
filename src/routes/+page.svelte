@@ -45,7 +45,7 @@
 <Section
 subtitle="Enter your personal information"
 title="Login"
-body="Enter your creditentials">
+body="Enter your credentials">
 	<form onsubmit={handleLogin}>
 	<label>
 		E-mail
@@ -61,10 +61,6 @@ body="Enter your creditentials">
 {:else}
 <p>{data.userID}</p>
 {/if}
-
-
-
-
 
 <style>
 	:global(main .main-panel){
