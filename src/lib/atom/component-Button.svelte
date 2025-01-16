@@ -14,8 +14,8 @@
 	let { sort = '',text, color, line, clickCallback=()=>{goto(`${sort}`)},  children, class: CLASS, ...props }: Props = $props();
 	let sortContext = ''; // remove $state
 
-	console.log('foo')
-	console.log(clickCallback)
+	// console.log('foo')
+	// console.log(clickCallback)
 
     $effect(()=>{
         if (sort.startsWith('#')) {
