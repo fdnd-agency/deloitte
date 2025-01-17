@@ -29,9 +29,10 @@
   // ==================================================
   function SelectedFormAnswers(event) {
     const formData = new FormData(event.target);
+    // [...formData.entries()]
     const selectedAnswers = Array.from(formData.entries());
     const selectedResults = [];
-
+    // TODO: try converting this to .map()
     for (let i = 0; i < selectedAnswers.length; i += 2) {
       const [questionName, questionId] = selectedAnswers[i];
       const [answerName, answerScore] = selectedAnswers[i + 1];
@@ -51,6 +52,7 @@
   // Calculate total score of selected answers
   // ==================================================
   function CalculateScore(answersToCalculate) {
+    // return directly without defining the variable
     const totalScore = answersToCalculate.reduce((total, current) => total + current.score, 0);
     return totalScore;
   }
@@ -60,12 +62,15 @@
   // ==================================================
   async function FormPOST(selectedAnswerArray, answerTotalScore) {
     try {
+      // TODO: just use fetchJson her
+      // then you can get rid of this function (formPost)
+      // then maybe put the code from Posthandler in the submit handler
       const response = await fetch('/wizard', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ answers: selectedAnswerArray, answerTotalScore })
     });
-    
+      
     return response;
     } catch (error) {
       console.log(error);

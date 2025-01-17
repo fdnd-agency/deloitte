@@ -7,6 +7,7 @@ export async function POST({ request }) {
     // ---------------------------------
     // Data ophalen van de POST-request
     // ---------------------------------
+    // TODO: do data validation on this
     const { answers, answerTotalScore } = await request.json();
 
     // ---------------------------------
