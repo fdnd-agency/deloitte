@@ -59,11 +59,126 @@ body="Enter your credentials">
 	<button type="submit">Login</button>
 	</form>
 </Section>
+
+{:else if userlogedIn}
+	<WinC
+	role="child"
+	title="Deloitte"
+	context='Strart nu de vragenlijst om een passend pakket te vinden'
+	color='lightblue'
+	class="main-panel"
+	>
+
+	<p>Cookie: {data.userID}</p>
+	<p>{loggedInUser?.name}</p>
+	<p>{loggedInUser?.email}</p>
+
+		<WinC
+		role='buttonBox'
+		color=''
+		class='buttonB'>
+
+
+			{#if newProfile}
+				<Button
+				sort="/wizard"
+				text="Start Nu"
+				color=""
+				/>
+			{:else}
+
+
+				<Button
+				sort="/profile"
+				text="profile"
+				color="white"
+				/>
+
+
+				<Button
+				sort="/wizard"
+				text="verander je pakket"
+				color="white"
+				/>
+			{/if}		
+		</WinC>
+	</WinC>
 {:else}
-<p>Cookie: {data.userID}</p>
-<p>{loggedInUser?.name}</p>
-<p>{loggedInUser?.email}</p>
+	<WinC
+	role="child"
+	title="Deloitte"
+	context='Start nu de vragenlijst om een passend pakket te vinden'
+	class="main-panel"
+	>
+		<Button
+		sort="#login"
+		text="Start hier"
+		color="black"
+		/>
+	</WinC>
 {/if}
+
+
+<WinC
+role="child"
+title="Wat beiden wij aan"
+context='we helpen je met de mobiliteit van de toekomst'
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+
+
+<WinC
+role="child"
+title="Een vergoeding van Deloitte"
+context='Reiskostenvergoedingen'
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+
+
+<WinC
+role="child"
+title="Pakketten"
+context='Deloitte biedt een maandelijkse mobiliteitsvergoeding van € 200. Hiermee kun je een abonnement nemen op een deelfiets of een ov-abonnement. Daarnaast kun je ook een elektrische fiets aanschaffen met een eenmalige bijdrage van € 1000.'
+color=""
+class="package-panel"
+>
+	<!-- cards list with pakketten -->
+	<p>info about what why the options exist and how to use them</p>
+	<Overview data/>
+
+
+
+
+</WinC>
+
+
+<WinC
+role="child"
+title="kom je in aanmerking voor leasing?"
+context='leaseregeling'
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+
+
+<WinC
+role="child"
+title="Mobiliteitregeling"
+context=''
+color="transparent"
+class="info-panel"
+>
+	<p>info about what why the options exist and how to use them</p>
+</WinC>
+
 
 <style>
 	:global(main .main-panel){
