@@ -1,238 +1,247 @@
 <script>
-  import {Checkbox,Button,ComponentBox} from '$lib';
-	
-  import {totalScore} from '$lib/stores'
-  
-  export let data; // Export de data
+  // ==================================================
+  // Imports
+  // ==================================================
+  import Section from '$lib/atom/component-section.svelte';
+  import Question from '$lib/atom/component-question.svelte';
+  import Answer from '$lib/atom/component-answer.svelte';
+  import {Button,WinC} from '$lib';
+  import { onMount } from 'svelte';
+  import { setupFieldsets } from '$lib/fieldsetFilter.js';
 
-  let currentQuestionIndex = 0; // Huidige vraagnummer
-  let selectedAnswer = null; // Geselecteerde antwoord
-   $totalScore = 0; // Totale score
-  let userAnswers = []; // Gebruiker antwoorden array
-  let selectedPackage = null; // Geselecteerde pakket
+  // ==================================================
+  // Props
+  // ==================================================
+  /** @type {{data: any}} */
+  let { data } = $props();
+  let finalResults = $state([]);
+  let dialog;
 
-  // Functie om het juiste pakket te selecteren op basis van de totale score
-  function determinePackage() {
-    // fetch data.packages en en ga langs elke package
-    selectedPackage = data.packages.find(pkg =>
-      // vergelijk de$totalScore van de gebruiker met de min_score en max_score van elke package
-     $totalScore >= pkg.min_score && $totalScore <= pkg.max_score
-    );
+  // ==================================================
+  // Filter answers for each question
+  // ==================================================
+  function AnswersForQuestion(questionId) {
+    return data.answers.filter(answer => answer.question_id === questionId);
   }
 
-  // Functie om naar de volgende vraag te gaan
-  function nextQuestion(event) {
-    // prevent de normale form functie
-    event.preventDefault();
+  // ==================================================
+  // Fetch selected answers
+  // ==================================================
+  function SelectedFormAnswers(event) {
+    const formData = new FormData(event.target);
+    const selectedAnswers = Array.from(formData.entries());
+    const selectedResults = [];
 
-    // check of de gekozen antwoord niet leeg is
-    if (selectedAnswer !== null) {
-      // Voeg de geselecteerde score toe aan de totale score
-     $totalScore += parseInt(selectedAnswer);
+    for (let i = 0; i < selectedAnswers.length; i += 2) {
+      const [questionName, questionId] = selectedAnswers[i];
+      const [answerName, answerScore] = selectedAnswers[i + 1];
 
-      // Sla het huidige antwoord op in de juiste structuur
-      userAnswers.push({
-        question: data.questions[currentQuestionIndex].id, // fetch de question tabel en sla de id op van de huidige vraag
-        answer: selectedAnswer // sla de id op van de huidige antwoord
+      selectedResults.push({
+        id: parseInt(questionId),
+        question: questionName,
+        answer: answerName,
+        score: parseInt(answerScore)
       });
+    }
 
-      // Reset de selectie voor de volgende vraag
-      selectedAnswer = null;
+    return selectedResults;
+  }
 
-      // Ga naar de volgende vraag als er nog vragen zijn door te checken hoe groot de questions array is
-      if (currentQuestionIndex < data.questions.length - 1) {
-        // naar de volgende vraag
-        currentQuestionIndex++;
-      } else {
-        // Alle vragen beantwoord, bepaal het juiste pakket
-        determinePackage();
-      }
-    } else {
-      // geef een alert als er geen antwoord is gekozen
-      alert('Selecteer een antwoord voordat je doorgaat.');
+  // ==================================================
+  // Calculate total score of selected answers
+  // ==================================================
+  function CalculateScore(answersToCalculate) {
+    const totalScore = answersToCalculate.reduce((total, current) => total + current.score, 0);
+    return totalScore;
+  }
+
+  // ==================================================
+  // POST request
+  // ==================================================
+  async function FormPOST(selectedAnswerArray, answerTotalScore) {
+    try {
+      const response = await fetch('/wizard', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ answers: selectedAnswerArray, answerTotalScore })
+    });
+    
+    return response;
+    } catch (error) {
+      console.log(error);
     }
   }
+
+  function POSTHandler (event) {
+    const selectedAnswers = SelectedFormAnswers(event);
+    const totalScore = CalculateScore(selectedAnswers);
+
+    finalResults = selectedAnswers;
+
+    return FormPOST(selectedAnswers, totalScore);
+  }
+
+  // ==================================================
+  // Form submit handler
+  // ==================================================
+  async function handleSubmit(event) {
+    const request = await POSTHandler(event);
+
+    if (request) {
+      // toon success alert
+    } else {
+      // toon error alert
+    }
+    dialog.showModal();
+    event.preventDefault();
+  }
+
+  // ==================================================
+  // onMount
+  // ==================================================
+  onMount(() => {
+    setupFieldsets();
+  });
 </script>
 
-<!-- check of er al een pakket is gekozen -->
+<Section
+subtitle="Vragenlijst"
+title="Mobiliteits Wizard"
+body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een goed passende mobiliteitspakket te krijgen.">
+  <!-- <p class="alert success">Data successfully submited!</p> -->
+  <!-- <p class="alert error">Something went wrong!</p> -->
+  <!-- <dialog bind:this={dialog}>
+    <ul>
+      {#each finalResults as result}
+      <li>
+        <h3>{result.question}</h3>
+        <p><span>Answer:</span> {result.answer}</p>
+      </li>
+      {/each}
+    </ul>
+    <form method="dialog">
+      <button>Close</button>
+    </form>
+  </dialog> -->
 
-<ComponentBox
-    heading="Mobility program"
-		context1=""
-		context2=""
-		display="flex"
-		titleAlign="center"
-		class="top-c"
+  <form onsubmit={handleSubmit}>
+    {#each data.questions as question}
+    <Question question={question.question} id={question.id}>
+      {#each AnswersForQuestion(question.id) as answer, index}
+        <Answer
+          number={index + 1}
+          id={answer.id}
+          answer={answer.answer}
+          score={answer.score}
+          name={answer.answer} />
+      {/each}
+    </Question>
+  {/each}
+  {#if data.questions.length < 0}
+    <p>not done</p>
+    <WinC role="buttonBox" class="wizardSubmit">
+      <Button sort="/" text="home" color='white' />
+      <Button sort="" text="submit" color='red' />
+    </WinC>
+    {:else}
+    <WinC role="buttonBox" class="wizardSubmit">
+      <Button sort="/" text="home" color='white' />
+      <Button sort="submit" text="submit" color='' />
+    </WinC>
+  {/if}
 
-/>
-
-
-
-{#if selectedPackage === null}
-
-<form on:submit={nextQuestion}>
-   <!-- wizard module -->
-   <!-- Toont de huidige vraag -->
-   <!-- Toont huidige vraagnummer -->
-   <!-- Toont de huidige score -->
-  
-  <ComponentBox
-    
-        heading="Vraag {currentQuestionIndex + 1}/{data.questions.length}"
-        context1="Score: {$totalScore}"
-        context2=""
-        display="flex"
-        titleAlign=""
-        class="box1 wizard"
-    >
-        <a href="/overview">Lees meer over de diverse mobilitiet opties</a>
-
-      <ComponentBox
-        heading="{data.questions[currentQuestionIndex].question}"
-        context1=""
-        context2=""
-        display="flex"
-        titleAlign=""
-        class="checkboxBox"
-      >
-      <!-- Loopt door de antwoorden en toont alleen de antwoorden die bij de huidige vraag horen -->
-      <ul>
-        <!-- fetch de antwoorden en filter ze op de question_id en vergelijk die met de huidige vraag id -->
-        {#each data.answers.filter(answer => answer.question_id === data.questions[currentQuestionIndex].id) as answer}
-          <li>
-            <!-- bind de waarde van de gekozen antwoord aan het component en het antwoord zelf  -->
-            <Checkbox {answer} bind:bindGroup={selectedAnswer}/>
-          </li>
-        {/each}
-      </ul>
-      </ComponentBox>
-    <!-- Knop om naar de volgende vraag te gaan -->
-     <div class="buttonBox">
-
-       <Button
-           text="Vorige vraag"
-           color="black"
-           colorLine="none"
-           task=""
-           class=""
-           type=""/>
-   
-       <Button
-           text="Volgende vraag"
-           color="black"
-           colorLine="none"
-           task=""
-           class=""
-           type="submit"/>
-          </div>
-        </ComponentBox>
-        </form>
-{:else}
-<!-- Toont het geselecteerde pakket na het beantwoorden van alle vragen -->
-<ComponentBox
-    heading="Jouw aanbevolen pakket: {selectedPackage.package_name}"
-		context1="{selectedPackage.description}"
-		context2="Score: {$totalScore}"
-		display="flex"
-		titleAlign=""
-		class="box1"
-
->
-
-  <div class="antwoord">
-    <p>Antwoorden:</p>
-    <pre>{JSON.stringify(userAnswers, null, 2)}</pre> <!-- Toont de antwoorden in JSON formaat -->
-    <Button
-    text="profile"
-    color="black"
-    colorLine="none"
-    task="/profile"
-    class=""
-    />
-  </div>
-   
-</ComponentBox>
-
-
-
-{/if}
-
+  </form>
+</Section>
 
 <style>
   form {
     display: flex;
     flex-direction: column;
-
-    & h1{
-      color: var(--D-dark-support);
-      margin-bottom: 1%;
-    }
-
-    & p{
-     font-size: 2rem;
-     margin-bottom: 1%;
-    }
-
-    &  a{
-      margin-bottom: 3%;
-    }
+    gap: 4rem;
   }
 
+  .alert {
+    position: absolute;
+    top: 2rem;
+    right: 0;
+    width: 15rem;
+    padding: 1rem;
+    font-weight: 600;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    overflow: hidden;
+  }
 
-  ul {
+  .error {
+    background-color: rgb(226, 159, 159);
+    color: rgb(94, 37, 37);
+  }
+
+  .success {
+    background-color: rgb(152, 236, 152);
+    color: rgb(30, 81, 30);
+  }
+
+  dialog {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
-
-   
-
+    gap: 1rem;
+    background-color: var(--background);
+    border-radius: 1rem;
+    padding: 1rem;
+    border: none;
   }
 
-  li{
-    height: 7vh;
-    width: 70%;
-    max-width: 30vw;
-    font-size: clamp(10px, 50vw - 2rem, 1.5rem);
-
-    
-    & label{
-     /* outline: solid red; */
-      width: 100%;
-      height: 100%;
-      border-radius: 3.5pc;
-    }
+  dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: 1rem;
   }
 
-
-
-  .buttonBox{
+  dialog ul {
+    list-style-type: "";
     display: flex;
-    flex-direction: row;
-    align-self: center;
-    gap: 15%;
-    width: 35vw;
-    height: 3rem;
-    margin-top: 20px;
-
-    & button{
-      width: 100%;
-      height: 100%;
-      padding-inline: 5%;
-    }
+    flex-direction: column;
+    gap: 1rem;
   }
 
+  dialog ul li {
+    color: var(--text-tertiary);
+  }
 
-  .antwoord {
-    width: 100%;
-    height: 50%;
-    /* outline: solid red; */
+  dialog ul li h3, dialog ul li p span {
+    color: var(--text-primary);
+  }
+
+  :global(.buttonBox.wizardSubmit) {
+    --cc-radius:1pc;
+    --w:70;
+    --p: calc(calc(100 - var(--w))/2);
+
+
+    inset-inline: calc(var(--p) * 1%);
+
     display: flex;
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 1%;
 
-    &:nth-child(n){
-      flex-shrink: 1;
-      height: fit-content;
+    & button {
+      width: 40%;
+      font-size: 2rem;
+      background-color:var(--D-t-support);
+      color: white ;
+
+      
     }
 
-
+    & button:nth-of-type(1){
+      background-color:var(--D-base-bk);
+    }
   }
 </style>
+
+

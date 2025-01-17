@@ -1,8 +1,9 @@
 <script>
-	export let error;
 	import { redirect } from '@sveltejs/kit';
+	/** @type {{error: any}} */
+	let { error } = $props();
 
-	$: message = error.message;
+	let message = $derived(error.message);
 
 	redirect(302, '/Inlog');
 

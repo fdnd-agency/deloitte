@@ -1,11 +1,11 @@
 <script>
-	import '../../styles/global.css'
-	// import { goto } from '$app/navigation';
-	import {ComponentBox, Package, Button} from '$lib';
+	import {ComponentBox} from '$lib';
 	import {totalScore} from '$lib/stores'
+    import { WinC,Button } from '$lib';
 
 
-	export let data;
+	/** @type {{data: any}} */
+	let { data } = $props();
 	let person = data.person
 	
 	// import '../../styles/profile.css'
@@ -32,28 +32,20 @@
 
 <section data-sveltekit-preload-data="false" >
 
-	<ComponentBox 
+	<WinC 
 		
-		heading="profile"
-		context1=""
-		context2=""
-		display=""
-		titleAlign="center"
+		title="profile"
+		context=""
+		role="header"
 		class="top-c"
-	
-
 	>
-	 <!-- content -->
-
-	</ComponentBox>
+	</WinC>
 
 	<div class="profile-detail">
-		<ComponentBox
-		heading=""
-		context1=""
-		context2=""
-		display="flex"
-		titleAlign=""
+		<WinC
+		title=""
+		context=""
+		role="child"
 		class="box1"
 		>
 		
@@ -67,17 +59,17 @@
 				<Button
 				text="logout"
 				color="red"
-				colorLine=""
-				task="/Inlog"
+				type="/"
 				class="logout"
 				/>
 			</div>
 
+			
 
 		</article>
 
 
-		</ComponentBox>
+		</WinC>
 
 
 		<ComponentBox
@@ -117,22 +109,29 @@
 			</label>
 		</form>
 
+		<WinC 
+		role="child"
+		title="WinC"
+		>
+			<WinC 
+			role='header'
+			title="WinC"
+
+			>
+				<h1>WinC</h1>
+				
+			</WinC>
+		</WinC>
+
 
 		<div class="buttonBox">
 
-			<Button
-			text="Start wizard"
-			color="black"
-			colorLine="none"
-			task="/wizard"
-			class=""
-			/>
+			
 			
 			<Button
-			text="overview"
+			text="upload"
 			color="black"
-			colorLine="none"
-			task="/overview"
+			type="submit"
 			class=""
 			/>
 		</div>
@@ -208,6 +207,7 @@ section{
  }
 }
 .imgBox{
+	flex: 1;
 	display: flex;
 	flex-direction: column;
 	height: 100%;
@@ -267,5 +267,69 @@ label{
 		text-align: center;
     }
   }
+
+  /* ---- */
+
+  .top-c{
+        margin-bottom: 2%;
+		display: flex;
+		align-items: center;
+		background-color: var(--LD-background);
+		width: 100%;
+
+		& h1{
+		color: var(--D-t-support);
+		font-size: 3rem;
+		}
+    }
+
+	.box1{
+		/* outline: solid purple; */
+		flex: 0 0 30%;
+		background-color: var(--LD-background);
+		min-height: fit-content;
+	}
+
+	.box2{
+		/* outline: solid blue; */
+		flex-grow:1 0 40%;
+		background-color: var(--LD-background);
+		min-height: fit-content;
+
+		& h1{
+			color: var(--LD-text);
+			font-size: 2rem;
+			font-weight: 500;
+			margin-bottom: 1rem;
+		}
+
+		& p{
+			color: var(--LD-text);
+			margin-bottom: .5rem;
+		}
+
+		& form{
+			display: flex;
+			flex-direction: column;
+			/* gap:17%; */
+		}
+
+		& form label{
+			color: var(--LD-text);
+			width: 55%;
+			height: 2rem;
+			margin-bottom: 3%;
+		}
+		
+		& form input{
+			height: 100%;
+			width: fit-content;
+			padding: 5%;
+			font-size: clamp(10px, 50vw - 1rem, 130%);
+			border-radius: .5rem;
+		}
+	}
+
+
 
 </style>
