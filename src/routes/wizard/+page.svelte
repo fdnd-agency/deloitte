@@ -8,6 +8,7 @@
   import {Button,WinC} from '$lib';
   import { onMount } from 'svelte';
   import { setupFieldsets } from '$lib/fieldsetFilter.js';
+	import fetchJson from '$lib/fetch-json';
 
   // ==================================================
   // Props
@@ -29,75 +30,65 @@
   // ==================================================
   function SelectedFormAnswers(event) {
     const formData = new FormData(event.target);
-    // [...formData.entries()]
-    const selectedAnswers = Array.from(formData.entries());
-    const selectedResults = [];
-    // TODO: try converting this to .map()
-    for (let i = 0; i < selectedAnswers.length; i += 2) {
-      const [questionName, questionId] = selectedAnswers[i];
-      const [answerName, answerScore] = selectedAnswers[i + 1];
+    const selectedAnswers = [...formData.entries()];
 
-      selectedResults.push({
+    const selectedResults = selectedAnswers.filter((_, index) => index % 2 === 0).map((question, index) => {
+      const [questionName, questionId] = question;
+      const [answerName, answerScore] = selectedAnswers[index * 2 + 1];
+
+      return {
         id: parseInt(questionId),
         question: questionName,
         answer: answerName,
         score: parseInt(answerScore)
-      });
-    }
+      };
+  });
 
-    return selectedResults;
+  return selectedResults;
   }
 
   // ==================================================
   // Calculate total score of selected answers
   // ==================================================
   function CalculateScore(answersToCalculate) {
-    // return directly without defining the variable
-    const totalScore = answersToCalculate.reduce((total, current) => total + current.score, 0);
-    return totalScore;
-  }
-
-  // ==================================================
-  // POST request
-  // ==================================================
-  async function FormPOST(selectedAnswerArray, answerTotalScore) {
-    try {
-      // TODO: just use fetchJson her
-      // then you can get rid of this function (formPost)
-      // then maybe put the code from Posthandler in the submit handler
-      const response = await fetch('/wizard', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ answers: selectedAnswerArray, answerTotalScore })
-    });
-      
-    return response;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  function POSTHandler (event) {
-    const selectedAnswers = SelectedFormAnswers(event);
-    const totalScore = CalculateScore(selectedAnswers);
-
-    finalResults = selectedAnswers;
-
-    return FormPOST(selectedAnswers, totalScore);
+    return answersToCalculate.reduce((total, current) => total + current.score, 0);
   }
 
   // ==================================================
   // Form submit handler
   // ==================================================
   async function handleSubmit(event) {
-    const request = await POSTHandler(event);
+    const selectedAnswers = SelectedFormAnswers(event);
+    const totalScore = CalculateScore(selectedAnswers);
+    finalResults = selectedAnswers;
 
-    if (request) {
-      // toon success alert
+    const response = await fetch('/wizard', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ answers: selectedAnswers, totalScore })
+    });
+
+    if (response.ok) {
+      // show succcess alert
+      const alertSuccess = document.querySelector(".success");
+      alertSuccess?.classList.add("alert-animation");
+      console.log("class added");
+      setTimeout(() => {
+        alertSuccess?.classList.remove("alert-animation");
+        console.log("class removed");
+      }, 5000);
+
+      // setTimeout(() => {
+      //   dialog.showModal();
+      // }, 2000);
     } else {
-      // toon error alert
+      // show error alert
+      const alertError = document.querySelector(".error");
+      alertError?.classList.add("alert-animation");
+      setTimeout(() => {
+        alertError?.classList.remove("alert-animation");
+      }, 5000);
     }
-    dialog.showModal();
     event.preventDefault();
   }
 
@@ -113,9 +104,9 @@
 subtitle="Vragenlijst"
 title="Mobiliteits Wizard"
 body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een goed passende mobiliteitspakket te krijgen.">
-  <!-- <p class="alert success">Data successfully submited!</p> -->
-  <!-- <p class="alert error">Something went wrong!</p> -->
-  <dialog bind:this={dialog}>
+  <p class="alert success" aria-hidden="true">Data successfully submited!</p>
+  <p class="alert error" aria-hidden="true">Something went wrong!</p>
+  <!-- <dialog bind:this={dialog}>
     <ul>
       {#each finalResults as result}
       <li>
@@ -127,7 +118,7 @@ body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een 
     <form method="dialog">
       <button>Close</button>
     </form>
-  </dialog>
+  </dialog> -->
 
   <form onsubmit={handleSubmit}>
     {#each data.questions as question}
@@ -166,15 +157,20 @@ body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een 
   }
 
   .alert {
+    opacity: 0;
     position: absolute;
-    top: 2rem;
-    right: 0;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 15rem;
     padding: 1rem;
     font-weight: 600;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
-    overflow: hidden;
+    border-radius: 1rem;
+    z-index: 999;
+  }
+
+  .alert-animation {
+    animation: alertSlide 5s ease-in-out;
   }
 
   .error {
@@ -219,6 +215,29 @@ body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een 
 
   dialog ul li h3, dialog ul li p span {
     color: var(--text-primary);
+  }
+
+  @keyframes alertSlide {
+    0% {
+      /* top: -20rem; */
+      transform: translateY(-10rem);
+      opacity: 0;
+    }
+    25% {
+      /* top: 0; */
+      transform: translateY(0);
+      opacity: 1;
+    }
+    75% {
+      /* top: 0; */
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      /* top: -20rem; */
+      transform: translateY(-10rem);
+      opacity: 0;
+    }
   }
 
   :global(.buttonBox.wizardSubmit) {
