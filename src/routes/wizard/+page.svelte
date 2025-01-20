@@ -2,10 +2,8 @@
   // ==================================================
   // Imports
   // ==================================================
-  import Section from '$lib/atom/component-section.svelte';
-  import Question from '$lib/atom/component-question.svelte';
-  import Answer from '$lib/atom/component-answer.svelte';
-  import {Button,WinC} from '$lib';
+  import Section from '$lib/atom/Section.svelte';
+  import {Button,WinC,Answer,Question} from '$lib';
   import { onMount } from 'svelte';
   import { setupFieldsets } from '$lib/fieldsetFilter.js';
 

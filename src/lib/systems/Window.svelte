@@ -64,7 +64,7 @@
 	</main>
 {:else if role == 'child'}
 	<!-- any container inside the main container -->
-	<div class="contain child-container {CLASS}" style="--cc-bg:var(--color,--cc-bg);outline:solid {line}px;--color:{color}" {...props}>
+	<div class="contain child-container {CLASS}" style="--cc-bg:var(--color,--cc-bg);outline:solid {line}px;--color:{color}" {...props} aria-label="{context}">
 		{@render A()}
 	</div>
 {:else if role == 'buttonBox'}
