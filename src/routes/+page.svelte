@@ -4,7 +4,6 @@
   	// ==================================================
     import { WinC,Button,Overview } from '$lib';
 	import { onMount } from 'svelte';
-	import Section from '$lib/atom/Section.svelte';
 	
 	// ==================================================
   	// Props
@@ -55,14 +54,10 @@ color='lightblue'
 class="main-panel not-logged"
 >
 <form onsubmit={handleLogin}>
-		<p>Enter your personal information</p>
-	<!-- <label>
-		E-mail
-	</label> -->
+	<p>Enter your personal information</p>
+	<label> E-mail</label>
 	<input type="email" name="email" placeholder="enter your email" required>
-	<!-- <label>
-		Password
-	</label> -->
+	<label>Password</label>
 	<input type="password" name="password" placeholder="enter your password" required>
 	<Button 
 	sort="submit" 
@@ -274,9 +269,13 @@ class="info-panel"
 		}
 
 		form label{
-			display: flex;
-			flex-direction: column;
-			gap: 0.5rem;
+			font-size: 1rem;
+			color: var(--LD-text);
+			display: none;	
+			
+			@starting-style{
+				translate: 0 3rem;
+			}
 		}
 
 		form input{
@@ -286,7 +285,10 @@ class="info-panel"
 			font-size: clamp(1rem,1.3cqw, 2rem);
 			padding-inline: 5%;
 
+		}
 
+		form:has(input:nth-of-type(1):focus-within) label:nth-of-type(1){
+			display: block;
 		}
 
 		form input:focus-within:invalid{
