@@ -1,10 +1,8 @@
-<!-- <script>
-    import {PackageComponent, GeneralInfo} from "$lib/index.js";
+<script>
+    import {PackageComponent, GeneralInfo} from "$lib";
     import {WinC,Button} from "$lib";
     import Card from '$lib/mulecule/component-card.svelte';
 
-	// import '../../styles/overview.css'
-    // import {MobilityOptions,GeneralInfo, ,ComponentBox} from '$lib';
    
 
   /** @type {{data: any, num?: number}} */
@@ -77,4 +75,4 @@
 
 
     }
-</style> -->
+</style>
