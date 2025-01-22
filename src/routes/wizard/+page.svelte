@@ -5,6 +5,9 @@
   // import Section from '$lib/atom/Section.svelte';
   import {Button,WinC,Answer,Question,} from '$lib';
   import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
+import { page } from '$app/stores';
+
   import { setupFieldsets } from '$lib/fieldsetFilter.js';
 	import fetchJson from '$lib/fetch-json';
 
@@ -96,6 +99,11 @@
   onMount(() => {
     setupFieldsets();
   });
+
+
+  const goSomeWhereBack = () => {
+    goto($page.url.pathname.substring(0, $page.url.pathname.lastIndexOf('/')));
+}
 </script>
 
 <WinC
@@ -141,8 +149,8 @@ class="main-panel-wizard"
     </WinC>
     {:else}
     <WinC role="buttonBox" class="wizardSubmit">
-      <Button sort="/" text="home" color='white' />
-      <Button sort="submit" text="submit" color='' />
+      <Button sort="/" text="home" color='white' clickCallback={goSomeWhereBack} />
+      <Button sort="submit" text="submit" />
     </WinC>
   {/if}
 
