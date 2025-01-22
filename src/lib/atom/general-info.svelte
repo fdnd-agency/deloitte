@@ -3,14 +3,12 @@
     import { WinC } from '$lib';
     /** @type {{num: any}} */
     let { num } = $props();
-
 </script>
 
 <WinC
 role="child"
 title="General information"
-context=''
-color="transparent"
+color=""
 class="info-panel general-info"
 >
     <section>
@@ -43,11 +41,9 @@ class="info-panel general-info"
             transition-behavior: allow-discrete !important;
             scroll-behavior: smooth;
             font-size-adjust: 0.5;
-
         }
 
     }
-
 
     @keyframes pageLoadAnimation {
         0% {
@@ -61,12 +57,12 @@ class="info-panel general-info"
         }
     }
 
-    :global(.info-panel.general-info){
+    :global(.general-info){
        border-top: none !important;
        padding: 0% !important;
        padding-inline: 2% !important;
        transition: 1s cubic-bezier(0.34, -0.04, 0.17, 0.98);
-
+        
        & h2{
               font-size: 2em ;
               
@@ -76,17 +72,7 @@ class="info-panel general-info"
     section {
         display: flex;
         flex-direction: column;
-        /* align-items: center; */
         animation: 1s cubic-bezier(0.34, -0.04, 0.17, 0.98) pageLoadAnimation;
-
-        /* & h2 {
-            padding: 0.5em 0;
-        } */
-
-        /* & h3 {
-            text-align: center;
-            padding: 0.5em 0;
-        } */
 
         & blockquote {
             padding: 0 0 1em 0;
@@ -96,9 +82,7 @@ class="info-panel general-info"
     details{
         margin-block: 1%;
         transition:all .5s, block-size 1s,content-visibility 1s;
-        transition-behavior: allow-discrete !important;
-
-        /* background-color: blue; */
+        transition-behavior: allow-discrete;
     }
 
     summary::marker{
@@ -114,8 +98,6 @@ class="info-panel general-info"
     }
 
    details::details-content{
-        /* background-color: yellow; */
-
         block-size: 0;
         transition: block-size 1s,content-visibility 1s;
         overflow: hidden;
@@ -127,7 +109,6 @@ class="info-panel general-info"
     details[open]::details-content{
         block-size: auto;
         margin-top: 1%;
-
     }
 
     section:has(details:hover) details[open]::details-content{
@@ -139,10 +120,7 @@ class="info-panel general-info"
         /* background-color: sandybrown; */
         transition: all 1s;
     }
-        
-   
 
-    
     details blockquote{
        padding-block: 2%;
 
