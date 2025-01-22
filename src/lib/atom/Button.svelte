@@ -75,6 +75,7 @@
             typeof="disabled"
             style='color:grey;border:solid 1px; cursor:default;'
             aria-disabled="true"
+			onclick="{clickCallback}"
         >
             {text||'❔'}
         </button>
