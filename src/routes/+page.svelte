@@ -49,6 +49,17 @@
 		$inspect(loggedInUser, data.userID, loggedIn)
 		
 	}
+
+	function logout(){
+		loggedIn = false;
+		data.userID = 0;
+	}
+
+	$effect(() => {
+		if(data.userID > 0){
+			loggedIn = true;
+		}
+	})
 </script>
 
 {#if !loggedIn }
@@ -110,22 +121,16 @@ class="main-panel not-logged"
 				text="verander je pakket"
 				color=""
 				/>
+
+				<Button
+				sort="logout"
+				text="logout"
+				color="red"
+				clickCallback={() => logout()}
+				/>
 			{/if}		
 		</WinC>
 	</WinC>
-<!-- {:else}
-	<WinC
-	role="child"
-	title="Deloitte"
-	context='Start nu de vragenlijst om een passend pakket te vinden'
-	class="main-panel"
-	>
-		<Button
-		sort="#login"
-		text="Start hier"
-		color="black"
-		/>
-	</WinC> -->
 {/if}
 
 {#if Profile}
@@ -170,7 +175,7 @@ class="package-panel"
 >
 	<!-- cards list with pakketten -->
 	<p>info about what why the options exist and how to use them</p>
-	<Overview data/>
+	<Overview {data}/>
 </WinC>
 
 <WinC
