@@ -3,10 +3,6 @@
 <!-- how to use -->
 <!-- what are the properties  -->
 
-
-
-
-
 <script lang=ts>
 
 // defining property type
@@ -108,10 +104,6 @@
 		grid-template-rows: auto;
 		width: 100%;
 		min-height: 100%;
-		/* min-height: 100dvh; */
-		/* overflow-y: scroll; */
-
-
 		container-name:window-container;
 
 		background-color:var(--wc-bg,white) ;
@@ -145,8 +137,6 @@
 		height: 100%;
 		width: 100%;
 		border-radius: var(--cc-radius,inherit);
-		/* overflow-y: scroll; */
-
 	}
 
 	/* button box logic and sizing */
@@ -165,7 +155,6 @@
 		/* inset-inline: calc(var(--p) * 1cqi); */
 		bottom: 0;
 		width: calc(var(--w) * 1% );
-		width: calc(var(--w) * .7% );
 		height: auto;
 		border-radius: var(--cc-radius,inherit);
 
@@ -195,7 +184,6 @@
 		background-color: var(--D-mid-bk);
 		background-color: inherit;
 		background: color-mix(in oklch, var(--color) 70%, rgba(0, 0, 0, 0.873)5%);
-
 	}
 
 	
@@ -211,14 +199,6 @@
 		main >:nth-child(1):is(.header),.header{
 			grid-column: context;
 		}
-
-
-
 	}
-
-	/* @container child-contianer (width){
-		
-	} */
-
 
 </style>

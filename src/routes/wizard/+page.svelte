@@ -2,8 +2,8 @@
   // ==================================================
   // Imports
   // ==================================================
-  import Section from '$lib/atom/Section.svelte';
-  import {Button,WinC,Answer,Question} from '$lib';
+  // import Section from '$lib/atom/Section.svelte';
+  import {Button,WinC,Answer,Question,} from '$lib';
   import { onMount } from 'svelte';
   import { setupFieldsets } from '$lib/fieldsetFilter.js';
 	import fetchJson from '$lib/fetch-json';
@@ -98,10 +98,12 @@
   });
 </script>
 
-<Section
-subtitle="Vragenlijst"
+<WinC
+role="child"
+context="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een goed passende mobiliteitspakket te krijgen."
 title="Mobiliteits Wizard"
-body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een goed passende mobiliteitspakket te krijgen.">
+class="main-panel-wizard"
+>
   <p class="alert success" aria-hidden="true">Data successfully submited!</p>
   <p class="alert error" aria-hidden="true">Something went wrong!</p>
   <!-- <dialog bind:this={dialog}>
@@ -145,7 +147,7 @@ body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een 
   {/if}
 
   </form>
-</Section>
+</WinC>
 
 <style>
   form {
@@ -236,6 +238,26 @@ body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een 
       transform: translateY(-10rem);
       opacity: 0;
     }
+  }
+
+  :global(.main-panel-wizard){
+    border: none !important;
+
+    & > h2{
+      font-size: clamp(2rem, 0.917rem + 4.1478vw, 6cqi);
+      height: fit-content;
+      z-index: 1;
+    }
+
+    & h2 ~ p{
+      margin-bottom: 3%;
+    }
+
+    & legend{
+      /* outline: solid red !important; */
+      padding-top: 3%;
+    }
+
   }
 
   :global(.buttonBox.wizardSubmit) {

@@ -12,10 +12,9 @@
 	}
 
 	let { sort = '',text, color, line, clickCallback=()=>{goto(`${sort}`)},  children, class: CLASS, ...props }: Props = $props();
-	let sortContext = ''; // remove $state
+	let sortContext = ''; 
 
-	// console.log('foo')
-	// console.log(clickCallback)
+	console.log(clickCallback)
 
     $effect(()=>{
         if (sort.startsWith('#')) {
@@ -83,7 +82,6 @@
 
 <style>
 	:is(button, a) {
-		/* --D-white2:rgba(255, 255, 255, 0.514); */
 		--color: var(--D-t-support);
 		/* --color:rgb(129, 50, 182); */
 

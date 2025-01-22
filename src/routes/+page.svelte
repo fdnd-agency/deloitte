@@ -12,7 +12,13 @@
 	let { data } = $props();
 	let loggedIn = $state(false);
 	let loggedInUser = data.users.find(user => user.id === data.userID) || null;
-	let newProfile = $state(false);
+	let Profile = $state(false);
+
+
+		function toggleProfile() {
+		Profile.set(!Profile.get());
+		console.log(Profile.get());
+		}
 	
 	// ==================================================
   	// Login handler
@@ -67,7 +73,7 @@ class="main-panel not-logged"
 	</form>
 </WinC>
 
-{:else if loggedIn && data.userID >= 1}
+{:else if loggedIn || data.userID >= 1}
 	<WinC
 	role="child"
 	title={loggedInUser?.name}
@@ -93,15 +99,16 @@ class="main-panel not-logged"
 			{:else}
 
 				<Button
-				sort="/profile"
+				sort="#account"
 				text="profile"
-				color="white"
+				color=""
+				clickCallback={toggleProfile}
 				/>
 
 				<Button
 				sort="/wizard"
 				text="verander je pakket"
-				color="white"
+				color=""
 				/>
 			{/if}		
 		</WinC>
@@ -120,6 +127,29 @@ class="main-panel not-logged"
 		/>
 	</WinC> -->
 {/if}
+
+{#if Profile}
+	<WinC
+	role="child"
+	title="Profiel"
+	context='Hier kun je je gegevens aanpassen'
+	color='lightblue'
+	class="main-panel"
+	id="account">
+
+	<div>
+		<img src="" alt="">
+	</div>
+	<div>
+		<p>Jouw account</p>
+		<p>Title <span>{loggedInUser.title || 'none'}</span></p>
+		<p>Pakket <span>{loggedInUser.package || 'none'}</span></p>
+		<Button sort="/wizard" text="verander je pakket" color="white"/>
+	</div>
+</WinC>
+
+{/if}
+
 
 <WinC
 role="child"
@@ -253,7 +283,15 @@ class="info-panel"
 				padding: 3%;
 				padding-inline: 5%;
 				margin-block: 0.5cqh;
-				font-size: clamp(1rem,5cqw, 2.5rem);
+				font-size: clamp(1rem,4cqw, 2.3rem) !important;
+				text-transform: capitalize;
+			}
+
+			& a{
+				padding: 3%;
+				padding-inline: 5%;
+				margin-block: 0.5cqh;
+				font-size: clamp(1rem,4cqw, 2.3rem) !important;
 				text-transform: capitalize;
 			}
 		}
@@ -275,8 +313,21 @@ class="info-panel"
 			
 			@starting-style{
 				translate: 0 3rem;
+				opacity: 0;
 			}
 		}
+
+		form:has(input:nth-of-type(1):focus-within) label:nth-of-type(1),
+		form:has(input:nth-of-type(2):focus-within) label:nth-of-type(2){
+			display: block;
+			transition: opacity 2s ease-out,translate .7s ease-out;
+		}
+
+		form :is(input:nth-of-type(1):valid + input:nth-of-type(2):valid) label{
+			display: none;
+			transition: opacity 2s ease-out,translate .7s ease-out;
+		}
+
 
 		form input{
 			padding: 3%;
@@ -287,9 +338,6 @@ class="info-panel"
 
 		}
 
-		form:has(input:nth-of-type(1):focus-within) label:nth-of-type(1){
-			display: block;
-		}
 
 		form input:focus-within:invalid{
 			background-color: color-mix(in srgb, currentcolor 50%, rgba(251, 139, 139, 0.845) );

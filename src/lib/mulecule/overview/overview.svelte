@@ -1,7 +1,7 @@
 <script>
     import {PackageComponent, GeneralInfo} from "$lib";
     import {WinC,Button} from "$lib";
-    import Card from '$lib/mulecule/component-card.svelte';
+    import Card from '$lib/mulecule/Card.svelte';
 
    
 
