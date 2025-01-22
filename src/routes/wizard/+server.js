@@ -1,5 +1,5 @@
 import fetchJson from '$lib/fetch-json.js';
-import { json } from '@sveltejs/kit';
+import { json, redirect } from '@sveltejs/kit';
 
 // ==================================================
 // POST function
@@ -56,5 +56,5 @@ export async function POST({ request }) {
         return json({ error: 'Failed to update user' }, { status: 500 });
     }
 
-    return json({ success: true, package: selectedPackage }, { status: 200 });
+    return json({ success: true, package: selectedPackage, redirect:'/' }, { status: 200 });
 }
