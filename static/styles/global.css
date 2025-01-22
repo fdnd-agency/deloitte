@@ -74,8 +74,8 @@ h1, a {
 	
 }
 
-*,:root{
 
+*,:root{
 	/* Deloitte colors */
 	--D-white:white;
 	--D-primary-mid-grey:color(display-p3 0.9255 0.9255 0.9255);
@@ -134,7 +134,7 @@ h1, a {
 	- dark
  */
 	
- @media (prefers-color-scheme: dark) {
+ /* @media (prefers-color-scheme: dark) {
 	:root {
 		--background: #212121;
 		--text-primary: #d1d1d1;
@@ -143,4 +143,4 @@ h1, a {
 		--LD-background:light-dark(var(--D-white),var(--D-dark-support));
 	
 	}
-}
+} */
