@@ -4,7 +4,6 @@
   	// ==================================================
     import { WinC,Button,Overview } from '$lib';
 	import { onMount } from 'svelte';
-	import Section from '$lib/atom/Section.svelte';
 	
 	// ==================================================
   	// Props
@@ -13,7 +12,13 @@
 	let { data } = $props();
 	let loggedIn = $state(false);
 	let loggedInUser = data.users.find(user => user.id === data.userID) || null;
-	let newProfile = $state(false);
+	let Profile = $state(false);
+
+
+		function toggleProfile() {
+		Profile.set(!Profile.get());
+		console.log(Profile.get());
+		}
 	
 	// ==================================================
   	// Login handler
@@ -44,6 +49,17 @@
 		$inspect(loggedInUser, data.userID, loggedIn)
 		
 	}
+
+	function logout(){
+		loggedIn = false;
+		data.userID = 0;
+	}
+
+	$effect(() => {
+		if(data.userID > 0){
+			loggedIn = true;
+		}
+	})
 </script>
 
 {#if !loggedIn }
@@ -55,14 +71,10 @@ color='lightblue'
 class="main-panel not-logged"
 >
 <form onsubmit={handleLogin}>
-		<p>Enter your personal information</p>
-	<!-- <label>
-		E-mail
-	</label> -->
+	<p>Enter your personal information</p>
+	<label> E-mail</label>
 	<input type="email" name="email" placeholder="enter your email" required>
-	<!-- <label>
-		Password
-	</label> -->
+	<label>Password</label>
 	<input type="password" name="password" placeholder="enter your password" required>
 	<Button 
 	sort="submit" 
@@ -72,7 +84,7 @@ class="main-panel not-logged"
 	</form>
 </WinC>
 
-{:else if loggedIn && data.userID >= 1}
+{:else if loggedIn || data.userID >= 1}
 	<WinC
 	role="child"
 	title={loggedInUser?.name}
@@ -98,32 +110,49 @@ class="main-panel not-logged"
 			{:else}
 
 				<Button
-				sort="/profile"
+				sort="#account"
 				text="profile"
-				color="white"
+				color=""
+				clickCallback={toggleProfile}
 				/>
 
 				<Button
 				sort="/wizard"
 				text="verander je pakket"
-				color="white"
+				color=""
+				/>
+
+				<Button
+				sort="logout"
+				text="logout"
+				color="red"
+				clickCallback={() => logout()}
 				/>
 			{/if}		
 		</WinC>
 	</WinC>
-<!-- {:else}
+{/if}
+
+{#if Profile}
 	<WinC
 	role="child"
-	title="Deloitte"
-	context='Start nu de vragenlijst om een passend pakket te vinden'
+	title="Profiel"
+	context='Hier kun je je gegevens aanpassen'
+	color='lightblue'
 	class="main-panel"
-	>
-		<Button
-		sort="#login"
-		text="Start hier"
-		color="black"
-		/>
-	</WinC> -->
+	id="account">
+
+	<div>
+		<img src="" alt="">
+	</div>
+	<div>
+		<p>Jouw account</p>
+		<p>Title <span>{loggedInUser.title || 'none'}</span></p>
+		<p>Pakket <span>{loggedInUser.package || 'none'}</span></p>
+		<Button sort="/wizard" text="verander je pakket" color="white"/>
+	</div>
+</WinC>
+
 {/if}
 
 <WinC
@@ -145,7 +174,7 @@ class="package-panel"
 >
 	<!-- cards list with pakketten -->
 	<p>info about what why the options exist and how to use them</p>
-	<Overview data/>
+	<Overview {data}/>
 </WinC>
 
 <WinC
@@ -258,7 +287,15 @@ class="info-panel"
 				padding: 3%;
 				padding-inline: 5%;
 				margin-block: 0.5cqh;
-				font-size: clamp(1rem,5cqw, 2.5rem);
+				font-size: clamp(1rem,4cqw, 2.3rem) !important;
+				text-transform: capitalize;
+			}
+
+			& a{
+				padding: 3%;
+				padding-inline: 5%;
+				margin-block: 0.5cqh;
+				font-size: clamp(1rem,4cqw, 2.3rem) !important;
 				text-transform: capitalize;
 			}
 		}
@@ -274,10 +311,27 @@ class="info-panel"
 		}
 
 		form label{
-			display: flex;
-			flex-direction: column;
-			gap: 0.5rem;
+			font-size: 1rem;
+			color: var(--LD-text);
+			display: none;	
+			
+			@starting-style{
+				translate: 0 3rem;
+				opacity: 0;
+			}
 		}
+
+		form:has(input:nth-of-type(1):focus-within) label:nth-of-type(1),
+		form:has(input:nth-of-type(2):focus-within) label:nth-of-type(2){
+			display: block;
+			transition: opacity 2s ease-out,translate .7s ease-out;
+		}
+
+		form :is(input:nth-of-type(1):valid + input:nth-of-type(2):valid) label{
+			display: none;
+			transition: opacity 2s ease-out,translate .7s ease-out;
+		}
+
 
 		form input{
 			padding: 3%;
@@ -286,8 +340,8 @@ class="info-panel"
 			font-size: clamp(1rem,1.3cqw, 2rem);
 			padding-inline: 5%;
 
-
 		}
+
 
 		form input:focus-within:invalid{
 			background-color: color-mix(in srgb, currentcolor 50%, rgba(251, 139, 139, 0.845) );

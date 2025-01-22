@@ -1,7 +1,7 @@
 <script>
     import {PackageComponent, GeneralInfo} from "$lib";
     import {WinC,Button} from "$lib";
-    import Card from '$lib/mulecule/component-card.svelte';
+    import Card from '$lib/mulecule/Card.svelte';
 
    
 
@@ -17,7 +17,6 @@
         <Card title="titel" body="beschrijving" job="Manager" imgSrc="./VanMoof_S3_dark (1).png" imgAlt="card-img" cardType="visual-card"/>
         <Card title="titel" body="beschrijving" job="Manager" imgSrc="./pexels-dan-voican-2624103-17854203.jpg" imgAlt="card-img" cardType="visual-card"/>
         <Card title="titel" body="beschrijving" job="Manager" imgSrc="./pexels-pille-kirsi-222198-1093184.jpg" imgAlt="card-img" cardType="visual-card"/>
-
     </article>
     
     <article>
@@ -32,8 +31,6 @@
         flex-direction: column;
         gap: 2rem;
         padding-block: 1rem;
-        
-        
     }
     
     h1 {
@@ -62,17 +59,13 @@
                 max-width: 100%;
             }
         }
-
     }
 
     .overview article:nth-of-type(2){
         display: flex;
         flex-direction: row;
         gap: 2em;
-        background-color: color-mix(in srgb, var(--wc-bg) 50%, white ) ;
+        background-color: color-mix(in srgb, var(--wc-bg) 50%, white 50% ) ;
         /* background-image: linear-gradient(0deg, transparent -5%, var(--D-mid-bk) 0%,var(--D-mid-bk) 98.5%, transparent 105%); */
-
-
-
     }
 </style>
