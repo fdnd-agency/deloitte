@@ -1,48 +1,54 @@
 <script>
-    import {Header,Footer} from '$lib';
-    // import Footer from '$lib/footer.svelte';
+    import {Header,Footer,WinC} from '$lib';
+    import { onNavigate } from '$app/navigation';
+
+    /** @type {{children?: import('svelte').Snippet}} */
+    let { children } = $props();
+
+    onNavigate((navigation) => {
+        if(!document.startViewTransition){return};
+
+        return new Promise((resolve) =>{
+            document.startViewTransition(async ()=>{
+                resolve();
+                await navigation.complete;
+            })
+        })
+    })
+
 </script>
-
-<div class="body">
-
-    <div class="header">
-        <Header/>
-    </div>
+   
+<Header class="header"/>
     
-    <main>
-        <slot/>
-    </main>
+<WinC role='window' class="main" color='transparent'>
+        {@render children?.()}
+</WinC>
 
-    <div class="footer">
-        <Footer/>
-    </div>
+<Footer class="footer"/>
     
 
-</div>
+
 
 
 <style>
-    .body {
-        display: flex;
-        flex-direction: column;
-        background: linear-gradient(90deg, var(--D-base-bk) 26%, var(--D-mid-bk) 100%);
-        min-height: 100vh; 
-    }
 
-    .header {
-        flex-shrink: 0; 
-        /* outline: solid red; */
-    }
+/* :root{
+	--wc-radius:clamp(0.5rem, 2vw, 1.8pc);
+	--wc-bg:rgb(108, 108, 255);
+	--wc-bg:var(--D-t-support);
+	--cc-bg:rgb(250, 255, 114);
+	--cc-bg:var(--D-base-bk);
+	--cc-radius:var(--wc-radius);
+	} */
 
-    main {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        /* outline: solid blue; */
-        padding-inline: 10%;
-    }
+    *{
+        @supports (interpolate-size: allow-keywords){
+            interpolate-size: allow-keywords;
+            transition-behavior: allow-discrete;
+            scroll-behavior: smooth;
+            font-size-adjust: 0.5;
 
-    .footer {
-        flex-shrink: 0; 
+        }
+
     }
 </style>

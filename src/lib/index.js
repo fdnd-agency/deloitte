@@ -1,11 +1,16 @@
-export { default as ComponentBox } from './ComponentBox.svelte';
+//atoms
+export { default as Button } from './atom/Button.svelte'
+export { default as MobilityOptions } from './atom/Mobility-options.svelte';
+export { default as GeneralInfo} from './atom/general-info.svelte'
+export { default as Question } from './atom/Question.svelte'
+export { default as Answer } from './atom/Answer.svelte'
 
-// Export other components as needed, for example:
-export { default as Button } from './button-component.svelte';
-export { default as Checkbox } from './checkbox.svelte';
-export { default as Footer } from './footer.svelte';
-export { default as Header } from './header.svelte';
-export { default as Package } from './package-component.svelte';
-export { default as MobilityOptions } from './mobility-options.svelte';
-export { default as GeneralInfo} from './general-info.svelte'
-export {default as PackageComponent} from './package-component.svelte'
+
+// Mulecule
+export { default as Footer } from './mulecule/footer.svelte';
+export { default as Header } from './mulecule/header.svelte';
+export {default as PackageComponent} from './mulecule/package-component.svelte';
+export { default as Overview } from './mulecule/overview/overview.svelte';
+
+// system
+export { default as WinC } from './systems/Window.svelte'

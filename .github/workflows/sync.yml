@@ -1,0 +1,23 @@
+name: mirror to Release Candidate
+
+on:
+  push:
+    branches:
+      - 86-main-iteration-3-dods
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone the repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Mirror push to release-candidate
+        run: |
+          git remote add mirror https://github.com/christoph3r3w/release-candidate.git
+          git push --mirror mirror
+        env:
+          GITHUB_TOKEN: ${{ secrets.CANDIDATE_REPO_TOKEN }}
