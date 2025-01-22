@@ -23,3 +23,6 @@ vite.config.ts.timestamp-*
 
 # Node
 node_modules
+
+# Svelte
+.vs
