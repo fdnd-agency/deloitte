@@ -39,6 +39,7 @@
         border-top-left-radius: 2rem;
         border-top-right-radius: 2rem;
         transition: 0.2s ease-in-out;
+        backdrop-filter: blur(0.25rem);
     }
 
     span {

@@ -3,7 +3,7 @@
   // Imports
   // ==================================================
   // import Section from '$lib/atom/Section.svelte';
-  import {Button, WinC, Answer, Question, Section} from '$lib';
+  import {Button, WinC, Answer, Question, Section, Line} from '$lib';
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
@@ -109,6 +109,9 @@ subtitle="Vragenlijst"
 title="Mobiliteits Wizard"
 body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een goed passende mobiliteitspakket te krijgen."
 >
+
+<Line/>
+
   <p class="alert success" aria-hidden="true">Data successfully submited!</p>
   <p class="alert error" aria-hidden="true">Something went wrong!</p>
   <!-- <dialog bind:this={dialog}>

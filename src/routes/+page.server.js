@@ -15,7 +15,7 @@ export async function load({cookies}) {
   const packages = await fetchJson(packages_url)
   const users = await fetchJson(users_url)
   const titles = await fetchJson(titles_url)
-  const userID = cookies.get('userID') || null;
+  const userId = cookies.get('userID') || null
 
   //return een object waarin person.data wordt meegegeven
   return {
@@ -24,6 +24,6 @@ export async function load({cookies}) {
     packages: packages.data,
     users: users.data,
     titles: titles.data,
-    userID: userID
+    userId: userId
   }
 }

@@ -2,7 +2,7 @@
 	// ==================================================
   	// Import
   	// ==================================================
-    import { WinC, Button, Overview, Section, Card, List, ListItem } from '$lib';
+    import { WinC, Button, Overview, Section, Card, List, ListItem, Line, Window } from '$lib';
 	import { onMount } from 'svelte';
 	
 	// ==================================================
@@ -11,20 +11,18 @@
 	/** @type {{data: any}} */
 	let { data } = $props();
 	let loggedIn = $state(false);
-	let loggedInUser = data.users.find(user => user.id === data.userID) || null;
-	let Profile = $state(false);
 
-	function toggleProfile() {
-		Profile.set(!Profile.get());
-		console.log(Profile.get());
+	function logout(){
+		loggedIn = false;
+		data.userID = null;
 	}
 
 	// ==================================================
-  	// Title name finder
+  	// find title name
   	// ==================================================
 	function findTitle(id) {
 		const titleName = data.titles.find((title) => title.id === id);
-		return titleName.title;
+		return titleName ? titleName.title: "None";
 	}
 
 	// ==================================================
@@ -52,115 +50,33 @@
 		}
 
 		event.preventDefault();
-
-		$inspect(loggedInUser, data.userID, loggedIn)
-		
 	}
-
-	function logout(){
-		loggedIn = false;
-		data.userID = 0;
-	}
-
-	$effect(() => {
-		if(data.userID > 0){
-			loggedIn = true;
-		}
-	})
 </script>
 
-{#if !loggedIn }
-<WinC
-role="child"
-title="Login"
-context=""
-color='lightblue'
-class="main-panel not-logged"
->
-<form onsubmit={handleLogin}>
-	<p>Enter your personal information</p>
-	<label> E-mail</label>
-	<input type="email" name="email" placeholder="enter your email"  value="test@hva.nl" required>
-	<label>Password</label>
-	<input type="password" name="password" placeholder="enter your password" value="Deloitte" required>
-	<Button 
-	sort="submit" 
-	text='Login' 
-	color='inherit'
-	class='login'/>
+{#if !loggedIn}
+<Window title="Deloitte." body="Welkom bij het Deloitte Mobiliteits Programma.">
+	<form onsubmit={handleLogin}>
+		<label> E-mail</label>
+		<input type="email" name="email" placeholder="enter your email"  value="test@hva.nl" required>
+		<label>Password</label>
+		<input type="password" name="password" placeholder="enter your password" value="Deloitte" required>
+		<Button 
+		sort="submit" 
+		text='Login' 
+		color='inherit'
+		class='login'/>
 	</form>
-</WinC>
-
-{:else if loggedIn || data.userID >= 1}
-	<WinC
-	role="child"
-	title={loggedInUser?.name}
-	context='Start nu de vragenlijst om een passend pakket te vinden'
-	color='lightblue'
-	class="main-panel"
-	>
-	<p>Cookie: {data.userID}</p>
-	<p>{loggedInUser?.name}</p>
-	<p>{loggedInUser?.email}</p>
-
-		<WinC
-		role='buttonBox'
-		color=''
-		class='buttonB'>
-
-			{#if data.userID < 1}
-				<Button
-				sort="/wizard"
-				text="Start Nu"
-				color=""
-				/>
-			{:else}
-
-				<Button
-				sort="#account"
-				text="profile"
-				color=""
-				clickCallback={toggleProfile}
-				/>
-
-				<Button
-				sort="/wizard"
-				text="verander je pakket"
-				color=""
-				/>
-
-				<Button
-				sort="logout"
-				text="logout"
-				color="red"
-				clickCallback={() => logout()}
-				/>
-			{/if}		
-		</WinC>
-	</WinC>
+</Window>
+{:else}
+<Window title={data.users[3].name} body="Jouw persoonlijke gegevens.">
+	<!-- <p>Job title: {findTitle(user.title_id)}</p> -->
+	<p>Email: {data.users[3].email}</p>
+	<Button sort="/wizard" text="verander je pakket" color=""/>
+	<Button sort="logout" text="logout" color="red" clickCallback={() => logout()}/>
+</Window>
 {/if}
 
-{#if Profile}
-	<WinC
-	role="child"
-	title="Profiel"
-	context='Hier kun je je gegevens aanpassen'
-	color='lightblue'
-	class="main-panel"
-	id="account">
-
-	<div>
-		<img src="" alt="">
-	</div>
-	<div>
-		<p>Jouw account</p>
-		<p>Title <span>{loggedInUser.title || 'none'}</span></p>
-		<p>Pakket <span>{loggedInUser.package || 'none'}</span></p>
-		<Button sort="/wizard" text="verander je pakket" color="white"/>
-	</div>
-</WinC>
-
-{/if}
+<Line/>
 
 <Section 
 subtitle="Wat bieden wij aan" 
@@ -168,12 +84,16 @@ title="Welkom bij het Deloitte Mobiliteitsprogramma"
 body="Welkom bij de mobiliteitshub van Deloitte, exclusief voor onze medewerkers. Hier helpen we je om het mobiliteitspakket te vinden dat 
 het beste aansluit op jouw persoonlijke en professionele behoeften. Begin vandaag nog en ontdek hoe je het meeste uit jouw reismogelijkheden kunt halen."/>
 
+<Line/>
+
 <Section 
 subtitle="Een vergoeding van Deloitte" 
 title="Reiskostenvergoeding" 
 body="Hoewel je onze kantoren door heel het land vindt, is de kans groot dat er niet één direct naast je voordeur is. 
 Bij Deloitte bieden wij daarom uitgebreide regelingen die jou voorzien in jouw persoonlijke mobiliteitsbehoeften en waardoor 
 jouw zakelijke reizen gewoon vergoed worden."/>
+
+<Line/>
 
 <Section
 subtitle="Beschikbare mobiliteitspakketten"
@@ -183,11 +103,13 @@ aansluiten op jouw reisbehoeften. Bekijk de beschikbare opties hieronder en kies
 <List classStyle="row">
 	{#each data.packages as mobilityPackage}
 	<ListItem>
-		<Card path="/images/lease-car.jpg" jobTitle={findTitle(mobilityPackage.title_id)} title={mobilityPackage.package_name} body={mobilityPackage.description}/>
+		<Card path="https://fdnd-agency.directus.app/assets/{mobilityPackage.image}" jobTitle={findTitle(mobilityPackage.title_id)} title={mobilityPackage.package_name} body={mobilityPackage.description}/>
 	</ListItem>
 	{/each}
 </List>
 </Section>
+
+<Line/>
 
 <Section
 subtitle="kom je in aanmerking voor leasing?"
@@ -198,6 +120,8 @@ ook kiezen voor andere opties, zoals een bruto mobiliteitsvergoeding als supplem
 Reis je liever met het OV? Dan kun je ook kiezen voor een zakelijke OV-kaart waarmee je op kosten van Deloitte kan reizen naar je zakelijke- én 
 privébestemmingen met het OV. Waar je ook voor kiest, je krijgt van ons altijd een zakelijke OV-kaart waarmee je op een gemakkelijke en 
 milieuvriendelijke manier kunt reizen."/>
+
+<Line/>
 
 <Section
 subtitle="Onze andere optie"

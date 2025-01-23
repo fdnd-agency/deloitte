@@ -18,13 +18,10 @@
 <style>
     section {
         width: 100%;
-        border-top: 0.1rem solid var(--background-light);
-        margin-bottom: 2.5rem;
     }
 
     p:nth-child(1) {
         color: var(--text-tertiary);
-        margin-top: 2.5rem;
     }
 
     h2 {

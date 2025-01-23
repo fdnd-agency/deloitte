@@ -7,6 +7,8 @@ export { default as Answer } from './atom/Answer.svelte';
 export { default as Section } from './atom/Section.svelte';
 export { default as List } from './atom/List.svelte';
 export { default as ListItem } from './atom/ListItem.svelte';
+export { default as Line } from './atom/Line.svelte';
+export { default as Window } from './atom/Window.svelte';
 
 // Mulecule
 export { default as Footer } from './mulecule/footer.svelte';
