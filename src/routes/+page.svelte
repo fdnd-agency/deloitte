@@ -2,7 +2,7 @@
 	// ==================================================
   	// Import
   	// ==================================================
-    import { WinC,Button,Overview } from '$lib';
+    import { WinC, Button, Overview, Section, Card, List, ListItem } from '$lib';
 	import { onMount } from 'svelte';
 	
 	// ==================================================
@@ -14,12 +14,19 @@
 	let loggedInUser = data.users.find(user => user.id === data.userID) || null;
 	let Profile = $state(false);
 
-
-		function toggleProfile() {
+	function toggleProfile() {
 		Profile.set(!Profile.get());
 		console.log(Profile.get());
-		}
-	
+	}
+
+	// ==================================================
+  	// Title name finder
+  	// ==================================================
+	function findTitle(id) {
+		const titleName = data.titles.find((title) => title.id === id);
+		return titleName.title;
+	}
+
 	// ==================================================
   	// Login handler
   	// ==================================================
@@ -155,60 +162,52 @@ class="main-panel not-logged"
 
 {/if}
 
+<Section 
+subtitle="Wat bieden wij aan" 
+title="Welkom bij het Deloitte Mobiliteitsprogramma" 
+body="Welkom bij de mobiliteitshub van Deloitte, exclusief voor onze medewerkers. Hier helpen we je om het mobiliteitspakket te vinden dat 
+het beste aansluit op jouw persoonlijke en professionele behoeften. Begin vandaag nog en ontdek hoe je het meeste uit jouw reismogelijkheden kunt halen."/>
 
-<WinC
-role="child"
-title="Wat beiden wij aan"
-context='we helpen je met de mobiliteit van de toekomst'
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
+<Section 
+subtitle="Een vergoeding van Deloitte" 
+title="Reiskostenvergoeding" 
+body="Hoewel je onze kantoren door heel het land vindt, is de kans groot dat er niet één direct naast je voordeur is. 
+Bij Deloitte bieden wij daarom uitgebreide regelingen die jou voorzien in jouw persoonlijke mobiliteitsbehoeften en waardoor 
+jouw zakelijke reizen gewoon vergoed worden."/>
 
-<WinC
-role="child"
-title="Pakketten"
-context='Deloitte biedt een maandelijkse mobiliteitsvergoeding van € 200. Hiermee kun je een abonnement nemen op een deelfiets of een ov-abonnement. Daarnaast kun je ook een elektrische fiets aanschaffen met een eenmalige bijdrage van € 1000.'
-color=""
-class="package-panel"
->
-	<!-- cards list with pakketten -->
-	<p>info about what why the options exist and how to use them</p>
-	<Overview {data}/>
-</WinC>
+<Section
+subtitle="Beschikbare mobiliteitspakketten"
+title="Mobiliteitspakketten"
+body="Op basis van jouw functietitel en voorkeuren hebben we een aantal mobiliteitspakketten geselecteerd die perfect 
+aansluiten op jouw reisbehoeften. Bekijk de beschikbare opties hieronder en kies het pakket dat het beste bij jou past.">
+<List classStyle="row">
+	{#each data.packages as mobilityPackage}
+	<ListItem>
+		<Card path="/images/lease-car.jpg" jobTitle={findTitle(mobilityPackage.title_id)} title={mobilityPackage.package_name} body={mobilityPackage.description}/>
+	</ListItem>
+	{/each}
+</List>
+</Section>
 
-<WinC
-role="child"
-title="Een vergoeding van Deloitte"
-context='Reiskostenvergoedingen'
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
+<Section
+subtitle="kom je in aanmerking voor leasing?"
+title="Leaseregeling"
+body="Of je in aanmerking komt voor de Leaseregeling hangt af van je afdeling en functieniveau en of je een arbeidsovereenkomst hebt van 
+minimaal 24 uur. Als deelnemer aan deze regeling mag je kiezen voor een leaseauto. Wanneer je niet voor een leaseauto kiest, kun je 
+ook kiezen voor andere opties, zoals een bruto mobiliteitsvergoeding als supplement op je salaris waarmee je je zakelijke reizen kunt bekostigen. 
+Reis je liever met het OV? Dan kun je ook kiezen voor een zakelijke OV-kaart waarmee je op kosten van Deloitte kan reizen naar je zakelijke- én 
+privébestemmingen met het OV. Waar je ook voor kiest, je krijgt van ons altijd een zakelijke OV-kaart waarmee je op een gemakkelijke en 
+milieuvriendelijke manier kunt reizen."/>
 
-
-
-<WinC
-role="child"
-title="kom je in aanmerking voor leasing?"
-context='leaseregeling'
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
-
-<WinC
-role="child"
-title="Mobiliteitregeling"
-context=''
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
+<Section
+subtitle="Onze andere optie"
+title="Mobiliteitsregeling"
+body="Wanneer je niet in aanmerking komt voor de leaseregeling, maak je aanspraak op onze andere mobiliteitsregeling. Deze regeling geeft jou de flexibiliteit 
+om voor iedere zakelijke reis zelf je vervoersmiddel te bepalen. Wanneer je met een eigen vervoersmiddel reist, zoals met de fiets, scooter of de auto, 
+ontvang je van ons een kilometervergoeding. Liever met het OV? Daarvoor krijg je van ons een zakelijke OV-kaart voor 1ste klas treinreizen en 
+andere OV vervoersmiddelen. Voor studenten die bij ons stage komen lopen of bij ons afstuderen kennen we geen aparte reiskostenvergoeding. 
+We gaan ervan uit dat je als student kunt reizen op je OV-studentenchipkaart. Indien dit niet het geval is kunnen we een aparte regeling met je treffen. 
+Heb je hier vragen over? Neem dan contact op met de recruiter van de afdeling waar je stage wil gaan lopen of wilt afstuderen."/>
 
 <style>
 	:global(main .main-panel){

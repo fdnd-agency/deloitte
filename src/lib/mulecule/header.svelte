@@ -36,14 +36,6 @@
             <!-- <img src="./images/Deloitte.svg" alt="Deloitte logo" width="100" height="50"> -->
              <h1><span>Deloitte</span>. <em>Mobility app</em></h1>
         </a>
-        
-        <Button
-        text="mode"
-		color="black"
-		sort="#dark"
-		class="dark-mode"
-        onclick={darkMode}
-        />
 
        
     </nav>
