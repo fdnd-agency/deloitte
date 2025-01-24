@@ -37,13 +37,13 @@
              <h1><span>Deloitte</span>. <em>Mobility app</em></h1>
         </a>
         
-        <Button
+        <!-- <Button
         text="mode"
 		color="black"
 		sort="#dark"
 		class="dark-mode"
         onclick={darkMode}
-        />
+        /> -->
 
        
     </nav>

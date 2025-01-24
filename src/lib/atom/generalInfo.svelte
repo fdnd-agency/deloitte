@@ -57,7 +57,7 @@ class="info-panel general-info"
         }
     }
 
-    :global(.general-info){
+    :global(.info-panel.general-info){
        border-top: none !important;
        padding: 0% !important;
        padding-inline: 2% !important;
@@ -109,11 +109,6 @@ class="info-panel general-info"
     details[open]::details-content{
         block-size: auto;
         margin-top: 1%;
-    }
-
-    section:has(details:hover) details[open]::details-content{
-        /* block-size: 13rem; */
-       /* background-color: yellow; */
     }
 
     section:has(details[open]) details:not([open]) summary{

@@ -15,10 +15,13 @@
 	let Profile = $state(false);
 
 
+
 		function toggleProfile() {
-		Profile.set(!Profile.get());
-		console.log(Profile.get());
+			Profile = !Profile;
+			console.log(Profile,data,loggedInUser, data.users);
 		}
+		// $inspect(loggedInUser, data.userID, loggedIn)
+
 	
 	// ==================================================
   	// Login handler
@@ -46,8 +49,6 @@
 
 		event.preventDefault();
 
-		$inspect(loggedInUser, data.userID, loggedIn)
-		
 	}
 
 	function logout(){
@@ -58,6 +59,8 @@
 	$effect(() => {
 		if(data.userID > 0){
 			loggedIn = true;
+		}else{
+			loggedIn = false;
 		}
 	})
 </script>
@@ -87,14 +90,14 @@ class="main-panel not-logged"
 {:else if loggedIn || data.userID >= 1}
 	<WinC
 	role="child"
-	title={loggedInUser?.name}
+	title={data.userID === 2 ? "chris" : userId === 1 ? "mo" : "guest"}
 	context='Strart nu de vragenlijst om een passend pakket te vinden'
 	color='lightblue'
 	class="main-panel"
 	>
 	<p>Cookie: {data.userID}</p>
-	<p>{loggedInUser?.name}</p>
-	<p>{loggedInUser?.email}</p>
+	<pre>{JSON.stringify(data.users[1].name, null, 2)}</pre>
+
 
 		<WinC
 		role='buttonBox'
@@ -110,7 +113,7 @@ class="main-panel not-logged"
 			{:else}
 
 				<Button
-				sort="#account"
+				sort="account"
 				text="profile"
 				color=""
 				clickCallback={toggleProfile}
@@ -154,7 +157,6 @@ class="main-panel not-logged"
 </WinC>
 
 {/if}
-
 
 <WinC
 role="child"
@@ -223,6 +225,7 @@ class="info-panel"
 			height: fit-content;
 			z-index: 1;
 		}
+
 	
 		&::before{
 			content: '';
@@ -288,16 +291,20 @@ class="info-panel"
 				padding: 3%;
 				padding-inline: 5%;
 				margin-block: 0.5cqh;
-				font-size: clamp(1rem,4cqw, 2.3rem) !important;
+				font-size: clamp(1rem,3cqw, 2.3rem) !important;
 				text-transform: capitalize;
+				max-height: 5%;
 			}
 
 			& a{
 				padding: 3%;
 				padding-inline: 5%;
 				margin-block: 0.5cqh;
-				font-size: clamp(1rem,4cqw, 2.3rem) !important;
+				font-size: clamp(1rem,3cqw, 2.3rem) !important;
 				text-transform: capitalize;
+				max-height: 5%;
+				color: var(--D-t-support);
+
 			}
 		}
 
@@ -391,7 +398,12 @@ class="info-panel"
 		&> p ~ p {
 			font-size: 1rem;
 		}
-	}
+
+		p{
+			font-size: clamp(1rem, 0.917rem + 1.1478vw, 2cqi);
+		}
+
+}
 
 	:global(.package-panel){
 		width: 100%;
@@ -403,13 +415,17 @@ class="info-panel"
 		}
 	}
 
-	p{	
-		font-size: 1rem;
-		color: var(--LD-text);
-	}
-
 	:global(.box1,.box2){
 		border: solid 1px !important;
 	}
+
+	:global(.contain p) {	
+		color: var(--LD-text);
+		height: fit-content;
+		max-width: 100rch;
+		z-index: 1;
+		/* outline: solid yellow; */
+	}
+
 	
 </style>
