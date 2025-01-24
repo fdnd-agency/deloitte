@@ -3,11 +3,10 @@
   // Imports
   // ==================================================
   // import Section from '$lib/atom/Section.svelte';
-  import {Button,WinC,Answer,Question,} from '$lib';
+  import {Button, WinC, Answer, Question, Section, Line} from '$lib';
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
-import { page } from '$app/stores';
-
+  import { page } from '$app/stores';
   import { setupFieldsets } from '$lib/fieldsetFilter.js';
 	import fetchJson from '$lib/fetch-json';
 
@@ -100,18 +99,19 @@ import { page } from '$app/stores';
     setupFieldsets();
   });
 
-
   const goSomeWhereBack = () => {
     goto($page.url.pathname.substring(0, $page.url.pathname.lastIndexOf('/')));
 }
 </script>
 
-<WinC
-role="child"
-context="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een goed passende mobiliteitspakket te krijgen."
+<Section
+subtitle="Vragenlijst"
 title="Mobiliteits Wizard"
-class="main-panel-wizard"
+body="Lees de vragen en antwoorden goed door en beantwoordt ze duidelijk om een goed passende mobiliteitspakket te krijgen."
 >
+
+<Line/>
+
   <p class="alert success" aria-hidden="true">Data successfully submited!</p>
   <p class="alert error" aria-hidden="true">Something went wrong!</p>
   <!-- <dialog bind:this={dialog}>
@@ -155,7 +155,7 @@ class="main-panel-wizard"
   {/if}
 
   </form>
-</WinC>
+</Section>
 
 <style>
   form {

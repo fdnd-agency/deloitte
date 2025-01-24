@@ -2,7 +2,7 @@
 	// ==================================================
   	// Import
   	// ==================================================
-    import { WinC,Button,Overview } from '$lib';
+    import { WinC, Button, Overview, Section, Card, List, ListItem, Line, Window } from '$lib';
 	import { onMount } from 'svelte';
 	
 	// ==================================================
@@ -11,15 +11,20 @@
 	/** @type {{data: any}} */
 	let { data } = $props();
 	let loggedIn = $state(false);
-	let loggedInUser = data.users.find(user => user.id === data.userID) || null;
-	let Profile = $state(false);
 
+	function logout(){
+		loggedIn = false;
+		data.userID = null;
+	}
 
-		function toggleProfile() {
-		Profile.set(!Profile.get());
-		console.log(Profile.get());
-		}
-	
+	// ==================================================
+  	// find title name
+  	// ==================================================
+	function findTitle(id) {
+		const titleName = data.titles.find((title) => title.id === id);
+		return titleName ? titleName.title: "None";
+	}
+
 	// ==================================================
   	// Login handler
   	// ==================================================
@@ -45,170 +50,88 @@
 		}
 
 		event.preventDefault();
-
-		$inspect(loggedInUser, data.userID, loggedIn)
-		
 	}
-
-	function logout(){
-		loggedIn = false;
-		data.userID = 0;
-	}
-
-	$effect(() => {
-		if(data.userID > 0){
-			loggedIn = true;
-		}
-	})
 </script>
 
-{#if !loggedIn }
-<WinC
-role="child"
-title="Login"
-context=""
-color='lightblue'
-class="main-panel not-logged"
->
-<form onsubmit={handleLogin}>
-	<p>Enter your personal information</p>
-	<label> E-mail</label>
-	<input type="email" name="email" placeholder="enter your email"  value="test@hva.nl" required>
-	<label>Password</label>
-	<input type="password" name="password" placeholder="enter your password" value="Deloitte" required>
-	<Button 
-	sort="submit" 
-	text='Login' 
-	color='inherit'
-	class='login'/>
+{#if !loggedIn}
+<Window title="Deloitte." body="Welkom bij het Deloitte Mobiliteits Programma.">
+	<form onsubmit={handleLogin}>
+		<label> E-mail</label>
+		<input type="email" name="email" placeholder="enter your email"  value="test@hva.nl" required>
+		<label>Password</label>
+		<input type="password" name="password" placeholder="enter your password" value="Deloitte" required>
+		<Button 
+		sort="submit" 
+		text='Login' 
+		color='inherit'
+		class='login'/>
 	</form>
-</WinC>
-
-{:else if loggedIn || data.userID >= 1}
-	<WinC
-	role="child"
-	title={loggedInUser?.name}
-	context='Start nu de vragenlijst om een passend pakket te vinden'
-	color='lightblue'
-	class="main-panel"
-	>
-	<p>Cookie: {data.userID}</p>
-	<p>{loggedInUser?.name}</p>
-	<p>{loggedInUser?.email}</p>
-
-		<WinC
-		role='buttonBox'
-		color=''
-		class='buttonB'>
-
-			{#if data.userID < 1}
-				<Button
-				sort="/wizard"
-				text="Start Nu"
-				color=""
-				/>
-			{:else}
-
-				<Button
-				sort="#account"
-				text="profile"
-				color=""
-				clickCallback={toggleProfile}
-				/>
-
-				<Button
-				sort="/wizard"
-				text="verander je pakket"
-				color=""
-				/>
-
-				<Button
-				sort="logout"
-				text="logout"
-				color="red"
-				clickCallback={() => logout()}
-				/>
-			{/if}		
-		</WinC>
-	</WinC>
+</Window>
+{:else}
+<Window title={data.users[3].name} body="Jouw persoonlijke gegevens.">
+	<!-- <p>Job title: {findTitle(user.title_id)}</p> -->
+	<p>Email: {data.users[3].email}</p>
+	<Button sort="/wizard" text="verander je pakket" color=""/>
+	<Button sort="logout" text="logout" color="red" clickCallback={() => logout()}/>
+</Window>
 {/if}
 
-{#if Profile}
-	<WinC
-	role="child"
-	title="Profiel"
-	context='Hier kun je je gegevens aanpassen'
-	color='lightblue'
-	class="main-panel"
-	id="account">
+<Line/>
 
-	<div>
-		<img src="" alt="">
-	</div>
-	<div>
-		<p>Jouw account</p>
-		<p>Title <span>{loggedInUser.title || 'none'}</span></p>
-		<p>Pakket <span>{loggedInUser.package || 'none'}</span></p>
-		<Button sort="/wizard" text="verander je pakket" color="white"/>
-	</div>
-</WinC>
+<Section 
+subtitle="Wat bieden wij aan" 
+title="Welkom bij het Deloitte Mobiliteitsprogramma" 
+body="Welkom bij de mobiliteitshub van Deloitte, exclusief voor onze medewerkers. Hier helpen we je om het mobiliteitspakket te vinden dat 
+het beste aansluit op jouw persoonlijke en professionele behoeften. Begin vandaag nog en ontdek hoe je het meeste uit jouw reismogelijkheden kunt halen."/>
 
-{/if}
+<Line/>
 
+<Section 
+subtitle="Een vergoeding van Deloitte" 
+title="Reiskostenvergoeding" 
+body="Hoewel je onze kantoren door heel het land vindt, is de kans groot dat er niet één direct naast je voordeur is. 
+Bij Deloitte bieden wij daarom uitgebreide regelingen die jou voorzien in jouw persoonlijke mobiliteitsbehoeften en waardoor 
+jouw zakelijke reizen gewoon vergoed worden."/>
 
-<WinC
-role="child"
-title="Wat beiden wij aan"
-context='we helpen je met de mobiliteit van de toekomst'
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
+<Line/>
 
-<WinC
-role="child"
-title="Pakketten"
-context='Deloitte biedt een maandelijkse mobiliteitsvergoeding van € 200. Hiermee kun je een abonnement nemen op een deelfiets of een ov-abonnement. Daarnaast kun je ook een elektrische fiets aanschaffen met een eenmalige bijdrage van € 1000.'
-color=""
-class="package-panel"
->
-	<!-- cards list with pakketten -->
-	<p>info about what why the options exist and how to use them</p>
-	<Overview {data}/>
-</WinC>
+<Section
+subtitle="Beschikbare mobiliteitspakketten"
+title="Mobiliteitspakketten"
+body="Op basis van jouw functietitel en voorkeuren hebben we een aantal mobiliteitspakketten geselecteerd die perfect 
+aansluiten op jouw reisbehoeften. Bekijk de beschikbare opties hieronder en kies het pakket dat het beste bij jou past.">
+<List classStyle="row">
+	{#each data.packages as mobilityPackage}
+	<ListItem>
+		<Card path="https://fdnd-agency.directus.app/assets/{mobilityPackage.image}" jobTitle={findTitle(mobilityPackage.title_id)} title={mobilityPackage.package_name} body={mobilityPackage.description}/>
+	</ListItem>
+	{/each}
+</List>
+</Section>
 
-<WinC
-role="child"
-title="Een vergoeding van Deloitte"
-context='Reiskostenvergoedingen'
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
+<Line/>
 
+<Section
+subtitle="kom je in aanmerking voor leasing?"
+title="Leaseregeling"
+body="Of je in aanmerking komt voor de Leaseregeling hangt af van je afdeling en functieniveau en of je een arbeidsovereenkomst hebt van 
+minimaal 24 uur. Als deelnemer aan deze regeling mag je kiezen voor een leaseauto. Wanneer je niet voor een leaseauto kiest, kun je 
+ook kiezen voor andere opties, zoals een bruto mobiliteitsvergoeding als supplement op je salaris waarmee je je zakelijke reizen kunt bekostigen. 
+Reis je liever met het OV? Dan kun je ook kiezen voor een zakelijke OV-kaart waarmee je op kosten van Deloitte kan reizen naar je zakelijke- én 
+privébestemmingen met het OV. Waar je ook voor kiest, je krijgt van ons altijd een zakelijke OV-kaart waarmee je op een gemakkelijke en 
+milieuvriendelijke manier kunt reizen."/>
 
+<Line/>
 
-<WinC
-role="child"
-title="kom je in aanmerking voor leasing?"
-context='leaseregeling'
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
-
-<WinC
-role="child"
-title="Mobiliteitregeling"
-context=''
-color="transparent"
-class="info-panel"
->
-	<p>info about what why the options exist and how to use them</p>
-</WinC>
+<Section
+subtitle="Onze andere optie"
+title="Mobiliteitsregeling"
+body="Wanneer je niet in aanmerking komt voor de leaseregeling, maak je aanspraak op onze andere mobiliteitsregeling. Deze regeling geeft jou de flexibiliteit 
+om voor iedere zakelijke reis zelf je vervoersmiddel te bepalen. Wanneer je met een eigen vervoersmiddel reist, zoals met de fiets, scooter of de auto, 
+ontvang je van ons een kilometervergoeding. Liever met het OV? Daarvoor krijg je van ons een zakelijke OV-kaart voor 1ste klas treinreizen en 
+andere OV vervoersmiddelen. Voor studenten die bij ons stage komen lopen of bij ons afstuderen kennen we geen aparte reiskostenvergoeding. 
+We gaan ervan uit dat je als student kunt reizen op je OV-studentenchipkaart. Indien dit niet het geval is kunnen we een aparte regeling met je treffen. 
+Heb je hier vragen over? Neem dan contact op met de recruiter van de afdeling waar je stage wil gaan lopen of wilt afstuderen."/>
 
 <style>
 	:global(main .main-panel){

@@ -24,7 +24,7 @@
         } else if (sort === 'submit') {
             sortContext = 'submit button';
         } else {
-           sortContext = 'button';
+			sortContext = 'button';
         }
     })
 
