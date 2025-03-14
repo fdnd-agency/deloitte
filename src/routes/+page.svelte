@@ -73,9 +73,9 @@ class="main-panel not-logged"
 <form onsubmit={handleLogin}>
 	<p>Enter your personal information</p>
 	<label> E-mail</label>
-	<input type="email" name="email" placeholder="enter your email" required>
+	<input type="email" name="email" placeholder="enter your email"  value="test@hva.nl" required>
 	<label>Password</label>
-	<input type="password" name="password" placeholder="enter your password" required>
+	<input type="password" name="password" placeholder="enter your password" value="Deloitte" required>
 	<Button 
 	sort="submit" 
 	text='Login' 
@@ -88,7 +88,7 @@ class="main-panel not-logged"
 	<WinC
 	role="child"
 	title={loggedInUser?.name}
-	context='Strart nu de vragenlijst om een passend pakket te vinden'
+	context='Start nu de vragenlijst om een passend pakket te vinden'
 	color='lightblue'
 	class="main-panel"
 	>
